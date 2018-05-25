@@ -51,9 +51,9 @@ bot.on("message", function(user, userID, channelID, message, evt) {
         );
         break;
       case "birbme":
-        const stuff = split.splice(2);
-        logger.info(stuff);
-        logger.info(split);
+        const regex = /^!elroy\s+(\w+)\s+(\w+)\s+(.*)$/;
+        const match = message.match(regex);
+        logger.info(match);
         logger.info(user);
         logger.info(userID);
         logger.info(channelID);
