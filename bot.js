@@ -23,7 +23,6 @@ bot.on("message", function(user, userID, channelID, message, evt) {
   const prefix = split[0];
   const command = split[1];
   if (prefix === "!elroy") {
-    args = args.splice(1);
     switch (cmd) {
       // !ping
       case "dog":
