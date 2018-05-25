@@ -38,7 +38,7 @@ bot.on("message", function(user, userID, channelID, message, evt) {
               bearer: process.env.elroy
             }
           })
-          .on("response", function(error, response, body) {
+          .on("response", function(response, body) {
             logger.info(response.statusCode);
             logger.info(body);
           });
