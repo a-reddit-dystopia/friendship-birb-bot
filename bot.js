@@ -32,15 +32,15 @@ bot.on("message", function(user, userID, channelID, message, evt) {
         });
         break;
       case "fetch":
-        const blerg = request.get(
-          "https://friendship-birb-api.herokuapp.com/api/users.json",
-          {
+        request
+          .get("https://friendship-birb-api.herokuapp.com/api/users.json", {
             auth: {
               bearer: process.env.elroy
             }
-          }
-        );
-        logger.info(blerg);
+          })
+          .on("response", function(response) {
+            logger.info(response.body);
+          });
         break;
       // Just add any case commands if you want to..
     }
