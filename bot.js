@@ -51,6 +51,8 @@ bot.on("message", function(user, userID, channelID, message, evt) {
         );
         break;
       case "birbme":
+        const stuff = split.splice(2);
+        logger.info(stuff);
         logger.info(split);
         logger.info(user);
         logger.info(userID);
