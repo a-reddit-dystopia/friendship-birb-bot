@@ -38,8 +38,9 @@ bot.on("message", function(user, userID, channelID, message, evt) {
               bearer: process.env.elroy
             }
           })
-          .on("response", function(response) {
+          .on("response", function(error, response, body) {
             logger.info(response.statusCode);
+            logger.info(body);
           });
         break;
       // Just add any case commands if you want to..
