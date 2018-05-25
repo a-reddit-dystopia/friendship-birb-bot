@@ -19,7 +19,7 @@ bot.on("ready", function(evt) {
 bot.on("message", function(user, userID, channelID, message, evt) {
   // Our bot needs to know if it will execute a command
   // It will listen for messages that will start with `!`
-  if (message.substring(0, 5) === "!elroy") {
+  if (message.substring(0, 6) === "!elroy") {
     var args = message.substring(1).split(" ");
     var cmd = args[0];
 
