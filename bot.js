@@ -19,13 +19,10 @@ bot.on("ready", function(evt) {
 bot.on("message", function(user, userID, channelID, message, evt) {
   // Our bot needs to know if it will execute a command
   // It will listen for messages that will start with `!`
-  const prefix = message.substring(0, 6);
-  logger.info(prefix);
+  const split = message.split(" ");
+  const prefix = split[0];
+  const command = split[1];
   if (prefix === "!elroy") {
-    var args = message.split(" ");
-    logger.info(args);
-    var cmd = args[1];
-
     args = args.splice(1);
     switch (cmd) {
       // !ping
