@@ -6,6 +6,7 @@
   "author": "Patrick Robertson",
   "dependencies": {
     "discord.io": "woor/discord.io#gateway_v6",
+    "request": "^2.87.0",
     "winston": "^2.4.2"
   }
 }

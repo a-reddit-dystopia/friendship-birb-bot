@@ -1,5 +1,6 @@
-var Discord = require("discord.io");
-var logger = require("winston");
+const Discord = require("discord.io");
+const logger = require("winston");
+const request = require("request");
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -7,7 +8,7 @@ logger.add(logger.transports.Console, {
 });
 logger.level = "debug";
 // Initialize Discord Bot
-var bot = new Discord.Client({
+const bot = new Discord.Client({
   token: process.env.TOKEN,
   autorun: true
 });
@@ -24,12 +25,22 @@ bot.on("message", function(user, userID, channelID, message, evt) {
   const command = split[1];
   if (prefix === "!elroy") {
     switch (command) {
-      // !ping
       case "dog":
         bot.sendMessage({
           to: channelID,
           message: "Yes, this is dog"
         });
+        break;
+      case "fetch":
+        const blerg = request.get(
+          "https://friendship-birb-api.herokuapp.com/api/users.json",
+          {
+            auth: {
+              elroy: process.env.elroy
+            }
+          }
+        );
+        logger.info(blerg);
         break;
       // Just add any case commands if you want to..
     }
