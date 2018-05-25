@@ -1,0 +1,8 @@
+{
+  "name": "friendship-birb-bot",
+  "version": "0.1.0",
+  "description": "I MAKE THE BIRBS FLY",
+  "main": "bot.js",
+  "author": "Patrick Robertson",
+  "dependencies": {}
+}
