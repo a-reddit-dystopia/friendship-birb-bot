@@ -42,6 +42,11 @@ bot.on("message", function(user, userID, channelID, message, evt) {
           (error, response, body) => {
             logger.info(response.statusCode);
             logger.info(body);
+            const json = JSON.parse(body);
+            bot.sendMessage({
+              to: channelID,
+              message: json["hooray"]
+            });
           }
         );
         break;
