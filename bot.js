@@ -39,7 +39,7 @@ bot.on("message", function(user, userID, channelID, message, evt) {
             }
           })
           .on("response", function(response) {
-            logger.info(response.body);
+            logger.info(response.statusCode);
           });
         break;
       // Just add any case commands if you want to..
