@@ -4,5 +4,7 @@
   "description": "I MAKE THE BIRBS FLY",
   "main": "bot.js",
   "author": "Patrick Robertson",
-  "dependencies": {}
+  "dependencies": {
+    "discord.io": "^2.5.3"
+  }
 }
