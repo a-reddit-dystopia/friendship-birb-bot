@@ -32,16 +32,18 @@ bot.on("message", function(user, userID, channelID, message, evt) {
         });
         break;
       case "fetch":
-        request
-          .get("https://friendship-birb-api.herokuapp.com/api/users.json", {
+        request.get(
+          "https://friendship-birb-api.herokuapp.com/api/users.json",
+          {
             auth: {
               bearer: process.env.elroy
             }
-          })
-          .on("response", function(response, body) {
+          },
+          (error, response, body) => {
             logger.info(response.statusCode);
             logger.info(body);
-          });
+          }
+        );
         break;
       // Just add any case commands if you want to..
     }
