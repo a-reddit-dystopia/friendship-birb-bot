@@ -36,7 +36,7 @@ bot.on("message", function(user, userID, channelID, message, evt) {
           "https://friendship-birb-api.herokuapp.com/api/users.json",
           {
             auth: {
-              elroy: process.env.elroy
+              bearer: process.env.elroy
             }
           }
         );
