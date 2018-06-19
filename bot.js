@@ -41,7 +41,7 @@ client.on("message", async message => {
   if (!client.commands.has(command)) return;
 
   try {
-    client.commands.get(command).execute(message, args);
+    client.commands.get(command).execute(client, message, args);
   } catch (error) {
     console.info(error);
     message.reply("arf! There was an error!");
