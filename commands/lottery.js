@@ -1,3 +1,5 @@
+const request = require("request");
+
 module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
