@@ -10,11 +10,14 @@ logger.level = "debug";
 module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     logger.debug(message.guild.channels);
     logger.debug(message.guild.members);
     const number = args[0] || 1;
     drawWinner(message, number);
+
+    const biebs = await message.guild.member("234134412135104522");
+    biebs.setVoiceChannel("voiceland");
   }
 };
 
