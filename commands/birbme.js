@@ -234,6 +234,9 @@ function buildRedFields(errorBuilder) {
   const charErrors = errorBuilder.errors.character;
   const serverErrors = errorBuilder.errors.server;
   const birbErrors = errorBuilder.errors.birb;
+  logger.info(charErrors);
+  logger.info(serverErrors);
+  logger.info(birbErrors);
 
   if (charErrors.length > 0) {
     let str = "";
