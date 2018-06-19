@@ -7,6 +7,7 @@ logger.add(logger.transports.Console, {
 logger.level = "debug";
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
+const NOT_HORDE = "Not Horde.";
 
 module.exports = {
   name: "birbme",
@@ -59,6 +60,17 @@ module.exports = {
               value: `I did not find ${charName}. Is it spelled right?`
             }
           ];
+        } else if (charTuple[1] === NOT_HORDE) {
+          fields = [
+            {
+              name: "✅ Server",
+              value: "I found your server"
+            },
+            {
+              name: "❌ Character",
+              value: `${charName} is alliance. We are HORDE.`
+            }
+          ];
         } else {
           logger.info("here");
         }
@@ -96,7 +108,11 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(char.data);
+    if (char.faction === 1) {
+      return ["ok"];
+    } else {
+      return ["not_ok", NOT_HORDE];
+    }
     return ["ok"];
   } catch (error) {
     const reason = error.response.data.reason;
