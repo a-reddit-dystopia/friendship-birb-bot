@@ -11,29 +11,28 @@ module.exports = {
           name: client.user.username,
           icon_url: client.user.avatarURL
         },
-        description: "HERE IS MY RESPONSE",
+        description: "Friendship Birb Check!!!!!!",
         fields: [
           {
-            name: "✅ All set",
-            value: "You are good to go buddy!"
+            name: "✅ Server Found"
           },
           {
-            name: "Server",
-            value: "✅ I found yo server"
-          },
-          {
-            name: "Character",
-            value: "✅ I found yo character"
+            name: "✅ Character Found"
           },
           {
             name: "Birb status",
             value: "✅ You do not currently have the friendship birb"
+          },
+          {
+            name: "✅ All set",
+            value:
+              "You are good to go buddy! Hang out and wait for the lottery."
           }
         ],
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
-          text: "woof I am a dog"
+          text: "woof I am dog"
         }
       };
       message.reply({ embed });
