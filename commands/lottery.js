@@ -10,17 +10,12 @@ logger.level = "debug";
 module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
-  async execute(client, message, args) {
-    const user = await drawWinner();
-    message.channel.send(
-      `Congrats <@${
-        user.attributes.discord_id
-      }> is the winner! Follow directions to get your birb!`
-    );
+  execute(client, message, args) {
+    drawWinner(message);
   }
 };
 
-function drawWinner() {
+function drawWinner(message) {
   request.post(
     "https://friendship-birb-api.herokuapp.com/api/lotteries.json",
     {
@@ -32,7 +27,13 @@ function drawWinner() {
     (error, response, body) => {
       const json = JSON.parse(body);
       logger.debug(json);
-      return json.data;
+      const user = json.data;
+      logger.debug(user);
+      message.channel.send(
+        `Congrats <@${
+          user.attributes.discord_id
+        }> is the winner! Follow directions to get your birb!`
+      );
     }
   );
 }
