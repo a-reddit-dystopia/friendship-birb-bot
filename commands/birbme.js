@@ -110,8 +110,8 @@ async function doTheRequest(charName, serverName) {
       name: charName
     });
     logger.info(char.data.achievementsCompleted);
-    const included = char.data.achievementsCompleted.includes(BIRB_ID);
-    logger.info(included);
+    const achieves = await char.data.achievementsCompleted;
+    logger.info(achieves);
     if (char.data.faction === 1) {
       return ["ok"];
     } else {
