@@ -17,6 +17,10 @@ client.on("ready", function(evt) {
 });
 client.on("message", message => {
   logger.info(message);
+  logger.info(message.author);
+  logger.info(message.channel);
+  logger.info(message.guild);
+  logger.info(message.member);
   if (message.content === "ping") {
     message.channel.send("pong");
   }
