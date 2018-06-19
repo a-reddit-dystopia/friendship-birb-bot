@@ -8,6 +8,7 @@ logger.level = "debug";
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
+const BIRB_ID = 12110;
 
 module.exports = {
   name: "birbme",
@@ -103,7 +104,7 @@ module.exports = {
 
 async function doTheRequest(charName, serverName) {
   try {
-    const char = await blizz.wow.character(["profile"], {
+    const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
       realm: serverName,
       name: charName
