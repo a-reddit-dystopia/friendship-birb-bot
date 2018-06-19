@@ -6,10 +6,7 @@ module.exports = {
 
     if (args.length === 3) {
     } else {
-      message.channel.send(
-        "I need you to send me your character name, then server name in dash-case, ie bleeding-hollow not Bleeding Hollow",
-        { reply: message }
-      );
+      message.channel.send(`${args.length} \n ${args}`, { reply: message });
     }
   }
 };
