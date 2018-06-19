@@ -108,8 +108,8 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(char);
-    if (char.faction === "1") {
+    logger.info(char.response);
+    if (char.response.faction === "1") {
       return ["ok"];
     } else {
       return ["not_ok", NOT_HORDE];
