@@ -22,16 +22,19 @@ module.exports = {
         const json = JSON.parse(body);
         const users = json.data;
         logger.debug(users);
+        let blerg = `+---------------+----------------+-----------------+
+| Discord       | Character Name | Server          |
++---------------+----------------+-----------------+`;
         users.forEach(user => {
           logger.debug(user);
           const attributes = user.attributes;
-          message.channel.send(
-            `${attributes.discord_name} ${attributes.wow_name} ${
-              attributes.wow_server
-            }`,
-            { reply: message }
-          );
+          blerg.push(`
+| ${attributes.discord_name} | ${attributes.wow_name}        | ${
+            attributes.wow_server
+          } |
++---------------+----------------+-----------------+`);
         });
+        message.channel.send(blerg, { reply: message });
       }
     );
   }
