@@ -1,4 +1,4 @@
-const Discord = require("discord.io");
+const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
 // Configure logger settings
@@ -8,57 +8,18 @@ logger.add(logger.transports.Console, {
 });
 logger.level = "debug";
 // Initialize Discord Bot
-const bot = new Discord.Client({
-  token: process.env.TOKEN,
-  autorun: true
-});
-bot.on("ready", function(evt) {
+const client = new Discord.Client();
+
+client.on("ready", function(evt) {
   logger.info("Connected");
   logger.info("Logged in as: ");
-  logger.info(bot.username + " - (" + bot.id + ")");
+  logger.info(client.username + " - (" + client.id + ")");
 });
-bot.on("message", function(user, userID, channelID, message, evt) {
-  // Our bot needs to know if it will execute a command
-  // It will listen for messages that will start with `!`
-  const split = message.split(" ");
-  const prefix = split[0];
-  const command = split[1];
-  if (prefix === "!elroy") {
-    switch (command) {
-      case "dog":
-        bot.sendMessage({
-          to: channelID,
-          message: "Yes, this is dog"
-        });
-        break;
-      case "fetch":
-        request.get(
-          "https://friendship-birb-api.herokuapp.com/api/users.json",
-          {
-            auth: {
-              bearer: process.env.elroy
-            }
-          },
-          (error, response, body) => {
-            logger.info(response.statusCode);
-            logger.info(body);
-            const json = JSON.parse(body);
-            bot.sendMessage({
-              to: channelID,
-              message: json["hooray"]
-            });
-          }
-        );
-        break;
-      case "birbme":
-        const regex = /^!elroy\s+(\w+)\s+(\w+)\s+(.*)$/;
-        const match = message.match(regex);
-        logger.info(match);
-        logger.info(user);
-        logger.info(userID);
-        logger.info(channelID);
-        break;
-      // Just add any case commands if you want to..
-    }
+client.on("message", message => {
+  logger.info(message);
+  if (message.content === "ping") {
+    message.channel.send("pong");
   }
 });
+
+client.login(process.env.TOKEN);
