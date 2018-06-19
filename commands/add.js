@@ -23,7 +23,8 @@ module.exports = {
             discord_name: message.author.tag,
             wow_name: charName,
             wow_server: serverName,
-            status: "active"
+            status: "active",
+            status_date: new Date()
           }
         }
       },
