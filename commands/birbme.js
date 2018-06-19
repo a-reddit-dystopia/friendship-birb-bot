@@ -6,13 +6,6 @@ const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
 const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
 const DUPLICATE = "Character already on our list";
-const logger = require("winston");
-
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  colorize: true
-});
-logger.level = "debug";
 
 module.exports = {
   name: "birbme",
