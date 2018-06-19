@@ -17,7 +17,7 @@ module.exports = {
 
     if (args.length === 2) {
       const [charName, serverName] = args;
-      const charTuple = doTheRequest(charName, serverName);
+      const charTuple = await doTheRequest(charName, serverName);
       console.warn(charTuple);
 
       if (charTuple[0] === "ok") {
