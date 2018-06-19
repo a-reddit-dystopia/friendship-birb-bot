@@ -14,12 +14,16 @@ module.exports = {
 
     if (args.length === 2) {
       const [charName, serverName] = args;
-      const char = await blizz.wow.character(["profile"], {
-        origin: "us",
-        realm: serverName,
-        name: charName
-      });
-      logger.info(char.data);
+      try {
+        const char = await blizz.wow.character(["profile"], {
+          origin: "us",
+          realm: serverName,
+          name: charName
+        });
+        logger.info(char.data);
+      } catch (error) {
+        logger.info(error);
+      }
       const embed = {
         color: 3447003,
         author: {
