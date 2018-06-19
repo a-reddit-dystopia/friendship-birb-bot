@@ -118,6 +118,7 @@ async function doTheRequest(charName, serverName) {
       return ["not_ok", NOT_HORDE];
     }
   } catch (error) {
+    logger.debug(error);
     const reason = error.response.data.reason;
     return ["not_ok", reason];
   }
