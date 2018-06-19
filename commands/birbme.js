@@ -19,7 +19,7 @@ module.exports = {
         realm: serverName,
         name: charName
       });
-      logger.info(char);
+      logger.info(char.data);
       const embed = {
         color: 3447003,
         author: {
