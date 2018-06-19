@@ -108,12 +108,12 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(char.response);
-    //if (char.response.faction === "1") {
-    return ["ok"];
-    //} else {
-    //  return ["not_ok", NOT_HORDE];
-    //}
+    logger.info(char.data);
+    if (char.data.faction === "1") {
+      return ["ok"];
+    } else {
+      return ["not_ok", NOT_HORDE];
+    }
   } catch (error) {
     const reason = error.response.data.reason;
     return ["not_ok", reason];
