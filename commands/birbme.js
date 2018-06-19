@@ -109,8 +109,8 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(char.data);
-    const included = char.data.achievementsComplete.includes(BIRB_ID);
+    logger.info(char.data.achievementsCompleted);
+    const included = char.data.achievementsCompleted.includes(BIRB_ID);
     logger.info(included);
     if (char.data.faction === 1) {
       return ["ok"];
