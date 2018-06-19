@@ -98,7 +98,7 @@ async function doTheRequest(charName, serverName) {
     });
     return ["ok"];
   } catch (error) {
-    const reason = error.response.reason;
+    const reason = error.response;
     return ["not_ok", reason];
   }
 }
