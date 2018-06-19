@@ -128,13 +128,12 @@ async function doTheRequest(charName, serverName) {
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
       BIRB_ID
     );
-    if (char.data.faction === 1) {
-      return ["ok"];
-    } else if (hasBirb === true) {
-      rturn[("not_ok", HAS_BIRB)];
-    } else {
+    if (char.data.faction === 0) {
       return ["not_ok", NOT_HORDE];
+    } else if (hasBirb === true) {
+      return ["not_ok", HAS_BIRB];
     }
+    return ["ok"];
   } catch (error) {
     logger.debug(error);
     const reason = error.response.data.reason;
