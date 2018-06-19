@@ -16,7 +16,7 @@ module.exports = {
           {
             name: "✅ All set",
             value: "You are good to go buddy!"
-          }
+          },
           {
             name: "Server",
             value: "✅ I found yo server"
@@ -28,7 +28,7 @@ module.exports = {
           {
             name: "Birb status",
             value: "✅ You do not currently have the friendship birb"
-          },
+          }
         ],
         timestamp: new Date(),
         footer: {
