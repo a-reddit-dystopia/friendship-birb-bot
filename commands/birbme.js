@@ -114,7 +114,9 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(achieves.data.achievements.achievementsCompleted);
+    logger.info(
+      achieves.data.achievements.achievementsCompleted.includes(BIRB_ID)
+    );
     if (char.data.faction === 1) {
       return ["ok"];
     } else {
