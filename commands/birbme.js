@@ -9,6 +9,7 @@ const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
 const BIRB_ID = 12110;
+const HAS_BIRB = "Has Friendship birb already";
 
 module.exports = {
   name: "birbme",
@@ -72,6 +73,21 @@ module.exports = {
               value: `${charName} is alliance. We are HORDE.`
             }
           ];
+        } else if (charTuple[1] === HAS_BIRB) {
+          fields = [
+            {
+              name: "✅ Server",
+              value: "I found your server"
+            },
+            {
+              name: "✅ Character",
+              value: "I found your character\nIt is HORDE"
+            },
+            {
+              name: "❌ Birb status",
+              value: "You already have a friendship birb!"
+            }
+          ];
         } else {
           logger.info("here");
         }
@@ -109,9 +125,13 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(char.data.achievements.achievementsCompleted.includes(BIRB_ID));
+    const hasBirb = char.data.achievements.achievementsCompleted.includes(
+      BIRB_ID
+    );
     if (char.data.faction === 1) {
       return ["ok"];
+    } else if (hasBirb === true) {
+      rturn[("not_ok", HAS_BIRB)];
     } else {
       return ["not_ok", NOT_HORDE];
     }
