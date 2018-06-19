@@ -43,6 +43,7 @@ module.exports = {
               "You are good to go buddy! Hang out and wait for the lottery."
           }
         ];
+        message.react("✅");
       } else {
         if (charTuple[1] === REALM_NOT_FOUND) {
           fields = [
@@ -51,6 +52,7 @@ module.exports = {
               value: `I did not find ${serverName}. Is it spelled right?`
             }
           ];
+          message.react("❌");
         } else if (charTuple[1] === CHARACTER_NOT_FOUND) {
           fields = [
             {
@@ -62,6 +64,7 @@ module.exports = {
               value: `I did not find ${charName}. Is it spelled right?`
             }
           ];
+          message.react("❌");
         } else if (charTuple[1] === NOT_HORDE) {
           fields = [
             {
@@ -73,6 +76,7 @@ module.exports = {
               value: `${charName} is alliance. We are HORDE.`
             }
           ];
+          message.react("❌");
         } else if (charTuple[1] === HAS_BIRB) {
           fields = [
             {
@@ -88,6 +92,7 @@ module.exports = {
               value: "You already have a friendship birb!"
             }
           ];
+          message.react("❌");
         } else {
           logger.info("here");
         }
