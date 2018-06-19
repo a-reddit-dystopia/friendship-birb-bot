@@ -91,11 +91,12 @@ module.exports = {
 
 async function doTheRequest(charName, serverName) {
   try {
-    const char = await blizz.wow.character(["profile"], {
+    const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
       realm: serverName,
       name: charName
     });
+    logger.info(char.data);
     return ["ok"];
   } catch (error) {
     const reason = error.response.data.reason;
