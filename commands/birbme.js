@@ -1,5 +1,5 @@
 const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
-const request = requre("request");
+const request = require("request");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
