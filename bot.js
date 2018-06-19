@@ -16,12 +16,9 @@ client.on("ready", function(evt) {
   logger.info(client.username + " - (" + client.id + ")");
 });
 client.on("message", message => {
-  logger.info("YEOOOOOOOOoOOOooooo");
-  logger.info(message.author);
   logger.info(message.author.tag);
-  logger.info(message.author.username);
   if (message.content === "ping") {
-    message.channel.send("pong");
+    message.channel.send("pong", { reply: message });
   }
 });
 
