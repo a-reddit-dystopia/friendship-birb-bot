@@ -36,7 +36,7 @@ module.exports = {
             } |
 +---------------+----------------+-----------------+`;
         });
-        message.channel.send(blerg, { reply: message });
+        message.channel.send(blerg);
       }
     );
   }
