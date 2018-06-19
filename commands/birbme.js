@@ -29,7 +29,7 @@ module.exports = {
           },
           {
             name: "✅ Character",
-            value: "I found your character"
+            value: "I found your character\nIt is HORDE"
           },
           {
             name: "✅ Birb status",
