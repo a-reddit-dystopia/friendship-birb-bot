@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
 const prefix = "!elroy";
+
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -19,7 +20,9 @@ client.on("message", message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
+  logger.info(args);
   const command = args.shift().toLowerCase();
+  logger.info(command);
 
   if (command === "ping") {
     message.channel.send("pong", { reply: message });
