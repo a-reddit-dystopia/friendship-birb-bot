@@ -125,7 +125,6 @@ module.exports = {
           message.react("❌");
         }
       }
-      logger.debug(errorBuilder);
       const embed = {
         color: 3447003,
         author: {
