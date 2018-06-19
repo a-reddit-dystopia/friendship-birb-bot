@@ -44,7 +44,7 @@ function drawWinner(message, number) {
         });
         const text = msg.join(", ");
         message.channel.send(
-          `Congrats ${message} are the winner(s)! Follow directions to get your birb!`
+          `Congrats ${text} are the winner(s)! Follow directions to get your birb!`
         );
       } else if (response.statusCode === 422) {
         message.channel.send(`We have drawn all the birbs! Congrats fam!`);
