@@ -28,12 +28,15 @@ client.on("ready", function(evt) {
 });
 
 client.on("message", message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|\\${prefix})\\s*`);
+  if (!prefixRegex.test(message.content)) return;
 
-  const args = message.content.slice(prefix.length).split(/ +/);
-  logger.info(args);
-  const command = args.shift().toLowerCase();
-  logger.info(command);
+  const [, matchedPrefix] = message.content.match(prefixRegex);
+  const args = message.content
+    .slice(matchedPrefix.length)
+    .trim()
+    .split(/ +/);
+  const command = args.shift();
 
   if (!client.commands.has(command)) return;
 
