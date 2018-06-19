@@ -22,7 +22,8 @@ module.exports = {
         });
         logger.info(char.data);
       } catch (error) {
-        logger.info(error.response);
+        logger.info(error.response.status);
+        logger.info(erorr.response.data);
       }
       const embed = {
         color: 3447003,
