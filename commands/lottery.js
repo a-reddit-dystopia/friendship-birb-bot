@@ -1,4 +1,11 @@
 const request = require("request");
+const logger = require("winston");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
 
 module.exports = {
   name: "lottery",
@@ -24,6 +31,7 @@ function drawWinner() {
     },
     (error, response, body) => {
       const json = JSON.parse(body);
+      logger.debug(json);
       return json.data;
     }
   );
