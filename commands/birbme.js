@@ -31,7 +31,7 @@ module.exports = {
           birb: []
         }
       };
-      const charTuple = await doTheRequest(charName, serverName, errorBuilder);
+      await doTheRequest(charName, serverName, errorBuilder);
 
       if (errorBuilder.status === "ok") {
         const status = await addToBirbList(
@@ -41,15 +41,12 @@ module.exports = {
         );
         if (status === 201) {
           message.react("✅");
-          fields = buildGreenFields();
         } else if (status === 422) {
           errorBuilder.status = "not_ok";
           errorBuilder.errors.character.push(DUPLICATE);
           message.react("❌");
-          fields = buildRedFields(errorBuilder);
         }
       } else {
-        fields = buildRedFields(errorBuilder);
         message.react("❌");
       }
       const embed = {
@@ -59,7 +56,7 @@ module.exports = {
           icon_url: client.user.avatarURL
         },
         description: "Friendship Birb Check!!!!!!",
-        fields: fields,
+        fields: buildFields(errorBuilder),
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
@@ -135,52 +132,50 @@ async function addToBirbList(author, charName, serverName) {
   }
 }
 
-function buildGreenFields() {
-  return [
-    {
-      name: "✅ Server",
-      value: "I found your server"
-    },
-    {
-      name: "✅ Character",
-      value: "I found your character\nIt is HORDE\nIt is not a duplicate"
-    },
-    {
-      name: "✅ Birb status",
-      value: "You do not currently have the friendship birb"
-    },
-    {
-      name: "✅ All set",
-      value: "You are good to go buddy! Hang out and wait for the lottery."
-    }
-  ];
-}
-
-function buildRedFields(errorBuilder) {
+function buildFields(errorBuilder) {
   let fields = [];
   const charErrors = errorBuilder.errors.character;
   const serverErrors = errorBuilder.errors.server;
   const birbErrors = errorBuilder.errors.birb;
-  logger.info(charErrors);
-  logger.info(serverErrors);
-  logger.info(birbErrors);
 
   if (charErrors.length > 0) {
     let str = "";
     charErrors.forEach(error => (str += `${error}\n`));
     fields.push({ name: "❌ Character", value: str });
+  } else {
+    fields.push({
+      name: "✅ Character",
+      value: "I found your character\nIt is HORDE\nIt is not a duplicate"
+    });
   }
 
   if (serverErrors.length > 0) {
     let str = "";
     serverErrors.forEach(error => (str += `${error}\n`));
     fields.push({ name: "❌ Server", value: str });
+  } else {
+    fields.push({
+      name: "✅ Server",
+      value: "I found your server"
+    });
   }
 
   if (birbErrors.length > 0) {
     let str = "";
     birbErrors.forEach(error => (str += `${error}\n`));
     fields.push({ name: "❌ Birb status", value: str });
+  } else {
+    fields.push({
+      name: "✅ Birb status",
+      value: "You do not currently have the friendship birb"
+    });
+  }
+
+  if (errorBuilder.status === "ok") {
+    fields.push({
+      name: "✅ All set",
+      value: "You are good to go buddy! Hang out and wait for the lottery."
+    });
   }
   return fields;
 }
