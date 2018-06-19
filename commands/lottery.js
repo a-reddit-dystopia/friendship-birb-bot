@@ -17,7 +17,7 @@ module.exports = {
     drawWinner(message, number);
 
     const biebs = await message.guild.member("234134412135104522");
-    biebs.setVoiceChannel("voiceland");
+    biebs.setVoiceChannel("406442986709450755");
   }
 };
 
