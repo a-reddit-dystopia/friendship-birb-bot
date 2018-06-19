@@ -20,7 +20,7 @@ module.exports = {
       },
       (error, response, body) => {
         const json = JSON.parse(body);
-        const users = json["data"];
+        const users = json.data;
         logger.debug(users);
         users.forEach(user => {
           message.channel.send(
