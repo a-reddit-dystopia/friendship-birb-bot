@@ -10,7 +10,7 @@ logger.level = "debug";
 module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     const user = await drawWinner();
     message.channel.send(
       `Congrats <@${
