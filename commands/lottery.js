@@ -11,7 +11,7 @@ module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
   execute(client, message, args) {
-    const user = drawWinner();
+    const user = await drawWinner();
     message.channel.send(
       `Congrats <@${
         user.attributes.discord_id
