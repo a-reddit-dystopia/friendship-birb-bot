@@ -104,19 +104,12 @@ module.exports = {
 
 async function doTheRequest(charName, serverName) {
   try {
-    const char = await blizz.wow.character(["profile"], {
+    const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
       realm: serverName,
       name: charName
     });
-    const achieves = await blizz.wow.character(["achievements"], {
-      origin: "us",
-      realm: serverName,
-      name: charName
-    });
-    logger.info(
-      achieves.data.achievements.achievementsCompleted.includes(BIRB_ID)
-    );
+    logger.info(char.data.achievements.achievementsCompleted.includes(BIRB_ID));
     if (char.data.faction === 1) {
       return ["ok"];
     } else {
