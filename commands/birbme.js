@@ -22,7 +22,7 @@ module.exports = {
         });
         logger.info(char.data);
       } catch (error) {
-        logger.info(error);
+        logger.info(error.response);
       }
       const embed = {
         color: 3447003,
