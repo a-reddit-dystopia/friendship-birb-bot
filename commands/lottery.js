@@ -24,7 +24,7 @@ function drawWinner() {
     },
     (error, response, body) => {
       const json = JSON.parse(body);
-      return json;
+      return json.data;
     }
   );
 }
