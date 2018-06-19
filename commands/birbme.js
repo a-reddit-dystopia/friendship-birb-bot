@@ -1,10 +1,25 @@
+const bliz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
+const logger = require("winston");
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
+
 module.exports = {
   name: "birbme",
   description: "Add me to the list motherlover",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     message.react("🤔");
 
     if (args.length === 2) {
+      const [charName, serverName] = args;
+      const char = await blizzard.wow.character(["profile"], {
+        origin: "us",
+        realm: serverName,
+        name: charName
+      });
+      logger.info(char);
       const embed = {
         color: 3447003,
         author: {
@@ -15,7 +30,7 @@ module.exports = {
         fields: [
           {
             name: "✅ Server",
-            value: "I found your server!"
+            value: "I found your server"
           },
           {
             name: "✅ Character",
