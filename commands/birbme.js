@@ -1,4 +1,5 @@
 const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
+const request = requre("request");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
@@ -36,6 +37,7 @@ module.exports = {
               "You are good to go buddy! Hang out and wait for the lottery."
           }
         ];
+        await addToBirbList(message.author, charName, serverName);
         message.react("✅");
       } else {
         if (charTuple[1] === REALM_NOT_FOUND) {
@@ -133,4 +135,29 @@ async function doTheRequest(charName, serverName) {
     const reason = error.response.data.reason;
     return ["not_ok", reason];
   }
+}
+
+function addToBirbList(author, charName, serverName) {
+  request.post(
+    "https://friendship-birb-api.herokuapp.com/api/users.json",
+    {
+      auth: {
+        bearer: process.env.elroy
+      },
+      form: {
+        user: {
+          discord_name: author.tag,
+          discord_id: author.id,
+          wow_name: charName,
+          wow_server: serverName,
+          status: "active",
+          status_date: new Date()
+        }
+      }
+    },
+    (error, response, body) => {
+      const json = JSON.parse(body);
+      logger.debug(body);
+    }
+  );
 }
