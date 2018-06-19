@@ -22,8 +22,8 @@ module.exports = {
             value: "I found your character"
           },
           {
-            name: "Birb status",
-            value: "✅ You do not currently have the friendship birb"
+            name: "✅ Birb status",
+            value: "You do not currently have the friendship birb"
           },
           {
             name: "✅ All set",
