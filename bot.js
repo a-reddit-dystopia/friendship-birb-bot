@@ -3,7 +3,7 @@ const logger = require("winston");
 const request = require("request");
 const fs = require("fs");
 
-const prefix = "!elroy ";
+const prefix = "elroy ";
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
