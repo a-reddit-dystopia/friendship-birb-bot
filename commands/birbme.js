@@ -1,10 +1,4 @@
 const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
-const logger = require("winston");
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  colorize: true
-});
-logger.level = "debug";
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
@@ -21,7 +15,6 @@ module.exports = {
     if (args.length === 2) {
       const [charName, serverName] = args;
       const charTuple = await doTheRequest(charName, serverName);
-      console.warn(charTuple);
 
       if (charTuple[0] === "ok") {
         fields = [
@@ -93,11 +86,8 @@ module.exports = {
             }
           ];
           message.react("❌");
-        } else {
-          logger.info("here");
         }
       }
-      logger.info(fields);
 
       const embed = {
         color: 3447003,
@@ -140,7 +130,6 @@ async function doTheRequest(charName, serverName) {
     }
     return ["ok"];
   } catch (error) {
-    logger.debug(error);
     const reason = error.response.data.reason;
     return ["not_ok", reason];
   }
