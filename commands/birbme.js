@@ -1,10 +1,17 @@
 const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
-const request = require("request");
+const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
 const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
+const logger = require("winston");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
 
 module.exports = {
   name: "birbme",
@@ -42,7 +49,6 @@ module.exports = {
           charName,
           serverName
         );
-        message.channel.send(status);
         if (status === 201) {
           message.react("✅");
         } else if (status === 422) {
@@ -146,8 +152,8 @@ async function doTheRequest(charName, serverName) {
   }
 }
 
-function addToBirbList(author, charName, serverName) {
-  request.post(
+async function addToBirbList(author, charName, serverName) {
+  const response = await request.post(
     "https://friendship-birb-api.herokuapp.com/api/users.json",
     {
       auth: {
@@ -163,10 +169,8 @@ function addToBirbList(author, charName, serverName) {
           status_date: new Date()
         }
       }
-    },
-    (error, response, body) => {
-      const json = JSON.parse(body);
-      return response.statusCode;
     }
   );
+  logger.debug(response);
+  return response;
 }

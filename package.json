@@ -8,6 +8,7 @@
     "blizzard.js": "^2.3.1",
     "discord.js": "^11.3.2",
     "request": "^2.87.0",
+    "request-promise-native": "1.0.5",
     "winston": "^2.4.2"
   }
 }
