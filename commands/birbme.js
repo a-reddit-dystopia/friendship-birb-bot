@@ -108,6 +108,7 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
+    logger.info(char.faction);
     if (char.faction === "1") {
       return ["ok"];
     } else {
