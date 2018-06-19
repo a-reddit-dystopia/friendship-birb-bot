@@ -109,7 +109,7 @@ async function doTheRequest(charName, serverName) {
       name: charName
     });
     logger.info(char.data);
-    if (char.data.faction === "1") {
+    if (char.data.faction === 1) {
       return ["ok"];
     } else {
       return ["not_ok", NOT_HORDE];
