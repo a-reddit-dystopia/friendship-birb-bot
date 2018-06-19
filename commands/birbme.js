@@ -114,7 +114,7 @@ async function doTheRequest(charName, serverName) {
       realm: serverName,
       name: charName
     });
-    logger.info(achieves.data);
+    logger.info(achieves.data.achievementsCompleted);
     if (char.data.faction === 1) {
       return ["ok"];
     } else {
