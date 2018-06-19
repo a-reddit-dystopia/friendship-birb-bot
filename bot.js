@@ -27,7 +27,7 @@ client.on("ready", function(evt) {
   logger.info("Connected");
 });
 
-client.on("message", message => {
+client.on("message", async message => {
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|\\${prefix})\\s*`);
   if (!prefixRegex.test(message.content)) return;
 
