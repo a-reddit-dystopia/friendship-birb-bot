@@ -172,9 +172,8 @@ async function addToBirbList(author, charName, serverName) {
         }
       }
     );
-    logger.debug(response);
-    return response;
+    return 201;
   } catch (error) {
-    logger.error(error);
+    return 422;
   }
 }
