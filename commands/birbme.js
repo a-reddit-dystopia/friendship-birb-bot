@@ -1,7 +1,7 @@
 module.exports = {
   name: "birbme",
   description: "Add me to the list motherlover",
-  execute(message, args) {
+  async execute(message, args) {
     message.react("🤔");
 
     if (args.length === 2) {
