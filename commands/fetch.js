@@ -1,4 +1,11 @@
 const request = require("request");
+const logger = require("winston");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
 
 module.exports = {
   name: "fetch",
@@ -13,6 +20,7 @@ module.exports = {
       },
       (error, response, body) => {
         const json = JSON.parse(body);
+        logger.debug(body);
         message.channel.send(json, { reply: message });
       }
     );
