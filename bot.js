@@ -16,7 +16,6 @@ client.on("ready", function(evt) {
   logger.info(client.username + " - (" + client.id + ")");
 });
 client.on("message", message => {
-  logger.info(message);
   logger.info(message.author);
   logger.info(message.channel);
   logger.info(message.guild);
