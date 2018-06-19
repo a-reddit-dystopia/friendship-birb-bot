@@ -37,8 +37,17 @@ module.exports = {
               "You are good to go buddy! Hang out and wait for the lottery."
           }
         ];
-        await addToBirbList(message.author, charName, serverName);
-        message.react("✅");
+        const status = await addToBirbList(
+          message.author,
+          charName,
+          serverName
+        );
+        message.channel.send(status);
+        if (status === 201) {
+          message.react("✅");
+        } else if (status === 422) {
+          message.react("❌");
+        }
       } else {
         if (charTuple[1] === REALM_NOT_FOUND) {
           fields = [
@@ -157,6 +166,7 @@ function addToBirbList(author, charName, serverName) {
     },
     (error, response, body) => {
       const json = JSON.parse(body);
+      return response.statusCode;
     }
   );
 }
