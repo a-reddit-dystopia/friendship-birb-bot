@@ -103,12 +103,12 @@ module.exports = {
 
 async function doTheRequest(charName, serverName) {
   try {
-    const char = await blizz.wow.character(["profile", "achievements"], {
+    const char = await blizz.wow.character(["profile"], {
       origin: "us",
       realm: serverName,
       name: charName
     });
-    logger.info(char.faction);
+    logger.info(char);
     if (char.faction === "1") {
       return ["ok"];
     } else {
