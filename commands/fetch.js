@@ -28,11 +28,13 @@ module.exports = {
         users.forEach(user => {
           logger.debug(user);
           const attributes = user.attributes;
-          blerg.push(`
+          blerg =
+            blerg +
+            `
 | ${attributes.discord_name} | ${attributes.wow_name}        | ${
-            attributes.wow_server
-          } |
-+---------------+----------------+-----------------+`);
+              attributes.wow_server
+            } |
++---------------+----------------+-----------------+`;
         });
         message.channel.send(blerg, { reply: message });
       }
