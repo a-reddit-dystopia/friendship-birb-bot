@@ -68,25 +68,7 @@ module.exports = {
           icon_url: client.user.avatarURL
         },
         description: "Friendship Birb Check!!!!!!",
-        fields: [
-          {
-            name: "✅ Server",
-            value: "I found your server"
-          },
-          {
-            name: "✅ Character",
-            value: "I found your character"
-          },
-          {
-            name: "✅ Birb status",
-            value: "You do not currently have the friendship birb"
-          },
-          {
-            name: "✅ All set",
-            value:
-              "You are good to go buddy! Hang out and wait for the lottery."
-          }
-        ],
+        fields,
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
