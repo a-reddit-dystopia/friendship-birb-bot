@@ -11,6 +11,9 @@ module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
   async execute(client, message, args) {
+    if (message.member.roles.find("name", "Elroy Admin")) {
+      return message.reply("Sorry you cannot execute this command.");
+    }
     const number = args[0] || 1;
     drawWinner(message, number);
   }
