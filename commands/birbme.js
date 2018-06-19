@@ -68,7 +68,7 @@ module.exports = {
           icon_url: client.user.avatarURL
         },
         description: "Friendship Birb Check!!!!!!",
-        fields,
+        fields: fields,
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
