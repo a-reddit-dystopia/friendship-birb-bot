@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
+const fs = require("fs");
+
 const prefix = "!elroy ";
 
 // Configure logger settings
@@ -11,6 +13,15 @@ logger.add(logger.transports.Console, {
 logger.level = "debug";
 // Initialize Discord Bot
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
+const commandFiles = fs
+  .readdirSnyc("./commands")
+  .filter(file => file.endsWith(".js"));
+
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
+}
 
 client.on("ready", function(evt) {
   logger.info("Connected");
@@ -24,8 +35,13 @@ client.on("message", message => {
   const command = args.shift().toLowerCase();
   logger.info(command);
 
-  if (command === "ping") {
-    message.channel.send("pong", { reply: message });
+  if (!client.commands.has(command)) return;
+
+  try {
+    client.commands.get(command).execute(message, args);
+  } catch (error) {
+    console.info(error);
+    message.reply("arf! There was an error!");
   }
 });
 
