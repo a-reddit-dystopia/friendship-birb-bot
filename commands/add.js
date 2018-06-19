@@ -21,6 +21,7 @@ module.exports = {
         form: {
           user: {
             discord_name: message.author.tag,
+            discord_id: message.author.id,
             wow_name: charName,
             wow_server: serverName,
             status: "active",

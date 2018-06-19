@@ -31,7 +31,7 @@ module.exports = {
           blerg =
             blerg +
             `
-| <@${attributes.discord_name}> | ${attributes.wow_name}        | ${
+| <@${attributes.discord_id}> | ${attributes.wow_name}        | ${
               attributes.wow_server
             } |
 +---------------+----------------+-----------------+`;
