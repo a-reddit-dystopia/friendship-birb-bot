@@ -23,6 +23,7 @@ module.exports = {
         const users = json.data;
         logger.debug(users);
         users.forEach(user => {
+          logger.debug(user);
           message.channel.send(
             `${user["discord_name"]} ${user["wow_name"]} ${user["wow_server"]}`,
             { reply: message }
