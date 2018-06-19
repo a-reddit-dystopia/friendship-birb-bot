@@ -25,7 +25,7 @@ function drawWinner(message) {
       form: {}
     },
     (error, response, body) => {
-      logger.debug(response);
+      logger.debug(response.statusCode);
       const json = JSON.parse(body);
       logger.debug(json);
       const user = json.data.attributes;
