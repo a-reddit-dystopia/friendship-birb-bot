@@ -47,10 +47,10 @@ module.exports = {
           errorBuilder.errors.character.push(DUPLICATE);
           message.react("❌");
           fields = buildRedFields(errorBuilder);
-        } else {
-          fields = buildRedFields(errorBuilder);
-          message.react("❌");
         }
+      } else {
+        fields = buildRedFields(errorBuilder);
+        message.react("❌");
       }
       logger.debug(fields);
 
