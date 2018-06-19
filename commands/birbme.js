@@ -18,6 +18,7 @@ module.exports = {
     if (args.length === 2) {
       const [charName, serverName] = args;
       const charTuple = doTheRequest(charName, serverName);
+      console.warn(charTuple);
 
       if (charTuple[0] === "ok") {
         fields = [
@@ -58,6 +59,8 @@ module.exports = {
               value: `I did not find ${charName}. Is it spelled right?`
             }
           ];
+        } else {
+          logger.info("here");
         }
       }
       logger.info(fields);
