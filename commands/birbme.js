@@ -1,4 +1,4 @@
-const bliz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
+const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
 const logger = require("winston");
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -14,7 +14,7 @@ module.exports = {
 
     if (args.length === 2) {
       const [charName, serverName] = args;
-      const char = await blizzard.wow.character(["profile"], {
+      const char = await blizz.wow.character(["profile"], {
         origin: "us",
         realm: serverName,
         name: charName
