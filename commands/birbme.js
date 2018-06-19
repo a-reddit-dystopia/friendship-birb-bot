@@ -2,10 +2,10 @@ const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
 const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
-const NOT_HORDE = "Not Horde.";
+const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
 const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
-const DUPLICATE = "Duplicate character";
+const DUPLICATE = "Character already on our list";
 const logger = require("winston");
 
 logger.remove(logger.transports.Console);
