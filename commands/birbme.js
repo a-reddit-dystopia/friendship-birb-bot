@@ -14,12 +14,12 @@ module.exports = {
         description: "Friendship Birb Check!!!!!!",
         fields: [
           {
-            name: "✅ Server Found",
-            value: ""
+            name: "✅ Server",
+            value: "I found your server!"
           },
           {
-            name: "✅ Character Found",
-            value: ""
+            name: "✅ Character",
+            value: "I found your character"
           },
           {
             name: "Birb status",
