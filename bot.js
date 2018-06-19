@@ -3,7 +3,8 @@ const logger = require("winston");
 const request = require("request");
 const fs = require("fs");
 
-const prefix = "(elroy |Elroy )";
+const prefix = "elroy ";
+const otherPrefix = "Elroy ";
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -28,7 +29,9 @@ client.on("ready", function(evt) {
 });
 
 client.on("message", async message => {
-  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${prefix})\\s*`);
+  const prefixRegex = new RegExp(
+    `^(<@!?${client.user.id}>|\\${prefix}|\\${otherPrefix})\\s*`
+  );
   if (!prefixRegex.test(message.content)) return;
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
