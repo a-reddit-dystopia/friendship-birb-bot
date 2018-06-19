@@ -11,18 +11,23 @@ module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
   execute(client, message, args) {
-    drawWinner(message);
+    logger.debug(message.guild.channels);
+    logger.debug(message.guild.members);
+    const number = args[0] || 1;
+    drawWinner(message, number);
   }
 };
 
-function drawWinner(message) {
+function drawWinner(message, number) {
   request.post(
     "https://friendship-birb-api.herokuapp.com/api/lotteries.json",
     {
       auth: {
         bearer: process.env.elroy
       },
-      form: {}
+      form: {
+        amount: number
+      }
     },
     (error, response, body) => {
       logger.debug(response.statusCode);
