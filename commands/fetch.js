@@ -24,8 +24,11 @@ module.exports = {
         logger.debug(users);
         users.forEach(user => {
           logger.debug(user);
+          const attributes = user.attributes;
           message.channel.send(
-            `${user.discord_name} ${user.wow_name} ${user.wow_server}`,
+            `${attributes.discord_name} ${attributes.wow_name} ${
+              attributes.wow_server
+            }`,
             { reply: message }
           );
         });
