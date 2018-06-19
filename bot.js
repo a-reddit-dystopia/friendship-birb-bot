@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
+const prefix = "!elroy";
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -12,12 +13,15 @@ const client = new Discord.Client();
 
 client.on("ready", function(evt) {
   logger.info("Connected");
-  logger.info("Logged in as: ");
-  logger.info(client.username + " - (" + client.id + ")");
 });
+
 client.on("message", message => {
-  logger.info(message.author.tag);
-  if (message.content === "ping") {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  if (command === "ping") {
     message.channel.send("pong", { reply: message });
   }
 });
