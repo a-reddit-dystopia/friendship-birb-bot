@@ -60,6 +60,7 @@ module.exports = {
           ];
         }
       }
+      logger.info(fields);
 
       const embed = {
         color: 3447003,
