@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
-const prefix = "!elroy";
+const prefix = "!elroy ";
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
