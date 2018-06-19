@@ -33,6 +33,27 @@ module.exports = {
       };
       const charTuple = await doTheRequest(charName, serverName, errorBuilder);
 
+      if (errorBuilder.status === "ok") {
+        const status = await addToBirbList(
+          message.author,
+          charName,
+          serverName
+        );
+        if (status === 201) {
+          message.react("✅");
+          fields = buildGreenFields();
+        } else if (status === 422) {
+          errorBuilder.status = "not_ok";
+          errorBuilder.errors.character.push(DUPLICATE);
+          message.react("❌");
+          fields = buildRedFields(errorBuilder);
+        } else {
+          fields = buildRedFields(errorBuilder);
+          message.react("❌");
+        }
+      }
+      logger.debug(fields);
+
       if (charTuple[0] === "ok") {
         fields = [
           {
@@ -53,18 +74,6 @@ module.exports = {
               "You are good to go buddy! Hang out and wait for the lottery."
           }
         ];
-        const status = await addToBirbList(
-          message.author,
-          charName,
-          serverName
-        );
-        if (status === 201) {
-          message.react("✅");
-        } else if (status === 422) {
-          errorBuilder.status = "not_ok";
-          errorBuilder.errors.character.push(DUPLICATE);
-          message.react("❌");
-        }
       } else {
         if (charTuple[1] === REALM_NOT_FOUND) {
           fields = [
@@ -198,4 +207,51 @@ async function addToBirbList(author, charName, serverName) {
   } catch (error) {
     return 422;
   }
+}
+
+function buildGreenFields() {
+  return [
+    {
+      name: "✅ Server",
+      value: "I found your server"
+    },
+    {
+      name: "✅ Character",
+      value: "I found your character\nIt is HORDE\nIt is not a duplicate"
+    },
+    {
+      name: "✅ Birb status",
+      value: "You do not currently have the friendship birb"
+    },
+    {
+      name: "✅ All set",
+      value: "You are good to go buddy! Hang out and wait for the lottery."
+    }
+  ];
+}
+
+function buildRedFields(errorBuilder) {
+  let fields = [];
+  const charErrors = errorBuilder.errors.character;
+  const serverErrors = errorBuilder.errors.server;
+  const birbErrors = errorBuilder.errors.birb;
+
+  if (charErrors.length > 0) {
+    let str = "";
+    charErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Character", value: str });
+  }
+
+  if (serverErrors.length > 0) {
+    let str = "";
+    serverErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Server", value: str });
+  }
+
+  if (birbErrors.length > 0) {
+    let str = "";
+    birbErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Birb status", value: str });
+  }
+  return fields;
 }
