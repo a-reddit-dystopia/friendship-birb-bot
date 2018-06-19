@@ -157,7 +157,6 @@ function addToBirbList(author, charName, serverName) {
     },
     (error, response, body) => {
       const json = JSON.parse(body);
-      logger.debug(body);
     }
   );
 }
