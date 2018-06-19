@@ -5,6 +5,7 @@ const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde.";
 const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
+const DUPLICATE = "Duplicate character";
 const logger = require("winston");
 
 logger.remove(logger.transports.Console);
@@ -22,7 +23,15 @@ module.exports = {
 
     if (args.length === 2) {
       const [charName, serverName] = args;
-      const charTuple = await doTheRequest(charName, serverName);
+      const errorBuilder = {
+        status: "ok",
+        errors: {
+          character: [],
+          server: [],
+          birb: []
+        }
+      };
+      const charTuple = await doTheRequest(charName, serverName, errorBuilder);
 
       if (charTuple[0] === "ok") {
         fields = [
@@ -52,6 +61,8 @@ module.exports = {
         if (status === 201) {
           message.react("✅");
         } else if (status === 422) {
+          errorBuilder.status = "not_ok";
+          errorBuilder.errors.character.push(DUPLICATE);
           message.react("❌");
         }
       } else {
@@ -105,7 +116,7 @@ module.exports = {
           message.react("❌");
         }
       }
-
+      logger.debug(errorBuilder);
       const embed = {
         color: 3447003,
         author: {
@@ -130,7 +141,7 @@ module.exports = {
   }
 };
 
-async function doTheRequest(charName, serverName) {
+async function doTheRequest(charName, serverName, errorBuilder) {
   try {
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
@@ -141,13 +152,24 @@ async function doTheRequest(charName, serverName) {
       BIRB_ID
     );
     if (char.data.faction === 0) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.character.push(NOT_HORDE);
       return ["not_ok", NOT_HORDE];
     } else if (hasBirb === true) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
     }
     return ["ok"];
   } catch (error) {
+    errorBuilder.status = "not_ok";
     const reason = error.response.data.reason;
+
+    if (reason === REALM_NOT_FOUND) {
+      errorBuilder.errors.server.push(REALM_NOT_FOUND);
+    } else if (reason === CHARACTER_NOT_FOUND) {
+      errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
+    }
     return ["not_ok", reason];
   }
 }
