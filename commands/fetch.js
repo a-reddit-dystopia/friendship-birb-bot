@@ -20,23 +20,33 @@ module.exports = {
       },
       (error, response, body) => {
         const json = JSON.parse(body);
-        const users = json.data;
+        const users = json.data.slice(24);
         logger.debug(users);
-        let blerg = `+---------------+----------------+-----------------+
-| Discord       | Character Name | Server          |
-+---------------+----------------+-----------------+`;
+        let fields = [];
         users.forEach(user => {
           logger.debug(user);
           const attributes = user.attributes;
-          blerg =
-            blerg +
-            `
-| <@${attributes.discord_id}> | ${attributes.wow_name}        | ${
-              attributes.wow_server
-            } |
-+---------------+----------------+-----------------+`;
+          //attributes.discord_id, wow_name, wow_server
+          fields.push({
+            name: `<@${attributes.discord_id}`,
+            value: `${attributes.wow_name} of ${attributes.wow_server}`
+          });
         });
-        message.channel.send(blerg);
+        const embed = {
+          color: 3447003,
+          author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+          },
+          description: "At most 25 Friendship birb contestants!!",
+          fields: fields,
+          timestamp: new Date(),
+          footer: {
+            icon_url: client.user.avatarURL,
+            text: "woof I am dog"
+          }
+        };
+        message.channel.send({ embed });
       }
     );
   }
