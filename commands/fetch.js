@@ -29,7 +29,7 @@ module.exports = {
           //attributes.discord_id, wow_name, wow_server
           fields.push({
             value: `<@${attributes.discord_id}>`,
-            name: `${attributes.wow_name} of ${attributes.wow_server}`
+            name: `${attributes.wow_name}-${attributes.wow_server}`
           });
         });
         const embed = {
