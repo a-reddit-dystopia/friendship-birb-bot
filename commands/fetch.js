@@ -28,7 +28,7 @@ module.exports = {
           const attributes = user.attributes;
           //attributes.discord_id, wow_name, wow_server
           fields.push({
-            name: `<@${attributes.discord_id}`,
+            name: `<@${attributes.discord_id}>`,
             value: `${attributes.wow_name} of ${attributes.wow_server}`
           });
         });
