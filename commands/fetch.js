@@ -20,7 +20,7 @@ module.exports = {
       },
       (error, response, body) => {
         const json = JSON.parse(body);
-        const users = json.data.slice(24);
+        const users = json.data.slice(0, 25);
         logger.debug(users);
         let fields = [];
         users.forEach(user => {
