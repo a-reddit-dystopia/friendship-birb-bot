@@ -1,6 +1,6 @@
 module.exports = {
-  name: "ping",
-  description: "Ping!",
+  name: "help",
+  description: "help command",
   execute(client, message, args) {
     if (message.member.roles.find("name", "Elroy Admin")) {
       // admin help
