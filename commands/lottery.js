@@ -60,18 +60,38 @@ function drawWinner(message, number) {
 }
 
 async function sendDM(discordId, message) {
+  const reactionNumbers = [
+    "\u0030\u20E3",
+    "\u0031\u20E3",
+    "\u0032\u20E3",
+    "\u0033\u20E3",
+    "\u0034\u20E3",
+    "\u0035\u20E3",
+    "\u0036\u20E3",
+    "\u0037\u20E3",
+    "\u0038\u20E3",
+    "\u0039\u20E3"
+  ];
   const member = await message.guild.fetchMember(discordId);
   logger.info(member);
   if (member) {
     const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within
-    the next few minutes then we will skip you and draw someone elses name.
+the next few minutes then we will skip you and draw someone elses name.
 
-    Some things to remember for the actual run
+Some things to remember for the actual run
 
-    ${459512160696008714} On Pull, stand in front of the boss and die to the frontal cleave. This ensures that mechanics are targted onto our people so there are no unnecessary wipes.
-    ${459512455836729344} When the boss kills the entire raid team, Release Spirit and avoid the Sha creatures. Do NOT walk into the tree.
-    ${459512530834817044} while in the ghost phase, collect small orbs to give the raid team a damage buff.
-    ${459512606512644097} Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.`;
+${
+      reactionNumbers[1]
+    } On Pull, stand in front of the boss and die to the frontal cleave. This ensures that mechanics are targted onto our people so there are no unnecessary wipes.
+${
+      reactionNumbers[2]
+    } When the boss kills the entire raid team, Release Spirit and avoid the Sha creatures. Do NOT walk into the tree.
+${
+      reactionNumbers[3]
+    } while in the ghost phase, collect small orbs to give the raid team a damage buff.
+${
+      reactionNumbers[4]
+    } Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.`;
     member.send(msg);
   }
 }
