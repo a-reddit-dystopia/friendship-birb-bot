@@ -38,13 +38,15 @@ async function drawWinner(message, number) {
       if (response.statusCode === 201) {
         const users = json.data;
         let msg = [];
-        users.forEach(user => {
+        users.forEach(async function(user) {
           msg.push(
             `<@${user.attributes.discord_id}> (${user.attributes.wow_name} of ${
               user.attributes.wow_server
             })`
           );
-          const member = await message.guild.fetchMember(user.attributes.discord_id);
+          const member = await message.guild.fetchMember(
+            user.attributes.discord_id
+          );
           sendDM(member);
           addRole(member);
           setVoice(member);
@@ -99,12 +101,12 @@ ${
 
 function addRole(member) {
   if (member) {
-    member.addRole('AOTC Winners');
+    member.addRole("AOTC Winners");
   }
 }
 
 function setVoice(member) {
   if (member) {
-    member.setVoiceChannel('FriendshipBirb Winners');
+    member.setVoiceChannel("FriendshipBirb Winners");
   }
 }
