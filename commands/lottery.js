@@ -48,7 +48,7 @@ async function drawWinner(message, number) {
             user.attributes.discord_id
           );
           sendDM(member);
-          addRole(member);
+          addRole(member, message.guild);
           setVoice(member);
         });
         const text = msg.join(", ");
@@ -99,9 +99,10 @@ ${
   }
 }
 
-function addRole(member) {
+async function addRole(member, guild) {
+  const role = await guild.roles.find({ name: "AOTC Winners" });
   if (member) {
-    member.addRole({ name: "AOTC Winners" }, "I am dog");
+    member.addRole(role, "I am dog");
   }
 }
 
