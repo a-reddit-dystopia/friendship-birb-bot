@@ -100,7 +100,7 @@ ${
 }
 
 async function addRole(member, guild) {
-  const role = await guild.roles.find("name", "AOTC Winner");
+  const role = guild.roles.find("name", "AOTC Winner");
   logger.debug(role);
   if (member) {
     member.addRole(role, "I am dog");
