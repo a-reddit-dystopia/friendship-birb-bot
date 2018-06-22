@@ -61,7 +61,7 @@ function drawWinner(message, number) {
 
 function sendDM(discordId, message) {
   const member = message.guild.fetchMember(discordId);
-
+  logger.info(member);
   if (member) {
     const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within
     the next few minutes then we will skip you and draw someone elses name.
