@@ -101,7 +101,7 @@ ${
 
 function addRole(member) {
   if (member) {
-    member.addRole("AOTC Winners");
+    member.addRole({ name: "AOTC Winners" }, "I am dog");
   }
 }
 
