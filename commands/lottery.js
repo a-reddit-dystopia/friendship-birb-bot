@@ -72,6 +72,6 @@ function sendDM(discordId, message) {
     ${459512455836729344} When the boss kills the entire raid team, Release Spirit and avoid the Sha creatures. Do NOT walk into the tree.
     ${459512530834817044} while in the ghost phase, collect small orbs to give the raid team a damage buff.
     ${459512606512644097} Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.`;
-    member.send(msg);
+    member.user.send(msg);
   }
 }
