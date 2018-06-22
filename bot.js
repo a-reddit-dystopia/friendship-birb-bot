@@ -46,8 +46,7 @@ client.on("message", async message => {
     .slice(matchedPrefix.length)
     .trim()
     .split(/ +/);
-  const command = args.shift();
-  logger.debug(command.toLowerCase());
+  const command = args.shift().toLowerCase();
 
   if (!client.commands.has(command)) return;
 
