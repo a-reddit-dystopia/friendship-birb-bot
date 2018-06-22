@@ -108,7 +108,7 @@ async function addRole(member, guild) {
 
 function setVoice(member) {
   const channel = guild.channels.find("name", "AOTC Winners");
-  if (member) {
-    member.setVoiceChannel("FriendshipBirb Winners");
+  if (member && channel) {
+    member.setVoiceChannel(channel);
   }
 }
