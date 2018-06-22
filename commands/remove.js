@@ -1,4 +1,11 @@
 const request = require("request-promise-native");
+const logger = require("winston");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
 
 module.exports = {
   name: "remove",
@@ -22,6 +29,7 @@ module.exports = {
         );
         message.reploy("Arf! I removed the contestant(s) from the list");
       } catch (error) {
+        logger.debug(error);
         message.reply("Arf! I couldn't find that contestant.");
       }
     });
