@@ -20,9 +20,9 @@ module.exports = {
             form: {}
           }
         );
-        message.reply("Arf! I removed the contestant(s) from the list");
+        message.channel.send(`Arf! I removed <@${user.id}> from the list.`);
       } catch (error) {
-        message.reply("Arf! I couldn't find that contestant.");
+        message.channel.send(`Arf! I couldn't find <@${user.id}> on the list.`);
       }
     });
   }
