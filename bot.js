@@ -47,8 +47,9 @@ client.on("message", async message => {
     .trim()
     .split(/ +/);
   const command = args.shift();
+  logger.debug(command.toLowerCase());
 
-  if (!client.commands.has(command.toLowerCase())) return;
+  if (!client.commands.has(command)) return;
 
   try {
     client.commands.get(command).execute(client, message, args);
