@@ -5,7 +5,7 @@ const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
 const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
-const DUPLICATE = "Character already on our list";
+const DUPLICATE = "Character or discord user is already on our list";
 
 module.exports = {
   name: "birbme",
