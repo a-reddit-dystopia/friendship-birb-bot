@@ -16,6 +16,8 @@ module.exports = {
       member.setVoiceChannel(channel);
     });
 
-    message.reply("Arf! Done!");
+    message.reply(
+      "Those folks should have been moved to the voice channel if they are in voice comms."
+    );
   }
 };
