@@ -44,12 +44,12 @@ function drawWinner(message, number) {
               user.attributes.wow_server
             })`
           );
+          sendDM(user.attributes.discord_id, message);
         });
         const text = msg.join(", ");
         message.channel.send(
           `Congrats ${text} are the winner(s)! Follow directions to get your birb!`
         );
-        sendDM(user.attributes.discord_id, message);
       } else if (response.statusCode === 422) {
         message.channel.send(`We have drawn all the birbs! Congrats fam!`);
       } else {
