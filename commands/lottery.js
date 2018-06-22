@@ -49,7 +49,7 @@ async function drawWinner(message, number) {
           );
           sendDM(member);
           addRole(member, message.guild);
-          setVoice(member);
+          setVoice(member, message.guild);
         });
         const text = msg.join(", ");
         message.channel.send(
@@ -106,7 +106,7 @@ async function addRole(member, guild) {
   }
 }
 
-function setVoice(member) {
+function setVoice(member, guild) {
   const channel = guild.channels.find("name", "AOTC Winners");
   if (member && channel) {
     member.setVoiceChannel(channel);
