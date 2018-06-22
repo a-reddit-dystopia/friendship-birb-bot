@@ -19,7 +19,7 @@ module.exports = {
   }
 };
 
-function drawWinner(message, number) {
+async function drawWinner(message, number) {
   request.post(
     "https://friendship-birb-api.herokuapp.com/api/lotteries.json",
     {
@@ -44,7 +44,10 @@ function drawWinner(message, number) {
               user.attributes.wow_server
             })`
           );
-          sendDM(user.attributes.discord_id, message);
+          const member = await message.guild.fetchMember(user.attributes.discord_id);
+          sendDM(member);
+          addRole(member);
+          setVoice(member);
         });
         const text = msg.join(", ");
         message.channel.send(
@@ -59,7 +62,7 @@ function drawWinner(message, number) {
   );
 }
 
-async function sendDM(discordId, message) {
+function sendDM(member) {
   const reactionNumbers = [
     "\u0030\u20E3",
     "\u0031\u20E3",
@@ -72,7 +75,6 @@ async function sendDM(discordId, message) {
     "\u0038\u20E3",
     "\u0039\u20E3"
   ];
-  const member = await message.guild.fetchMember(discordId);
   if (member) {
     const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within
 the next few minutes then we will skip you and draw someone elses name.
@@ -92,5 +94,17 @@ ${
       reactionNumbers[4]
     } Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.`;
     member.send(msg);
+  }
+}
+
+function addRole(member) {
+  if (member) {
+    member.addRole('AOTC Winners');
+  }
+}
+
+function setVoice(member) {
+  if (member) {
+    member.setVoiceChannel('FriendshipBirb Winners');
   }
 }
