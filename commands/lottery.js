@@ -101,13 +101,13 @@ ${
 
 async function addRole(member, guild) {
   const role = guild.roles.find("name", "AOTC Winner");
-  logger.debug(role);
-  if (member) {
+  if (member && role) {
     member.addRole(role, "I am dog");
   }
 }
 
 function setVoice(member) {
+  const channel = guild.channels.find("name", "AOTC Winners");
   if (member) {
     member.setVoiceChannel("FriendshipBirb Winners");
   }
