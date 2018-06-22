@@ -34,7 +34,8 @@ client.on("message", async message => {
   );
   if (
     !prefixRegex.test(message.content) ||
-    message.channel.id !== process.env.channel
+    message.channel.id !== process.env.channel ||
+    message.channel.id !== process.env.TESTCHAN
   )
     return;
 
