@@ -8,7 +8,10 @@ module.exports = {
     const taggedUsers = message.mentions.users;
     const role = message.guild.roles.find("name", "AOTC Winner");
 
-    taggedUsers.forEach(user => user.addRole(role));
+    taggedUsers.forEach(async function(user) {
+      const member = await message.guild.fetchMember(user);
+      member.addRole(role);
+    });
 
     message.reply("Arf! Done!");
   }

@@ -53,7 +53,7 @@ async function drawWinner(message, number) {
         });
         const text = msg.join(", ");
         message.channel.send(
-          `Congrats ${text} are the winner(s)! Follow directions to get your birb!`
+          `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message.`
         );
       } else if (response.statusCode === 422) {
         message.channel.send(`We have drawn all the birbs! Congrats fam!`);
