@@ -32,7 +32,11 @@ client.on("message", async message => {
   const prefixRegex = new RegExp(
     `^(<@!?${client.user.id}>|\\${prefix}|\\${otherPrefix})\\s*`
   );
-  if (!prefixRegex.test(message.content)) return;
+  if (
+    !prefixRegex.test(message.content) ||
+    message.channel.id !== process.env.channel
+  )
+    return;
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
   const args = message.content
