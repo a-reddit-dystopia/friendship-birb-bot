@@ -38,7 +38,10 @@ module.exports = {
             name: client.user.username,
             icon_url: client.user.avatarURL
           },
-          description: "At most 25 Friendship birb contestants!!",
+          title: "Listing of Friendship birb contestants",
+          description:
+            "click the link to see everyone, we can only display 25 here",
+          url: "https://friendship-birb-api.herokuapp.com/",
           fields: fields,
           timestamp: new Date(),
           footer: {
