@@ -8,7 +8,7 @@ Many of our members are casual players, and everyone was new at one point. If yo
 2) **No politics.  No religion.**
 Just not worth the headache.
 3) **No inappropriate names or profile pictures**.
-Our #general channel is PG-13. We do not allow for lewd or inflammatory user names or discord profile pictures.
+Our <#${213792892211298305}> channel is PG-13. We do not allow for lewd or inflammatory user names or discord profile pictures.
 4) **Zero tolerance for sales**
 We do not allow for the sale, for either in-game currency, or real world money, of any runs in this discord.  Please do not advertise any raids or groups that partake in these practices. Advertising sales in thsi discord will result in an immediate and permanent ban.
 5) **Rules and Guidelines Documents** (these will eventually link to something)
