@@ -4,6 +4,10 @@ const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded f
 
 const RULES_TITLE = "Community Rules";
 const RULES_FOOTER = `The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
+const LINKS_TITLE = `Helpful Links`;
+const LINKS_BODY = `[Our subreddit](https://www.reddit.com/r/WoWARD/)
+[ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)
+https://discord.gg/ebG2wBv`;
 
 module.exports = {
   name: "welcome",
@@ -65,5 +69,12 @@ Outside Guild Recruitment Rules`;
       }
     };
     await message.channel.send({ embed: rules });
+
+    const links = {
+      color: 3447003,
+      title: LINKS_TITLE,
+      description: LINKS_BODY
+    };
+    await message.channel.send({ embed: links });
   }
 };
