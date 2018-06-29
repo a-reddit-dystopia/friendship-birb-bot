@@ -3,8 +3,7 @@ const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded f
 `;
 
 const RULES_TITLE = "Community Rules";
-const RULES_FOOTER = `------------------------------------------------------------------
-The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
+const RULES_FOOTER = `The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
 
 module.exports = {
   name: "welcome",
@@ -20,7 +19,7 @@ Many of our members are casual players, and everyone was new at one point. If yo
 Just not worth the headache.
 
 3) **No inappropriate names or profile pictures**.
-Our <#${generalChannel}> channel is PG-13. We do not allow for lewd or inflammatory user names or discord profile pictures.
+Our ${generalChannel} channel is PG-13. We do not allow for lewd or inflammatory user names or discord profile pictures.
 
 4) **Zero tolerance for sales**
 We do not allow for the sale, for either in-game currency, or real world money, of any runs in this discord.  Please do not advertise any raids or groups that partake in these practices. Advertising sales in thsi discord will result in an immediate and permanent ban.
