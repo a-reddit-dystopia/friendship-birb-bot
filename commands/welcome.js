@@ -22,18 +22,18 @@ module.exports = {
   name: "welcome",
   description: "Welcome ARD Message",
   async execute(client, message, args) {
-    const welcome = {
+    const welcomeMsg = {
       color: 3447003,
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    await message.channel.send({ welcome });
+    message.channel.send({ welcomeMsg });
 
     const rules = {
       color: 3447003,
       title: RULES_TITLE,
       description: RULES_BODY
     };
-    //await message.channel.send({ rules });
+    await message.channel.send({ rules });
   }
 };
