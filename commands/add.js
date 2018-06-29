@@ -1,7 +1,7 @@
 module.exports = {
   name: "add",
   description: "Give a discord user the birb role",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     if (!message.member.roles.find("name", "Elroy Admin")) {
       return message.reply("Sorry you cannot execute this command.");
     }
@@ -10,7 +10,7 @@ module.exports = {
 
     taggedUsers.forEach(async function(user) {
       const member = await message.guild.fetchMember(user);
-      member.addRole(role);
+      await member.addRole(role);
     });
 
     message.reply("Arf! Done!");
