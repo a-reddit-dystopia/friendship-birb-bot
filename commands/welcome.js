@@ -13,10 +13,12 @@ module.exports = {
       .find(channel => channel.name === "general")
       .toString();
     const officers = message.guild.roles
-      .find(role => role.name === "Officers")
+      .find(role => role.name === "Officer")
       .toString();
-
-    const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/MVPs and they will point you in the right direction.
+    const mvps = message.guild.roles
+      .find(role => role.name === "MVP")
+      .toString();
+    const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/${mvps}s and they will point you in the right direction.
     `;
     const RULES_BODY = `1) **We do not tolerate abusive behavior of any type.**
 Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
