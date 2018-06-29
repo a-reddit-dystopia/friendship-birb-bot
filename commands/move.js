@@ -6,18 +6,24 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
-    const channel = message.guild.channels.find(
-      "name",
-      "FriendshipBirb Winners"
-    );
+    if (taggedUsers <= 10) {
+      const channel = message.guild.channels.find(
+        "name",
+        "FriendshipBirb Winners"
+      );
 
-    taggedUsers.forEach(async function(user) {
-      const member = await message.guild.fetchMember(user);
-      member.setVoiceChannel(channel);
-    });
+      taggedUsers.forEach(async function(user) {
+        const member = await message.guild.fetchMember(user);
+        await member.setVoiceChannel(channel);
+      });
 
-    message.reply(
-      "Those folks should have been moved to the voice channel if they are in voice comms."
-    );
+      message.reply(
+        "Those folks should have been moved to the voice channel if they are in voice comms."
+      );
+    } else {
+      message.reply(
+        "I can only move 10 people at a time. Try to tag fewer people!"
+      );
+    }
   }
 };

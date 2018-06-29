@@ -15,7 +15,11 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const number = args[0] || 1;
-    drawWinner(message, number);
+    if (number <= 10) {
+      drawWinner(message, number);
+    } else {
+      message.reply("I can only draw ten people at once!");
+    }
   }
 };
 

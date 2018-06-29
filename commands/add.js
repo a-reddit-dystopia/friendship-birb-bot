@@ -6,13 +6,20 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
-    const role = message.guild.roles.find("name", "AOTC Winner");
 
-    taggedUsers.forEach(async function(user) {
-      const member = await message.guild.fetchMember(user);
-      await member.addRole(role);
-    });
+    if (taggedUsers <= 10) {
+      const role = message.guild.roles.find("name", "AOTC Winner");
 
-    message.reply("Arf! Done!");
+      taggedUsers.forEach(async function(user) {
+        const member = await message.guild.fetchMember(user);
+        return await member.addRole(role, "I am a loving dog");
+      });
+
+      message.reply("Arf! Done!");
+    } else {
+      message.reply(
+        "I can only add roles to 10 people at a time. Try to tag fewer people!"
+      );
+    }
   }
 };

@@ -40,10 +40,8 @@ module.exports = {
             icon_url: client.user.avatarURL
           },
           title: "Listing of Friendship birb contestants",
-          description:
-            "click the link to see everyone, we can only display 25 here",
+          description: "The link has the most recent contestant information",
           url: `${process.env.API}`,
-          fields: fields,
           timestamp: new Date(),
           footer: {
             icon_url: client.user.avatarURL,
