@@ -12,7 +12,7 @@ module.exports = {
     taggedUsers.forEach(async function(user) {
       try {
         const response = await request.delete(
-          `https://friendship-birb-api.herokuapp.com/api/users/${user.id}.json`,
+          `${process.env.API}api/users/${user.id}.json`,
           {
             auth: {
               bearer: process.env.elroy

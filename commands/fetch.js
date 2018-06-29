@@ -12,7 +12,7 @@ module.exports = {
   description: "Stop trying to make fetch happen",
   execute(client, message, args) {
     request.get(
-      "https://friendship-birb-api.herokuapp.com/api/users.json",
+      `${process.env.API}api/users.json`,
       {
         auth: {
           bearer: process.env.elroy
@@ -41,7 +41,7 @@ module.exports = {
           title: "Listing of Friendship birb contestants",
           description:
             "click the link to see everyone, we can only display 25 here",
-          url: "https://friendship-birb-api.herokuapp.com/",
+          url: `${process.env.API}`,
           fields: fields,
           timestamp: new Date(),
           footer: {

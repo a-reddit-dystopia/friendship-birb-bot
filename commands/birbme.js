@@ -101,24 +101,21 @@ async function doTheRequest(charName, serverName, errorBuilder) {
 
 async function addToBirbList(author, charName, serverName) {
   try {
-    const response = await request.post(
-      "https://friendship-birb-api.herokuapp.com/api/users.json",
-      {
-        auth: {
-          bearer: process.env.elroy
-        },
-        form: {
-          user: {
-            discord_name: author.tag,
-            discord_id: author.id,
-            wow_name: charName,
-            wow_server: serverName,
-            status: "active",
-            status_date: new Date()
-          }
+    const response = await request.post(`${process.env.API}api/users.json`, {
+      auth: {
+        bearer: process.env.elroy
+      },
+      form: {
+        user: {
+          discord_name: author.tag,
+          discord_id: author.id,
+          wow_name: charName,
+          wow_server: serverName,
+          status: "active",
+          status_date: new Date()
         }
       }
-    );
+    });
     return 201;
   } catch (error) {
     return 422;

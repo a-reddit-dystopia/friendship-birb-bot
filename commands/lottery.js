@@ -21,7 +21,7 @@ module.exports = {
 
 async function drawWinner(message, number) {
   request.post(
-    "https://friendship-birb-api.herokuapp.com/api/lotteries.json",
+    `${process.env.API}api/lotteries.json`,
     {
       auth: {
         bearer: process.env.elroy
