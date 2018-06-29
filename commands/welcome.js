@@ -21,19 +21,19 @@ The rules are not inclusive and detailed so they are subject to officer discreti
 module.exports = {
   name: "welcome",
   description: "Welcome ARD Message",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     const welcome = {
       color: 3447003,
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    message.channel.send({ welcome });
+    await message.channel.send({ welcome });
 
     const rules = {
       color: 3447003,
       title: RULES_TITLE,
       description: RULES_BODY
     };
-    message.channel.send({ rules });
+    await message.channel.send({ rules });
   }
 };
