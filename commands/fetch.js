@@ -19,6 +19,7 @@ module.exports = {
         }
       },
       (error, response, body) => {
+        logger.debug(error);
         const json = JSON.parse(body);
         const users = json.data.slice(0, 25);
         logger.debug(users);
