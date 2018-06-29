@@ -41,7 +41,7 @@ Outside Guild Recruitment Rules`;
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    await message.channel.send({ embed: welcome });
+    message.channel.send({ embed: welcome });
 
     const rules = {
       color: 3447003,
@@ -51,6 +51,6 @@ Outside Guild Recruitment Rules`;
         text: RULES_FOOTER
       }
     };
-    await message.channel.send({ embed: rules });
+    message.channel.send({ embed: rules });
   }
 };
