@@ -9,13 +9,13 @@ module.exports = {
   name: "welcome",
   description: "Welcome ARD Message",
   async execute(client, message, args) {
-    const generalChannel = message.guild.channels
+    const generalChannel = await message.guild.channels
       .find(channel => channel.name === "general")
       .toString();
-    const officers = message.guild.roles
+    const officers = await message.guild.roles
       .find(role => role.name === "Officer")
       .toString();
-    const mvps = message.guild.roles
+    const mvps = await message.guild.roles
       .find(role => role.name === "MVP")
       .toString();
     const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/${mvps}s and they will point you in the right direction.
@@ -41,7 +41,7 @@ Outside Guild Recruitment Rules`;
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    message.channel.send({ embed: welcome });
+    await message.channel.send({ embed: welcome });
 
     const rules = {
       color: 3447003,
@@ -51,6 +51,6 @@ Outside Guild Recruitment Rules`;
         text: RULES_FOOTER
       }
     };
-    message.channel.send({ embed: rules });
+    await message.channel.send({ embed: rules });
   }
 };
