@@ -35,7 +35,7 @@ module.exports = {
       .find(channel => channel.name === "raid")
       .toString();
     const pvpChat = await message.guild.channels
-      .find(channel => channel.name === "PVP")
+      .find(channel => channel.name === "pvp")
       .toString();
     const nsfwChat = await message.guild.channels
       .find(channel => channel.name === "nsfw-shitposting")
