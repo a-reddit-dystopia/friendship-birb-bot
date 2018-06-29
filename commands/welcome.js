@@ -159,5 +159,6 @@ ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only a
       title: OPT_IN_TITLE,
       description: OPT_IN_BODY
     };
+    await message.channel.send({ embed: roles });
   }
 };
