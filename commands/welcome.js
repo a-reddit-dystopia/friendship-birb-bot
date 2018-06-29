@@ -27,6 +27,6 @@ module.exports = {
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    Message.channel.send(embed);
+    message.channel.send(embed);
   }
 };
