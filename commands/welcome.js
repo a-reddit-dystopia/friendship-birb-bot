@@ -8,6 +8,7 @@ const LINKS_TITLE = `Helpful Links`;
 const LINKS_BODY = `[Our subreddit](https://www.reddit.com/r/WoWARD/)
 [ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)`;
 const CHANNELS_TITLE = "Channels";
+const OPT_IN_TITLE = "Opt-in Roles and Channels";
 
 module.exports = {
   name: "welcome",
@@ -25,6 +26,8 @@ module.exports = {
       "\u0038\u20E3",
       "\u0039\u20E3"
     ];
+
+    // chans
     const generalChannel = await message.guild.channels
       .find(channel => channel.name === "general")
       .toString();
@@ -40,11 +43,34 @@ module.exports = {
     const nsfwChat = await message.guild.channels
       .find(channel => channel.name === "nsfw-shitposting")
       .toString();
+    const mythicPlusChat = await message.guild.channels
+      .find(channel => channel.name === "lfg")
+      .toString();
+
+    // roles
     const officers = await message.guild.roles
       .find(role => role.name === "Officer")
       .toString();
     const mvps = await message.guild.roles
       .find(role => role.name === "MVP")
+      .toString();
+    const tank = await message.guild.roles
+      .find(role => role.name === "Tank")
+      .toString();
+    const healer = await message.guild.roles
+      .find(role => role.name === "Healer")
+      .toString();
+    const mdps = await message.guild.roles
+      .find(role => role.name === "MDPS")
+      .toString();
+    const rdps = await message.guild.roles
+      .find(role => role.name === "RDPS")
+      .toString();
+    const casual = await message.guild.roles
+      .find(role => role.name === "M+Casual")
+      .toString();
+    const pushing = await message.guild.roles
+      .find(role => role.name === "M+Pushing")
       .toString();
     const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/${mvps}s and they will point you in the right direction.
     `;
@@ -73,6 +99,28 @@ ${ardChat}: It is now visible to everyone green and up, meaning everyone that ha
 ${raidChat} & ${pvpChat}: This category contains a raid and pvp channel. These channels are for advertising content groups that are not ARD affiliated. Typically they will be run through a platform other than the ARD Discord. We do not moderate these groups for atmosphere or recruitment, and any experiences, whether positive or negative, are not our responsibility. However, we will absolutely forbid runs with consistent negative experiences from advertising here.
 
 ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only and will be minimally moderated, so enter at your own risk. Please keep it legal. Please don't go out of your way to suck. And understand that ARD does still have rules, so at the very least, keep politics, religion, and general douche-canoery either to yourself or in consensual private chats.11`;
+
+    const OPT_IN_BODY = `**World of Warcraft**
+
+- ${mythicPlusChat} (and: ${tank}, ${healer}, ${mdps}, ${rdps},  ${casual}, ${pushing})
+- Lady Raid
+- Bleeding Hollow
+- Community Member
+- PVP
+- Beta
+
+**Other Games**
+- Destiny 2
+- PUBG
+- Overwatch
+- DND
+
+**Community**
+- Streamers
+- Nerd
+- Doge
+- NSFW
+- Spoiled`;
 
     const welcome = {
       color: 3447003,
@@ -104,7 +152,12 @@ ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only a
       title: CHANNELS_TITLE,
       description: CHANNELS_BODY
     };
-
     await message.channel.send({ embed: channels });
+
+    const roles = {
+      color: 3447003,
+      title: OPT_IN_TITLE,
+      description: OPT_IN_BODY
+    };
   }
 };
