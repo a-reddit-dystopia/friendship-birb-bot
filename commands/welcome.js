@@ -1,8 +1,9 @@
 const WELCOME_TITLE = "Welcome to a Reddit Dystopia!";
 const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the Officers/MVPs and they will point you in the right direction.
+`;
 
-TITLE: Community Rules
-1) **We do not tolerate abusive behavior of any type.**
+const RULES_TITLE = "Community Rules";
+const RULES_BODY = `1) **We do not tolerate abusive behavior of any type.**
 Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
 2) **No politics.  No religion.**
 Just not worth the headache.
@@ -15,18 +16,24 @@ Community Raid Guidelines
 Progression Raid Guidelines
 Outside Guild Recruitment Rules
 ------------------------------------------------------------------
-The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.
-`;
+The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
 
 module.exports = {
   name: "welcome",
   description: "Welcome ARD Message",
   execute(client, message, args) {
-    const embed = {
+    const welcome = {
       color: 3447003,
       title: WELCOME_TITLE,
       description: WELCOME_BODY
     };
-    message.channel.send({ embed });
+    message.channel.send({ welcome });
+
+    const rules = {
+      color: 3447003,
+      title: RULES_TITLE,
+      description: RULES_BODY
+    };
+    message.channel.send({ rules });
   }
 };
