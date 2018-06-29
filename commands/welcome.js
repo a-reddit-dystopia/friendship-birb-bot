@@ -34,6 +34,6 @@ module.exports = {
       title: RULES_TITLE,
       description: RULES_BODY
     };
-    await message.channel.send({ rules });
+    //await message.channel.send({ rules });
   }
 };
