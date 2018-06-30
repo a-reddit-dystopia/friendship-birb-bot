@@ -3,6 +3,7 @@ const rules = require("./rules.js");
 const links = require("./links.js");
 const channels = require("./channels.js");
 const roles = require("./roles.js");
+const raids = require("./raids.js");
 
 module.exports = {
   name: "welcome",
@@ -13,5 +14,6 @@ module.exports = {
     await links.execute(client, message, args);
     await channels.execute(client, message, args);
     await roles.execute(client, message, args);
+    await raids.execute(client, message, args);
   }
 };
