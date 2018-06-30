@@ -49,6 +49,9 @@ module.exports = {
     const pubgRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "pubg")
       .toString();
+    const overwatchRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "overwatch")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -62,7 +65,7 @@ module.exports = {
 **Other Games**
 - ${d2role} & ${d2Chan}
 - ${pubgRole}
-- Overwatch
+- ${overwatchRole}
 - DND
 
 **Community**
