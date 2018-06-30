@@ -11,6 +11,9 @@ module.exports = {
     const d2Chan = message.guild.channels
       .find(channel => channel.name === "destiny2")
       .toString();
+    const pubgChan = message.guild.channels
+      .find(channel => channel.name === "pubg")
+      .toString();
 
     //roles
     const tank = message.guild.roles
@@ -46,6 +49,9 @@ module.exports = {
     const d2role = message.guild.roles
       .find(role => role.name.toLowerCase() === "destiny 2")
       .toString();
+    const pubgRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "pubg")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -58,7 +64,7 @@ module.exports = {
 
 **Other Games**
 - ${d2role} & ${d2Chan}
-- PUBG
+- ${pubgRole} & ${pubgChan}
 - Overwatch
 - DND
 
