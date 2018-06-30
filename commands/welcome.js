@@ -81,6 +81,9 @@ module.exports = {
     const cm = await message.guild.roles
       .find(role => role.name === "Community Member")
       .toString();
+    const pvpRole = await message.guild.roles
+      .find(role => role.name === "PVP")
+      .toString();
     const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/${mvps}s and they will point you in the right direction.
     `;
     //prettier-ignore
@@ -115,7 +118,7 @@ ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only a
 - ${ladyRaid}
 - ${bh}
 - ${cm}
-- PVP
+- ${pvpRole}
 - Beta
 
 **Other Games**
