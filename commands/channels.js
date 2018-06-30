@@ -3,7 +3,7 @@ const CHANNELS_TITLE = "Channels";
 module.exports = {
   name: "channels",
   description: "ARD core channels",
-  execute(client, message, args) {
+  async execute(client, message, args) {
     // chans
     const generalChannel = await message.guild.channels
       .find(channel => channel.name === "general")
