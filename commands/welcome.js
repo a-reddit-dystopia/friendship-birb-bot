@@ -1,7 +1,3 @@
-const WELCOME_TITLE = "Welcome to a Reddit Dystopia!";
-const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the Officers/MVPs and they will point you in the right direction.
-`;
-
 const RULES_TITLE = "Community Rules";
 const RULES_FOOTER = `The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
 const LINKS_TITLE = `Helpful Links`;
@@ -9,6 +5,7 @@ const LINKS_BODY = `[Our subreddit](https://www.reddit.com/r/WoWARD/)
 [ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)`;
 const CHANNELS_TITLE = "Channels";
 const OPT_IN_TITLE = "Opt-in Roles and Channels";
+const ard = require("ard.js");
 
 module.exports = {
   name: "welcome",
@@ -47,13 +44,7 @@ module.exports = {
       .find(channel => channel.name === "lfg")
       .toString();
 
-    // roles
-    const officers = await message.guild.roles
-      .find(role => role.name === "Officer")
-      .toString();
-    const mvps = await message.guild.roles
-      .find(role => role.name === "MVP")
-      .toString();
+    //roles
     const tank = await message.guild.roles
       .find(role => role.name === "Tank")
       .toString();
@@ -84,8 +75,7 @@ module.exports = {
     const beta = await message.guild.roles
       .find(role => role.name.toLowerCase() === "beta")
       .toString();
-    const WELCOME_BODY = `We are a cross-realm US-Horde community that was founded from a single Reddit post early in the Legion expansion. We pride ourselves on being an open and inclusive laid back group of gamers. We have an official guild on Horde-Bleeding Hollow. You DO NOT have to transfer or join our guild, but if you are interested in doing so, just speak to one of the ${officers}/${mvps}s and they will point you in the right direction.
-    `;
+
     //prettier-ignore
     const RULES_BODY = `${reactionNumbers[1]} **We do not tolerate abusive behavior of any type.**
 Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
@@ -133,14 +123,7 @@ ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only a
 - Doge
 - NSFW
 - Spoiled`;
-
-    const welcome = {
-      color: 3447003,
-      title: WELCOME_TITLE,
-      description: WELCOME_BODY
-    };
-    await message.channel.send({ embed: welcome });
-
+    await ard.execute(client, message, args);
     const rules = {
       color: 3447003,
       title: RULES_TITLE,
