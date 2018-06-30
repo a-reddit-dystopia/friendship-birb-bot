@@ -17,7 +17,7 @@ The only requirement we have for community raids is ilvl - You should be at ilvl
 **Friday, 10pm** The Drunk Raid (fun random shenanigans) aka "ARD After Dark" - attend at your own risk
 **Saturday, 10:30pm** Normal ABT`;
     const fields = [
-      { title: "Sunday, 8pm", value: "Fut Beer run (normal ABT)" }
+      { name: "Sunday, 8pm", value: "Fut Beer run (normal ABT)" }
     ];
     const embed = {
       color: 3447003,
