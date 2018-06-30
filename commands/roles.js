@@ -8,6 +8,9 @@ module.exports = {
     const mythicPlusChat = message.guild.channels
       .find(channel => channel.name === "lfg")
       .toString();
+    const d2Chan = message.guild.channels
+      .find(channel => channel.name === "destiny2")
+      .toString();
 
     //roles
     const tank = message.guild.roles
@@ -40,6 +43,9 @@ module.exports = {
     const beta = message.guild.roles
       .find(role => role.name.toLowerCase() === "beta")
       .toString();
+    const d2role = message.guild.roles
+      .find(role => role.name.toLowerCase() === "destiny 2")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -51,7 +57,7 @@ module.exports = {
 - ${beta}
 
 **Other Games**
-- Destiny 2
+- ${d2role} & ${d2Chan}
 - PUBG
 - Overwatch
 - DND
