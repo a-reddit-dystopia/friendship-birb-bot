@@ -64,7 +64,7 @@ module.exports = {
 
 **Other Games**
 - ${d2role} & ${d2Chan}
-- ${pubgRole} & ${pubgChan}
+- ${pubgRole}
 - Overwatch
 - DND
 
