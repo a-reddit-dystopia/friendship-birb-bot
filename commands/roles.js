@@ -58,6 +58,18 @@ module.exports = {
     const streamerRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "streamers")
       .toString();
+    const nerdRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "nerd")
+      .toString();
+    const dogeRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "doge")
+      .toString();
+    const nsfwRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "nsfw")
+      .toString();
+    const spoiledRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "spoiled")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -76,10 +88,10 @@ module.exports = {
 
 **Community**
 - ${streamerRole}
-- Nerd
-- Doge
-- NSFW
-- Spoiled`;
+- ${nerdRole}
+- ${dogeRole}
+- ${nsfwRole}
+- ${spoiledRole}`;
     const embed = {
       color: 3447003,
       title: OPT_IN_TITLE,
