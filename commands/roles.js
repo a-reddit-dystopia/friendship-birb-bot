@@ -52,6 +52,9 @@ module.exports = {
     const overwatchRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "overwatch")
       .toString();
+    const dndRole = message.guild.roles
+      .find(role => role.name.toLowerCase() === "dnd")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -66,7 +69,7 @@ module.exports = {
 - ${d2role} & ${d2Chan}
 - ${pubgRole}
 - ${overwatchRole}
-- DND
+- ${dndRole}
 
 **Community**
 - Streamers
