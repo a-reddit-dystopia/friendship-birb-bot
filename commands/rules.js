@@ -19,7 +19,7 @@ module.exports = {
     ];
 
     // chans
-    const generalChannel = await message.guild.channels
+    const generalChannel = message.guild.channels
       .find(channel => channel.name === "general")
       .toString();
 

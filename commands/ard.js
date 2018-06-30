@@ -5,10 +5,10 @@ module.exports = {
   description: "Welcome to ARD message",
   async execute(client, message, args) {
     // roles
-    const officers = await message.guild.roles
+    const officers = message.guild.roles
       .find(role => role.name === "Officer")
       .toString();
-    const mvps = await message.guild.roles
+    const mvps = message.guild.roles
       .find(role => role.name === "MVP")
       .toString();
 

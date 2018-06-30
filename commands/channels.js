@@ -5,19 +5,19 @@ module.exports = {
   description: "ARD core channels",
   async execute(client, message, args) {
     // chans
-    const generalChannel = await message.guild.channels
+    const generalChannel = message.guild.channels
       .find(channel => channel.name === "general")
       .toString();
-    const ardChat = await message.guild.channels
+    const ardChat = message.guild.channels
       .find(channel => channel.name === "ardchat")
       .toString();
-    const raidChat = await message.guild.channels
+    const raidChat = message.guild.channels
       .find(channel => channel.name === "raid")
       .toString();
-    const pvpChat = await message.guild.channels
+    const pvpChat = message.guild.channels
       .find(channel => channel.name === "pvp")
       .toString();
-    const nsfwChat = await message.guild.channels
+    const nsfwChat = message.guild.channels
       .find(channel => channel.name === "nsfw-shitposting")
       .toString();
 
