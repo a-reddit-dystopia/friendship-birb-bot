@@ -56,7 +56,7 @@ module.exports = {
       .find(role => role.name.toLowerCase() === "dnd")
       .toString();
     const streamerRole = message.guild.roles
-      .find(role => role.name.toLowerCase() === "streamer")
+      .find(role => role.name.toLowerCase() === "streamers")
       .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
