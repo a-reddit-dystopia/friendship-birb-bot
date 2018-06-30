@@ -1,10 +1,8 @@
-const LINKS_TITLE = `Helpful Links`;
-const LINKS_BODY = `[Our subreddit](https://www.reddit.com/r/WoWARD/)
-[ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)`;
 const CHANNELS_TITLE = "Channels";
 const OPT_IN_TITLE = "Opt-in Roles and Channels";
 const ard = require("./ard.js");
 const rules = require("./rules.js");
+const links = require("./links.js");
 
 module.exports = {
   name: "welcome",
@@ -93,14 +91,7 @@ ${nsfwChat}: This channel should be fairly self-explanatory. It is opt-in only a
 - Spoiled`;
     await ard.execute(client, message, args);
     await rules.execute(client, message, args);
-
-    const links = {
-      color: 3447003,
-      title: LINKS_TITLE,
-      description: LINKS_BODY
-    };
-    await message.channel.send({ embed: links });
-    await message.channel.send(`https://discord.gg/ebG2wBv`);
+    await links.execute(client, message, args);
 
     const channels = {
       color: 3447003,
