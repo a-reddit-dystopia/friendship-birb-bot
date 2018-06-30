@@ -17,6 +17,12 @@ module.exports = {
       "\u0038\u20E3",
       "\u0039\u20E3"
     ];
+
+    // chans
+    const generalChannel = await message.guild.channels
+      .find(channel => channel.name === "general")
+      .toString();
+
     //prettier-ignore
     const RULES_BODY = `${reactionNumbers[1]} **We do not tolerate abusive behavior of any type.**
 Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
