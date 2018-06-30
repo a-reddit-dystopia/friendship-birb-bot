@@ -11,9 +11,6 @@ module.exports = {
     const d2Chan = message.guild.channels
       .find(channel => channel.name === "destiny2")
       .toString();
-    const pubgChan = message.guild.channels
-      .find(channel => channel.name === "pubg")
-      .toString();
 
     //roles
     const tank = message.guild.roles
