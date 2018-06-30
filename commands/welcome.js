@@ -5,7 +5,7 @@ const LINKS_BODY = `[Our subreddit](https://www.reddit.com/r/WoWARD/)
 [ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)`;
 const CHANNELS_TITLE = "Channels";
 const OPT_IN_TITLE = "Opt-in Roles and Channels";
-const ard = require("ard.js");
+const ard = require("./ard.js");
 
 module.exports = {
   name: "welcome",
