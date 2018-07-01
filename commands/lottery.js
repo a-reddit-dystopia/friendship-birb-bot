@@ -64,7 +64,8 @@ async function drawWinner(message, number) {
           winners.push(user.attributes.discord_id);
           try {
             const collected = await message.channel.awaitMessages(filter, {
-              maxMaches: winners.legnth
+              maxMaches: winners.legnth,
+              time: 1000
             });
             collected.forEach(msg => logger.debug(msg.content));
           } catch (msgs) {
