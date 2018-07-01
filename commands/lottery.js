@@ -72,12 +72,12 @@ async function drawWinner(message, number) {
           maxMatches: winners.length
         });
         collector.on("collect", m => {
-          addRole(m.author, m.guild);
-          setVoice(m.author, m.guild);
+          addRole(m.member, m.guild);
+          setVoice(m.member, m.guild);
           logger.info(`Collected ${m.content}`);
         });
         collector.on("end", collected => {
-          const ids = collected.forEach(msg => msg.author.id);
+          const ids = collected.map(msg => msg.author.id);
           logger.debug(ids);
           logger.info(`Collected ${collected.size} items`);
         });
