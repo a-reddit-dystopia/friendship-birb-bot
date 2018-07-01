@@ -68,7 +68,7 @@ async function drawWinner(message, number) {
           winners.push(user.attributes.discord_id);
         });
         const collector = message.channel.createMessageCollector(filter, {
-          time: 90000,
+          time: 10000,
           maxMatches: winners.length
         });
         collector.on("collect", m => {
@@ -79,6 +79,7 @@ async function drawWinner(message, number) {
         collector.on("end", collected => {
           const ids = collected.map(msg => msg.author.id);
           const missing = winners.filter(x => !ids.includes(x));
+          logger.debug(ids);
           missing.forEach(id =>
             message.channel.send(
               `Whoops <@${id} did not respond in time and was removed from the lottery.`
