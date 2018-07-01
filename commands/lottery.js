@@ -78,8 +78,12 @@ async function drawWinner(message, number) {
         });
         collector.on("end", collected => {
           const ids = collected.map(msg => msg.author.id);
-          logger.debug(ids);
-          logger.info(`Collected ${collected.size} items`);
+          const missing = winners.filter(x => !ids.includes(x));
+          missing.forEach(id =>
+            message.channel.send(
+              `Whoops <@${id} did not respond in time and was removed from the lottery.`
+            )
+          );
         });
         const text = msg.join(", ");
         message.channel.send(
