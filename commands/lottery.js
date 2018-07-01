@@ -82,7 +82,7 @@ async function drawWinner(message, number) {
           logger.debug(ids);
           missing.forEach(id =>
             message.channel.send(
-              `Whoops <@${id} did not respond in time and was removed from the lottery.`
+              `Whoops <@${id}> did not respond in time and was removed from the lottery.`
             )
           );
         });
