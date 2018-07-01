@@ -72,8 +72,8 @@ async function drawWinner(message, number) {
           maxMatches: winners.length
         });
         collector.on("collect", m => {
-          addRole(m.author);
-          setVoice(m.author);
+          addRole(m.author, m.guild);
+          setVoice(m.author, m.guild);
           logger.info(`Collected ${m.content}`);
         });
         collector.on("end", collected => {
