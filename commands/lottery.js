@@ -68,8 +68,7 @@ async function drawWinner(message, number) {
           try {
             const collected = await message.channel.awaitMessages(filter, {
               maxMaches: winners.legnth,
-              time: 10000,
-              errors: ["time"]
+              time: 90000
             });
             collected.forEach(msg => logger.debug(msg.content));
             logger.debug("oh yeah");
