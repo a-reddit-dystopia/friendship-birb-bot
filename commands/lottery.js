@@ -24,6 +24,13 @@ module.exports = {
 };
 
 async function drawWinner(message, number) {
+  let winners = [];
+  const filter = msg => {
+    return (
+      winners.includes(msg.author.id) &&
+      msg.content.toLowerCase().startsWith("here")
+    );
+  };
   request.post(
     `${process.env.API}api/lotteries.json`,
     {
@@ -52,8 +59,17 @@ async function drawWinner(message, number) {
             user.attributes.discord_id
           );
           sendDM(member);
-          addRole(member, message.guild);
-          setVoice(member, message.guild);
+          //addRole(member, message.guild);
+          //setVoice(member, message.guild);
+          winners.push(user.attributes.discord_id);
+          try {
+            const collected = await message.channel.awaitMessages(filter, {
+              maxMaches: winners.legnth
+            });
+            collected.forEach(msg => logger.debug(msg.content));
+          } catch (msgs) {
+            msgs.forEach(msg => logger.debug(msg.content));
+          }
         });
         const text = msg.join(", ");
         message.channel.send(
