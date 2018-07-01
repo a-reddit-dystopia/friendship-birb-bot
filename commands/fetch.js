@@ -11,7 +11,7 @@ module.exports = {
   name: "fetch",
   description: "Stop trying to make fetch happen",
   async execute(client, message, args) {
-    await getCount();
+    const resp = await getCount();
     const embed = {
       color: 3447003,
       author: {
@@ -19,7 +19,7 @@ module.exports = {
         icon_url: client.user.avatarURL
       },
       title: "Listing of Friendship birb contestants",
-      description: "The link has the most recent contestant information",
+      description: `There are currently ${resp.count} entries`,
       url: `${process.env.API}`,
       timestamp: new Date(),
       footer: {
@@ -38,7 +38,5 @@ async function getCount() {
     },
     form: {}
   });
-  logger.debug(response);
-  const json = JSON.parse(response);
-  logger.debug(json);
+  return JSON.parse(response);
 }
