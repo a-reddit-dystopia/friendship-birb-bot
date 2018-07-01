@@ -26,6 +26,9 @@ module.exports = {
 async function drawWinner(message, number) {
   let winners = [];
   const filter = msg => {
+    logger.debug("filter");
+    logger.debug(msg.author.id);
+    logger.debug(msg.content);
     return (
       winners.includes(msg.author.id) &&
       msg.content.toLowerCase().startsWith("here")
@@ -65,7 +68,7 @@ async function drawWinner(message, number) {
           try {
             const collected = await message.channel.awaitMessages(filter, {
               maxMaches: winners.legnth,
-              time: 1000
+              time: 10000
             });
             collected.forEach(msg => logger.debug(msg.content));
           } catch (msgs) {
