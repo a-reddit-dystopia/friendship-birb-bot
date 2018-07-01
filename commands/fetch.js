@@ -39,6 +39,6 @@ async function getCount() {
     form: {}
   });
   logger.debug(response);
-  const json = JSON.parse(response.body);
+  const json = JSON.parse(response);
   logger.debug(json);
 }
