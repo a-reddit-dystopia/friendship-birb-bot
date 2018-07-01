@@ -24,17 +24,6 @@ module.exports = {
 };
 
 async function drawWinner(message, number) {
-  let winners = [];
-  const filter = msg => {
-    logger.debug("filter");
-    logger.debug(msg.author.id);
-    logger.debug(msg.content);
-    return (
-      winners.includes(msg.author.id) &&
-      msg.content.toLowerCase().includes("here")
-    );
-  };
-
   request.post(
     `${process.env.API}api/lotteries.json`,
     {
@@ -52,47 +41,61 @@ async function drawWinner(message, number) {
 
       if (response.statusCode === 201) {
         const users = json.data;
-        let msg = [];
-        users.forEach(async function(user) {
-          msg.push(
-            `<@${user.attributes.discord_id}> (${user.attributes.wow_name} of ${
-              user.attributes.wow_server
-            })`
-          );
-          const member = await message.guild.fetchMember(
-            user.attributes.discord_id
-          );
-          sendDM(member);
-          winners.push(user.attributes.discord_id);
-        });
-        const collector = message.channel.createMessageCollector(filter, {
-          time: 10000,
-          maxMatches: winners.length
-        });
-        collector.on("collect", m => {
-          addRole(m.member, m.guild);
-          setVoice(m.member, m.guild);
-          logger.info(`Collected ${m.content}`);
-        });
-        collector.on("end", collected => {
-          const ids = collected.map(msg => msg.author.id);
-          const missing = winners.filter(x => !ids.includes(x));
-          missing.forEach(id =>
-            message.channel.send(
-              `Whoops <@${id}> did not respond in time and was removed from the lottery.`
-            )
-          );
-        });
-        const text = msg.join(", ");
-        message.channel.send(
-          `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message.`
-        );
+        await makeTheLotteryHappen(message, users);
       } else if (response.statusCode === 422) {
         message.channel.send(`We have drawn all the birbs! Congrats fam!`);
       } else {
         message.channel.send(`Arf! Something went horribly wrong.`);
       }
     }
+  );
+}
+
+function makeTheLotteryHappen(message, users) {
+  let winners = [];
+  const filter = msg => {
+    logger.debug("filter");
+    logger.debug(msg.author.id);
+    logger.debug(msg.content);
+    return (
+      winners.includes(msg.author.id) &&
+      msg.content.toLowerCase().includes("here")
+    );
+  };
+  let msg = [];
+  users.forEach(async function(user) {
+    msg.push(
+      `<@${user.attributes.discord_id}> (${user.attributes.wow_name} of ${
+        user.attributes.wow_server
+      })`
+    );
+    const member = await message.guild.fetchMember(
+      user.attributes.discord_id
+    );
+    sendDM(member);
+    winners.push(user.attributes.discord_id);
+  });
+  const collector = message.channel.createMessageCollector(filter, {
+    time: 10000,
+    maxMatches: winners.length
+  });
+  collector.on("collect", m => {
+    addRole(m.member, m.guild);
+    setVoice(m.member, m.guild);
+    logger.info(`Collected ${m.content}`);
+  });
+  collector.on("end", collected => {
+    const ids = collected.map(msg => msg.author.id);
+    const missing = winners.filter(x => !ids.includes(x));
+    missing.forEach(id =>
+      message.channel.send(
+        `Whoops <@${id}> did not respond in time and was removed from the lottery.`
+      )
+    );
+  });
+  const text = msg.join(", ");
+  message.channel.send(
+    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message.`
   );
 }
 
