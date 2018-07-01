@@ -1,4 +1,4 @@
-const request = require("request");
+const request = require("request-promise-native");
 const logger = require("winston");
 
 logger.remove(logger.transports.Console);
@@ -24,31 +24,21 @@ module.exports = {
 };
 
 async function drawWinner(message, number) {
-  request.post(
-    `${process.env.API}api/lotteries.json`,
-    {
+  try {
+    const body = await request.post(`${process.env.API}api/lotteries.json`, {
       auth: {
         bearer: process.env.elroy
       },
       form: {
         amount: number
       }
-    },
-    (error, response, body) => {
-      logger.debug(response.statusCode);
-      const json = JSON.parse(body);
-      logger.debug(json);
-
-      if (response.statusCode === 201) {
-        const users = json.data;
-        await makeTheLotteryHappen(message, users);
-      } else if (response.statusCode === 422) {
-        message.channel.send(`We have drawn all the birbs! Congrats fam!`);
-      } else {
-        message.channel.send(`Arf! Something went horribly wrong.`);
-      }
-    }
-  );
+    });
+    const json = JSON.parse(body);
+    const users = json.data;
+    await makeTheLotteryHappen(message, users);
+  } catch (error) {
+    message.channel.send(`We have drawn all the birbs! Congrats fam!`);
+  }
 }
 
 function makeTheLotteryHappen(message, users) {
@@ -69,9 +59,7 @@ function makeTheLotteryHappen(message, users) {
         user.attributes.wow_server
       })`
     );
-    const member = await message.guild.fetchMember(
-      user.attributes.discord_id
-    );
+    const member = await message.guild.fetchMember(user.attributes.discord_id);
     sendDM(member);
     winners.push(user.attributes.discord_id);
   });
