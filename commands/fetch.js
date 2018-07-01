@@ -38,7 +38,7 @@ async function getCount() {
     },
     form: {}
   });
-
+  logger.debug(response);
   const json = JSON.parse(response.body);
   logger.debug(json);
 }
