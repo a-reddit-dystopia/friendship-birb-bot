@@ -71,8 +71,9 @@ async function drawWinner(message, number) {
               time: 10000
             });
             collected.forEach(msg => logger.debug(msg.content));
-          } catch (msgs) {
-            msgs.forEach(msg => logger.debug(msg.content));
+            logger.debug("oh yeah");
+          } catch (error) {
+            logger.debug(error);
           }
         });
         const text = msg.join(", ");
