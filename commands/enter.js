@@ -15,7 +15,7 @@ logger.add(logger.transports.Console, {
 logger.level = "debug";
 
 module.exports = {
-  name: "birbme",
+  name: "enter",
   description: "Add me to the list motherlover",
   async execute(client, message, args) {
     let fields;
