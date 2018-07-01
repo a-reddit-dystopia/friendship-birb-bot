@@ -80,6 +80,7 @@ function makeTheLotteryHappen(message, users) {
         `Whoops <@${id}> did not respond in time and was removed from the lottery.`
       )
     );
+    await execute({}, message, missing.length);
   });
   const text = msg.join(", ");
   message.channel.send(
