@@ -72,7 +72,7 @@ function makeTheLotteryHappen(message, users) {
     setVoice(m.member, m.guild);
     logger.info(`Collected ${m.content}`);
   });
-  collector.on("end", collected => {
+  collector.on("end", async function(collected) {
     const ids = collected.map(msg => msg.author.id);
     const missing = winners.filter(x => !ids.includes(x));
     missing.forEach(id =>
