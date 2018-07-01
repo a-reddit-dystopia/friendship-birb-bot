@@ -31,9 +31,10 @@ async function drawWinner(message, number) {
     logger.debug(msg.content);
     return (
       winners.includes(msg.author.id) &&
-      msg.content.toLowerCase().startsWith("here")
+      msg.content.toLowerCase().includes("here")
     );
   };
+
   request.post(
     `${process.env.API}api/lotteries.json`,
     {
@@ -65,16 +66,16 @@ async function drawWinner(message, number) {
           //addRole(member, message.guild);
           //setVoice(member, message.guild);
           winners.push(user.attributes.discord_id);
-          try {
-            const collected = await message.channel.awaitMessages(filter, {
-              maxMaches: winners.legnth,
-              time: 90000
-            });
-            collected.forEach(msg => logger.debug(msg.content));
-            logger.debug("oh yeah");
-          } catch (error) {
-            logger.debug(error);
-          }
+        });
+        const collector = message.channel.createMessageCollector(filter, {
+          time: 90000,
+          maxMatches: winners.length
+        });
+        collector.on("collect", m => {
+          logger.info(`Collected ${m.content}`);
+        });
+        collector.on("end", collected => {
+          logger.info(`Collected ${collected.size} items`);
         });
         const text = msg.join(", ");
         message.channel.send(
