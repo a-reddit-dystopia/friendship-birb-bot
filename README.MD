@@ -1,14 +1,22 @@
 # FRIENDSHIP BIRB BOT
 
-## THIS IS SO AWESOME FOLKS
-YOU DONT EVEN KNOW
+## Lottery workflow
 
-## message
-Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within the next few minutes then we will skip you and draw someone elses name.
+### Before drawings
+- Elroy administrator starts a lottery: ```elroy set lottery enabled```
+- Admin can set invite message ```elroy set inviteMessage '/w piprunetotem-bleeding-hollow pirate' ```
 
-Some things to remember for the actual run
 
-:one: On Pull, stand in front of the boss and die to the frontal cleave. This ensures that mechanics are targted onto our people so there are no unnecessary wipes.
-:two: When the boss kills the entire raid team, Release Spirit and avoid the Sha creatures. Do NOT walk into the tree.
-:three: while in the ghost phase, collect small orbs to give the raid team a damage buff.
-:four: Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.
+### During Drawings
+- Members enter lottery: ```elroy enter biebear bleeding-hollow```
+- Admin draws winners ```elroy lottery 10```
+  - Elroy mentions all winners in lottery channel
+- Elroy DMs instructions about what is about to happen and asks them to respond within a set time
+  - If user responds
+    - Elroy adds a `AOTC Winner` discord role 
+    - If users are in a voice channel, Elroy moves users to the winners circle voice channel
+  - if user fails to respond
+      - elroy continues to draw until the lottery number is satisfied
+- Lobby helper initiates invite instructions to members of the winners circle voice chan with ```AOTC Winner``` role. ```elroy invite```
+- Lobber helper yanks 'AOTC Winner' after a period ```elroy yank @biebear```
+- repeat!
