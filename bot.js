@@ -2,9 +2,11 @@ const Discord = require("discord.js");
 const logger = require("winston");
 const request = require("request");
 const fs = require("fs");
+const BotState = require("./state");
 
 const prefix = "elroy ";
 const otherPrefix = "Elroy ";
+let state;
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -51,11 +53,21 @@ client.on("message", async message => {
   if (!client.commands.has(command)) return;
 
   try {
-    client.commands.get(command).execute(client, message, args);
+    client.commands.get(command).execute(client, message, args, state);
   } catch (error) {
     console.info(error);
     message.reply("arf! There was an error!");
   }
 });
 
-client.login(process.env.TOKEN);
+async function start() {
+  // TODO: get lottery status / invite messsage if saved
+  const { lotteryStatus, inviteMessage } = await Promise.resolve({
+    lotteryStatus: false,
+    inviteMessage: ""
+  });
+  state = new BotState({ lotteryStatus, inviteMessage });
+  client.login(process.env.TOKEN);
+}
+
+start();
