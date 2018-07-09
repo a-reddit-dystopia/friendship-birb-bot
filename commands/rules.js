@@ -43,5 +43,9 @@ ${reactionNumbers[5]} Lastly, don't be a Douche Canoe.  What's a Douche Canoe?  
       description: RULES_BODY
     };
     await message.channel.send({ embed });
+
+    await message.channel.send(
+      `https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd`
+    );
   }
 };
