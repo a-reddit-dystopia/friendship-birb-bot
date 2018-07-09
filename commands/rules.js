@@ -1,5 +1,4 @@
 const RULES_TITLE = "Community Rules";
-const RULES_FOOTER = `The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
 
 module.exports = {
   name: "rules",
@@ -41,10 +40,7 @@ ${reactionNumbers[5]} Lastly, don't be a Douche Canoe.  What's a Douche Canoe?  
     const embed = {
       color: 3447003,
       title: RULES_TITLE,
-      description: RULES_BODY,
-      footer: {
-        text: RULES_FOOTER
-      }
+      description: RULES_BODY
     };
     await message.channel.send({ embed });
   }
