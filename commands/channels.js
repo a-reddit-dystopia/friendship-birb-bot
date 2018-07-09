@@ -12,7 +12,7 @@ module.exports = {
       .find(channel => channel.name === "ardchat")
       .toString();
     const raidChat = message.guild.channels
-      .find(channel => channel.name === "raid")
+      .find(channel => channel.name === "raid_lfg")
       .toString();
     const pvpChat = message.guild.channels
       .find(channel => channel.name === "pvp")

@@ -6,7 +6,7 @@ module.exports = {
   async execute(client, message, args) {
     // chans
     const mythicPlusChat = message.guild.channels
-      .find(channel => channel.name === "lfg")
+      .find(channel => channel.name === "mythicplus_lfg")
       .toString();
     const d2Chan = message.guild.channels
       .find(channel => channel.name === "destiny2")
