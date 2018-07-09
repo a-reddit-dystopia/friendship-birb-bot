@@ -25,21 +25,19 @@ module.exports = {
 
     //prettier-ignore
     const RULES_BODY = `${reactionNumbers[1]} **We do not tolerate abusive behavior of any type.**
-Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
+Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.  **NO OFFENSIVE DISCORD PICTURES OR NAMES**
 
 ${reactionNumbers[2]} **No politics.  No religion.**
-Just not worth the headache.
+Just not worth the headache. We try and keep all interactions positive.  Respect other people's opinions.
 
-${reactionNumbers[3]} **No inappropriate names or profile pictures**.
-Our ${generalChannel} channel is PG-13. We do not allow for lewd or inflammatory user names or discord profile pictures.
+${reactionNumbers[3]} We have two different type of Raids here: Community Raid and Progression Raid.  Community Raids are listed below (that list is subject to change).  To join you just have to respond to the raid leader when the raid starts, which will be by a ping in the ${generalChannel} channel.  These raids typically have minimum requirements and are teaching/learning runs.  If you are interested in a more permanent team, you can check out our recruitment section (currently being updated) to find a Progression raid team.
 
-${reactionNumbers[4]} **Zero tolerance for sales**
-We do not allow for the sale, for either in-game currency, or real world money, of any runs in this discord.  Please do not advertise any raids or groups that partake in these practices. Advertising sales in thsi discord will result in an immediate and permanent ban.
+${reactionNumbers[4]} **We do not allow for the sale of any runs in this discord.**
 
-${reactionNumbers[5]} **Rules and Guidelines Documents** (these will eventually link to something)
-Community Raid Guidelines
-Progression Raid Guidelines
-Outside Guild Recruitment Rules`;
+${reactionNumbers[5]} Lastly, don't be a Douche Canoe.  What's a Douche Canoe?  Please read the ARD Code of Conduct: https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd
+
+🌟 Welcome to ARD, we love you! 🌟
+`;
     const embed = {
       color: 3447003,
       title: RULES_TITLE,
