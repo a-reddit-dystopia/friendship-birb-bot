@@ -37,6 +37,7 @@ ${reactionNumbers[4]} **Zero tolerance for sales**
 We do not allow for the sale, for either in-game currency, or real world money, of any runs in this discord.  Please do not advertise any raids or groups that partake in these practices. Advertising sales in thsi discord will result in an immediate and permanent ban.
 
 ${reactionNumbers[5]} **Rules and Guidelines Documents** (these will eventually link to something)
+[Code of Conduct](https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd)
 Community Raid Guidelines
 Progression Raid Guidelines
 Outside Guild Recruitment Rules`;
