@@ -70,6 +70,9 @@ module.exports = {
     const spoiledRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "spoiled")
       .toString();
+    const pvpRole = message.guild.roles
+      .find(role => role.name === "PvP")
+      .toString();
 
     const OPT_IN_BODY = `**World of Warcraft**
 
@@ -77,7 +80,7 @@ module.exports = {
 - ${ladyRaid}
 - ${bh}
 - ${cm}
-- PVP -- dunno what it is
+- ${pvpRole}
 - ${beta}
 
 **Other Games**
