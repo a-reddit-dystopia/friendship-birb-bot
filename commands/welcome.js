@@ -17,8 +17,8 @@ module.exports = {
     await ard.execute(client, message, args);
     await rules.execute(client, message, args);
     await links.execute(client, message, args);
-    await channels.execute(client, message, args);
-    await roles.execute(client, message, args);
-    await raids.execute(client, message, args);
+    //await channels.execute(client, message, args);
+    //await roles.execute(client, message, args);
+    //await raids.execute(client, message, args);
   }
 };
