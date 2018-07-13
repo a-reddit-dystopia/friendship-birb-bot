@@ -1,9 +1,13 @@
 const CHANNELS_TITLE = "Channels";
+const check = require("../utils/authorization-check");
 
 module.exports = {
   name: "channels",
   description: "ARD core channels",
   async execute(client, message, args) {
+    if (check.isNotAuthorized(message)) {
+      return;
+    }
     // chans
     const generalChannel = message.guild.channels
       .find(channel => channel.name === "general")

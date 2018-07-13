@@ -1,9 +1,14 @@
 const OPT_IN_TITLE = "Opt-in Roles and Channels";
+const check = require("../utils/authorization-check");
 
 module.exports = {
   name: "roles",
   description: "Opt-in roles and channels",
   async execute(client, message, args) {
+    if (check.isNotAuthorized(message)) {
+      return;
+    }
+
     // chans
     const mythicPlusChat = message.guild.channels
       .find(channel => channel.name === "mythicplus_lfg")
@@ -61,9 +66,6 @@ module.exports = {
     const nerdRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "nerd")
       .toString();
-    const dogeRole = message.guild.roles
-      .find(role => role.name.toLowerCase() === "doge")
-      .toString();
     const nsfwRole = message.guild.roles
       .find(role => role.name.toLowerCase() === "nsfw")
       .toString();
@@ -92,7 +94,6 @@ module.exports = {
 **Community**
 - ${streamerRole}
 - ${nerdRole}
-- ${dogeRole}
 - ${nsfwRole}
 - ${spoiledRole}`;
     const embed = {

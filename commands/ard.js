@@ -1,9 +1,15 @@
+const check = require("../utils/authorization-check");
+
 const WELCOME_TITLE = "Welcome to a Reddit Dystopia!";
 
 module.exports = {
   name: "ard",
   description: "Welcome to ARD message",
   async execute(client, message, args) {
+    if (check.isNotAuthorized(message)) {
+      return;
+    }
+
     // roles
     const officers = message.guild.roles
       .find(role => role.name === "Officer")

@@ -1,3 +1,5 @@
+const check = require("../utils/authorization-check");
+
 const LINKS_TITLE = `Helpful Links`;
 const LINKS_BODY = `[Code of Conduct](https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd)
 [Our subreddit](https://www.reddit.com/r/WoWARD/)
@@ -7,6 +9,9 @@ module.exports = {
   name: "links",
   description: "List ARD links",
   async execute(client, message, args) {
+    if (check.isNotAuthorized(message)) {
+      return;
+    }
     const embed = {
       color: 3447003,
       title: LINKS_TITLE,
