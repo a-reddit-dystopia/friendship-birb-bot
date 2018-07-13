@@ -29,6 +29,6 @@ module.exports = {
       description: BODY,
       fields: fields
     };
-    await message.channel.send({ embed });
+    //await message.channel.send({ embed });
   }
 };
