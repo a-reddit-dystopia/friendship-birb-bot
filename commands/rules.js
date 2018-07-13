@@ -38,9 +38,9 @@ We do not allow for the sale, for either in-game currency, or real world money, 
 
 ${reactionNumbers[5]} **Rules and Guidelines Documents** (these will eventually link to something)
 [Code of Conduct](https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd)
-Community Raid Guidelines
+[Community Raid Guidelines](https://docs.google.com/document/d/1R9J0aTBfWGPwYSAQQ3TrnkdQwJ1Lj69a2n47if7Loq4/edit?usp=sharing)
 Progression Raid Guidelines
-Outside Guild Recruitment Rules`;
+[Outside Guild Recruitment Rules](https://docs.google.com/document/d/1Cee2W2ETHf5J2hGbLlNIWXGh-WuG6zYndOFx0DfFkZg/edit?usp=sharing)`;
     const embed = {
       color: 3447003,
       title: RULES_TITLE,
