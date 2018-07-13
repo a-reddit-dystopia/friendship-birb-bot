@@ -25,7 +25,7 @@ module.exports = {
 
     //prettier-ignore
     const RULES_BODY = `${reactionNumbers[1]} **We do not tolerate abusive behavior of any type.**
-Many of our members are casual players, and everyone was new at one point. If you arenít here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
+Many of our members are casual players, and everyone was new at one point. If you aren't here to have a good time, help people learn, and make a few jokes along the way, it may be best if you move along.
 
 ${reactionNumbers[2]} **No politics.  No religion.**
 Just not worth the headache.
