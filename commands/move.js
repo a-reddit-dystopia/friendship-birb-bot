@@ -6,7 +6,7 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
-    if (taggedUsers <= 10) {
+    if (taggedUsers.array.length <= 10) {
       const channel = message.guild.channels.find(
         "name",
         "FriendshipBirb Winners"
