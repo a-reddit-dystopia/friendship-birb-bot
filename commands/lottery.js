@@ -1,7 +1,7 @@
 const request = require("request-promise-native");
 const logger = require("winston");
 const check = require("../utils/authorization-check");
-const TIMEOUT = 60000;
+const config = require("./../config.json");
 const BIRBS_CHANNEL = "#birbs";
 
 logger.remove(logger.transports.Console);
@@ -67,7 +67,7 @@ function makeTheLotteryHappen(message, users) {
     winners.push(user.attributes.discord_id);
   });
   const collector = message.channel.createMessageCollector(filter, {
-    time: TIMEOUT,
+    time: config.winningTimeout,
     maxMatches: winners.length
   });
   collector.on("collect", m => {
@@ -128,7 +128,7 @@ ${
 }
 
 async function addRole(member, guild) {
-  const role = guild.roles.find("name", "AOTC Winner");
+  const role = guild.roles.find("name", config.winnerRole);
   if (member && role) {
     member.addRole(role, "I am dog");
   }
