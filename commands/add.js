@@ -1,5 +1,6 @@
 const logger = require("winston");
 const check = require("../utils/authorization-check");
+const config = require("./../config.json");
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -19,7 +20,7 @@ module.exports = {
     logger.debug(taggedUsers.array.length);
 
     if (taggedUsers.array.length <= 10) {
-      const role = message.guild.roles.find("name", "AOTC Winner");
+      const role = message.guild.roles.find("name", config.winnerRole);
 
       taggedUsers.forEach(async function(user) {
         const member = await message.guild.fetchMember(user);
