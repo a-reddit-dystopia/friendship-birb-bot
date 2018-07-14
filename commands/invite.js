@@ -1,12 +1,6 @@
 const check = require("../utils/authorization-check");
-const logger = require("winston");
-const EMBED_MSG = `\`/w piprunetotem-bleedinghollow PARTY\``;
+const config = require("./../config.json");
 
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  colorize: true
-});
-logger.level = "debug";
 module.exports = {
   name: "invite",
   description: "Sends winners an invite DM",
@@ -15,13 +9,15 @@ module.exports = {
       return;
     }
 
-    const voiceChan = message.guild.channels.get("425014120522448897");
+    const voiceChan = message.guild.channels.get(config.onDeckChannel);
 
     voiceChan.members.forEach(member => {
-      const has = member.roles.find("name", "AOTC Winner");
+      const has = member.roles.find("name", config.winnerRole);
       if (has) {
         member.send(
-          `Hey buddy. It's time to ROLL OUT. ${EMBED_MSG} to get into the raid!`
+          `Hey buddy. It's time to ROLL OUT. ${
+            config.inviteMessage
+          } to get into the raid!`
         );
       }
     });
