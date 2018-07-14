@@ -1,7 +1,7 @@
 const request = require("request-promise-native");
 const logger = require("winston");
 const check = require("../utils/authorization-check");
-const TIMEOUT = 10000;
+const TIMEOUT = 60000;
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
