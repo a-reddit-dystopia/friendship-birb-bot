@@ -15,7 +15,7 @@ module.exports = {
     const taggedUsers = message.mentions.users;
     logger.debug(taggedUsers);
 
-    if (taggedUsers <= 10) {
+    if (taggedUsers.length <= 10) {
       const role = message.guild.roles.find("name", "AOTC Winner");
 
       taggedUsers.forEach(async function(user) {
