@@ -2,6 +2,7 @@ const request = require("request-promise-native");
 const logger = require("winston");
 const check = require("../utils/authorization-check");
 const TIMEOUT = 60000;
+const BIRBS_CHANNEL = "#birbs";
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -86,7 +87,7 @@ function makeTheLotteryHappen(message, users) {
   });
   const text = msg.join(", ");
   message.channel.send(
-    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message.`
+    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message and respond in this channel with here to reserve your place.`
   );
 }
 
@@ -104,8 +105,7 @@ function sendDM(member) {
     "\u0039\u20E3"
   ];
   if (member) {
-    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within
-the next few minutes then we will skip you and draw someone elses name.
+    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not respond to Elroy within a minute in the ${BIRBS_CHANNEL} channel he will remove you from the lottery. He expects you to say "here" to move along.
 
 Some things to remember for the actual run
 
