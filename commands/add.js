@@ -13,7 +13,7 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
-    logger.debug(taggedUsers);
+    logger.debug(taggedUsers.length);
 
     if (taggedUsers.length <= 10) {
       const role = message.guild.roles.find("name", "AOTC Winner");
