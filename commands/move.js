@@ -1,10 +1,13 @@
+const check = require("../utils/authorization-check");
+
 module.exports = {
   name: "move",
   description: "Move members into the winners channel",
   execute(client, message, args) {
-    if (!message.member.roles.find("name", "Elroy Admin")) {
-      return message.reply("Sorry you cannot execute this command.");
+    if (check.isNotAuthorized(message)) {
+      return;
     }
+
     const taggedUsers = message.mentions.users;
     if (taggedUsers.array.length <= 10) {
       const channel = message.guild.channels.find(

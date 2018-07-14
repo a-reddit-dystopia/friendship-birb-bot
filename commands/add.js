@@ -1,4 +1,6 @@
 const logger = require("winston");
+const check = require("../utils/authorization-check");
+
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
   colorize: true
@@ -9,9 +11,10 @@ module.exports = {
   name: "add",
   description: "Give a discord user the birb role",
   async execute(client, message, args) {
-    if (!message.member.roles.find("name", "Elroy Admin")) {
-      return message.reply("Sorry you cannot execute this command.");
+    if (check.isNotAuthorized(message)) {
+      return;
     }
+
     const taggedUsers = message.mentions.users;
     logger.debug(taggedUsers.array.length);
 

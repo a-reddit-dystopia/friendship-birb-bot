@@ -1,12 +1,14 @@
 const request = require("request-promise-native");
+const check = require("../utils/authorization-check");
 
 module.exports = {
   name: "remove",
   description: "Remove a discord user or users from the list",
   execute(client, message, args) {
-    if (!message.member.roles.find("name", "Elroy Admin")) {
-      return message.reply("Sorry you cannot execute this command.");
+    if (check.isNotAuthorized(message)) {
+      return;
     }
+
     const taggedUsers = message.mentions.users;
 
     if (taggedUsers.array.length <= 10) {
