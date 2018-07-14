@@ -15,7 +15,7 @@ module.exports = {
     }
 
     const voiceChan = message.guild.channels.find(
-      channel => channel.id === 425014120522448897
+      channel => channel.name === "On Deck"
     );
     logger.debug(voiceChan);
   }
