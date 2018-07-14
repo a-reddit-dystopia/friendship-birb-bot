@@ -15,6 +15,14 @@ module.exports = {
     }
 
     const voiceChan = message.guild.channels.get("425014120522448897");
-    logger.debug(voiceChan.members);
+
+    voiceChan.members.forEach(member => {
+      const has = member.roles.find("name", "AOTC Winner");
+      if (has) {
+        logger.debug("yay");
+      } else {
+        logger.debug("booo");
+      }
+    });
   }
 };
