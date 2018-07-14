@@ -14,7 +14,7 @@ module.exports = {
       return;
     }
 
-    const voiceChan = message.guild.channels.find("id", 425014120522448897);
+    const voiceChan = message.guild.channels.get(425014120522448897);
     logger.debug(voiceChan);
   }
 };
