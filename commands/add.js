@@ -13,9 +13,9 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
-    logger.debug(taggedUsers.length);
+    logger.debug(taggedUsers.array.length);
 
-    if (taggedUsers.length <= 10) {
+    if (taggedUsers.array.length <= 10) {
       const role = message.guild.roles.find("name", "AOTC Winner");
 
       taggedUsers.forEach(async function(user) {
