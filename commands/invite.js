@@ -25,5 +25,6 @@ module.exports = {
         );
       }
     });
+    message.reply("I've sent our new buddies the invite message!");
   }
 };
