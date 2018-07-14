@@ -1,5 +1,6 @@
 const check = require("../utils/authorization-check");
 const logger = require("winston");
+const EMBED_MSG = `\`/w piprunetotem-bleedinghollow PARTY\``;
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -19,9 +20,9 @@ module.exports = {
     voiceChan.members.forEach(member => {
       const has = member.roles.find("name", "AOTC Winner");
       if (has) {
-        logger.debug("yay");
-      } else {
-        logger.debug("booo");
+        member.send(
+          `Hey buddy. It's time to ROLL OUT. ${EMBED_MSG} to get into the raid!`
+        );
       }
     });
   }
