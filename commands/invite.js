@@ -1,4 +1,11 @@
 const check = require("../utils/authorization-check");
+const logger = require("winston");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
 module.exports = {
   name: "invite",
   description: "Sends winners an invite DM",
@@ -6,5 +13,8 @@ module.exports = {
     if (check.isNotAuthorized(message)) {
       return;
     }
+
+    const voiceChan = message.guild.channels.find(425014120522448897);
+    logger.debug(voiceChan);
   }
 };
