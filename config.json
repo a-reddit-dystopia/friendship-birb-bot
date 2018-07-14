@@ -1,5 +1,6 @@
 {
   "winnerRole": "AOTC Winner",
   "winningTimeout": 60000,
-  "birbsChannel": "#birbs"
+  "birbsChannel": "#birbs",
+  "onDeckChannel": "425014120522448897"
 }
