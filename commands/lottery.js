@@ -1,6 +1,7 @@
 const request = require("request-promise-native");
 const logger = require("winston");
 const check = require("../utils/authorization-check");
+const TIMEOUT = 10000;
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -65,7 +66,7 @@ function makeTheLotteryHappen(message, users) {
     winners.push(user.attributes.discord_id);
   });
   const collector = message.channel.createMessageCollector(filter, {
-    time: 10000,
+    time: TIMEOUT,
     maxMatches: winners.length
   });
   collector.on("collect", m => {
