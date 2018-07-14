@@ -1,3 +1,10 @@
+const logger = require("winston");
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
+
 module.exports = {
   name: "add",
   description: "Give a discord user the birb role",
@@ -6,6 +13,7 @@ module.exports = {
       return message.reply("Sorry you cannot execute this command.");
     }
     const taggedUsers = message.mentions.users;
+    logger.debug(taggedUsers);
 
     if (taggedUsers <= 10) {
       const role = message.guild.roles.find("name", "AOTC Winner");
