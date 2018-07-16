@@ -18,6 +18,7 @@ module.exports = {
       description: LINKS_BODY
     };
     await message.channel.send({ embed });
+    await message.channel.send(`** Our Alliance Guid's Discord **`);
     await message.channel.send(`https://discord.gg/ebG2wBv`);
   }
 };
