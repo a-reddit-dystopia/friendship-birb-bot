@@ -37,10 +37,10 @@ ${reactionNumbers[4]} **Zero tolerance for sales**
 We do not allow for the sale, for either in-game currency, or real world money, of any runs in this Discord. Please do not advertise any raids or groups that partake in these practices. Advertising sales in this Discord will result in an immediate and permanent ban.
 
 ${reactionNumbers[5]} **Rules and Guidelines Documents**
-[Code of Conduct](https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd)
-[Community Raid Guidelines](https://docs.google.com/document/d/1R9J0aTBfWGPwYSAQQ3TrnkdQwJ1Lj69a2n47if7Loq4/edit?usp=sharing)
-Progression Raid Guidelines
-[Outside Guild Recruitment Rules](https://docs.google.com/document/d/1Cee2W2ETHf5J2hGbLlNIWXGh-WuG6zYndOFx0DfFkZg/edit?usp=sharing)`;
+[Code of Conduct](https://docs.google.com/document/d/1copKh7h-CqkLa3oSTDEm_JFD-uWZCfCC0QwMdHjoDe4/edit)
+[Community Raid Guidelines](https://docs.google.com/document/d/1_cUgNi-moXRzbAkgeNrrBw6jQNoJrVcTamftTX-CFPY/edit)
+[ARD Raid Leader Guidelines](https://docs.google.com/document/d/1r4r_ZYZ0lVSY6N4CCkLYoBISA4edhcY8sjUG1_3n6zQ/edit)
+[Outside Guild Recruitment Rules](https://docs.google.com/document/d/11298J1ud-LkpKWzw2ZzM-_J6O8dCvUOKY7LwP6quhlQ/edit)`;
     const embed = {
       color: 3447003,
       title: RULES_TITLE,
