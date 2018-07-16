@@ -3,7 +3,7 @@ const check = require("../utils/authorization-check");
 const LINKS_TITLE = `Helpful Links`;
 const LINKS_BODY = `[Code of Conduct](https://docs.google.com/document/d/1mHKf22YcLGtZDdfdfpm40d3TRmKpoH2KDDAq4hcdc3Y/edit#heading=h.mlgqvaf9t7qd)
 [Our subreddit](https://www.reddit.com/r/WoWARD/)
-[ARD FAQ](https://www.buzzfeed.com/mjs538/the-25-cutest-corgi-puppies-currently-online?utm_term=.fpX77bMnOA#.hnkdd6xZrM)`;
+[ARD FAQ](https://www.reddit.com/r/WoWARD/comments/5jna3s/a_reddit_dystopia_frequently_asked_questions/)`;
 
 module.exports = {
   name: "links",
