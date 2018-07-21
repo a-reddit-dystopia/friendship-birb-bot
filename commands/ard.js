@@ -1,6 +1,6 @@
 const check = require("../utils/authorization-check");
 
-const WELCOME_TITLE = "Welcome to a Reddit Dystopia!";
+const WELCOME_TITLE = "Welcome to A Reddit Dystopia!";
 
 module.exports = {
   name: "ard",
