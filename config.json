@@ -3,5 +3,6 @@
   "winningTimeout": 60000,
   "birbsChannel": "#birbs",
   "onDeckChannel": "425014120522448897",
-  "inviteMessage": "`/w piprunetotem-bleedinghollow PARTY`"
+  "inviteMessage": "`/w piprunetotem-bleedinghollow PARTY`",
+  "generalChannel": "general"
 }

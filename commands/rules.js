@@ -1,5 +1,6 @@
 const RULES_TITLE = "Community Rules";
 const RULES_FOOTER = `The rules are not inclusive and detailed so they are subject to officer discretion. Not being able to follow these rules will result in consequences decided by officers.`;
+const config = require("./../config.json");
 
 module.exports = {
   name: "rules",
@@ -20,7 +21,7 @@ module.exports = {
 
     // chans
     const generalChannel = message.guild.channels
-      .find(channel => channel.name === "general")
+      .find(channel => channel.name === config.generalChannel)
       .toString();
 
     //prettier-ignore

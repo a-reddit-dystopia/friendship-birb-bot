@@ -46,9 +46,6 @@ async function drawWinner(message, number) {
 function makeTheLotteryHappen(message, users) {
   let winners = [];
   const filter = msg => {
-    logger.debug("filter");
-    logger.debug(msg.author.id);
-    logger.debug(msg.content);
     return (
       winners.includes(msg.author.id) &&
       msg.content.toLowerCase().includes("here")
@@ -72,7 +69,6 @@ function makeTheLotteryHappen(message, users) {
   collector.on("collect", m => {
     addRole(m.member, m.guild);
     setVoice(m.member, m.guild);
-    logger.info(`Collected ${m.content}`);
   });
   collector.on("end", async function(collected) {
     const ids = collected.map(msg => msg.author.id);
