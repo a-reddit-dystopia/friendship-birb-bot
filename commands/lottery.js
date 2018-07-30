@@ -84,7 +84,7 @@ function makeTheLotteryHappen(message, users) {
   });
   const text = msg.join(", ");
   message.channel.send(
-    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message. **Also, please respond in this channel with here to reserve your place.**`
+    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message. **Also, please respond in this channel with the word "here" to reserve your place.**`
   );
 }
 
