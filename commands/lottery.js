@@ -84,7 +84,7 @@ function makeTheLotteryHappen(message, users) {
   });
   const text = msg.join(", ");
   message.channel.send(
-    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message and respond in this channel with here to reserve your place.`
+    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message. **Also, please respond in this channel with here to reserve your place.**`
   );
 }
 
@@ -102,9 +102,9 @@ function sendDM(member) {
     "\u0039\u20E3"
   ];
   if (member) {
-    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not respond to Elroy within a minute in the ${
+    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. **If you do not respond to Elroy within three minutes in the ${
       config.birbsChannel
-    } channel he will remove you from the lottery. He expects you to say "here" to move along.
+    } channel he will remove you from the lottery. He expects you to say "here" to move along. **
 
 Some things to remember for the actual run
 

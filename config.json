@@ -1,6 +1,6 @@
 {
   "winnerRole": "AOTC Winner",
-  "winningTimeout": 60000,
+  "winningTimeout": 180000,
   "birbsChannel": "#birbs",
   "onDeckChannel": "425014120522448897",
   "inviteMessage": "`/w piprunetotem-bleedinghollow PARTY`",
