@@ -12,9 +12,14 @@ logger.level = "debug";
 module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
-  async execute(client, message, args) {
+  async execute(client, message, args, state) {
     if (check.isNotAuthorized(message)) {
       return;
+    }
+    if (!state.lotteryEnabled) {
+      return message.reply(
+        "The lottery is not currently enabled. Please enable with 'elroy set lottery enabled'"
+      );
     }
     const number = args[0] || 1;
     if (number <= 10) {
