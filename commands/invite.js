@@ -4,7 +4,7 @@ const config = require("./../config.json");
 module.exports = {
   name: "invite",
   description: "Sends winners an invite DM",
-  execute(client, message, args) {
+  execute(client, message, args, state) {
     if (check.isNotAuthorized(message)) {
       return;
     }
@@ -16,7 +16,7 @@ module.exports = {
       if (has) {
         member.send(
           `Hey buddy. It's time to ROLL OUT. ${
-            config.inviteMessage
+            state.inviteMessage
           } to get into the raid!`
         );
       }
