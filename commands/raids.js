@@ -1,7 +1,12 @@
+const check = require("../utils/authorization-check");
+
 module.exports = {
   name: "raids",
   description: "ARD community raids",
   async execute(client, message, args) {
+    if (check.isNotAuthorized(message)) {
+      return;
+    }
     const NORMAL_ILVL = "920";
     const HEROIC_ILVL = "930";
     const TITLE = "🌟 ARD Community Raids 🌟";
@@ -24,6 +29,6 @@ module.exports = {
       description: BODY,
       fields: fields
     };
-    await message.channel.send({ embed });
+    //await message.channel.send({ embed });
   }
 };

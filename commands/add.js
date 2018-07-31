@@ -1,14 +1,26 @@
+const logger = require("winston");
+const check = require("../utils/authorization-check");
+const config = require("./../config.json");
+
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {
+  colorize: true
+});
+logger.level = "debug";
+
 module.exports = {
   name: "add",
   description: "Give a discord user the birb role",
   async execute(client, message, args) {
-    if (!message.member.roles.find("name", "Elroy Admin")) {
-      return message.reply("Sorry you cannot execute this command.");
+    if (check.isNotAuthorized(message)) {
+      return;
     }
-    const taggedUsers = message.mentions.users;
 
-    if (taggedUsers <= 10) {
-      const role = message.guild.roles.find("name", "AOTC Winner");
+    const taggedUsers = message.mentions.users;
+    logger.debug(taggedUsers.array.length);
+
+    if (taggedUsers.array.length <= 10) {
+      const role = message.guild.roles.find("name", config.winnerRole);
 
       taggedUsers.forEach(async function(user) {
         const member = await message.guild.fetchMember(user);

@@ -1,5 +1,7 @@
 const request = require("request-promise-native");
 const logger = require("winston");
+const check = require("../utils/authorization-check");
+const config = require("./../config.json");
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -11,8 +13,8 @@ module.exports = {
   name: "lottery",
   description: "Make a birb drawing",
   async execute(client, message, args, state) {
-    if (!message.member.roles.find("name", "Elroy Admin")) {
-      return message.reply("Sorry you cannot execute this command.");
+    if (check.isNotAuthorized(message)) {
+      return;
     }
     if (!state.lotteryEnabled) {
       return message.reply(
@@ -49,9 +51,6 @@ async function drawWinner(message, number) {
 function makeTheLotteryHappen(message, users) {
   let winners = [];
   const filter = msg => {
-    logger.debug("filter");
-    logger.debug(msg.author.id);
-    logger.debug(msg.content);
     return (
       winners.includes(msg.author.id) &&
       msg.content.toLowerCase().includes("here")
@@ -69,13 +68,12 @@ function makeTheLotteryHappen(message, users) {
     winners.push(user.attributes.discord_id);
   });
   const collector = message.channel.createMessageCollector(filter, {
-    time: 10000,
+    time: config.winningTimeout,
     maxMatches: winners.length
   });
   collector.on("collect", m => {
     addRole(m.member, m.guild);
     setVoice(m.member, m.guild);
-    logger.info(`Collected ${m.content}`);
   });
   collector.on("end", async function(collected) {
     const ids = collected.map(msg => msg.author.id);
@@ -85,11 +83,13 @@ function makeTheLotteryHappen(message, users) {
         `Whoops <@${id}> did not respond in time and was removed from the lottery.`
       )
     );
-    drawWinner(message, missing.length);
+    if (missing.length > 0) {
+      drawWinner(message, missing.length);
+    }
   });
   const text = msg.join(", ");
   message.channel.send(
-    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message.`
+    `Congrats ${text} are the winner(s)! I've sent you a PM with instructions! Please check the message. **Also, please respond in this channel with the word "here" to reserve your place.**`
   );
 }
 
@@ -107,8 +107,9 @@ function sendDM(member) {
     "\u0039\u20E3"
   ];
   if (member) {
-    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. If you do not join that channel within
-the next few minutes then we will skip you and draw someone elses name.
+    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. **If you do not respond to Elroy within three minutes in the ${
+      config.birbsChannel
+    } channel he will remove you from the lottery. He expects you to say "here" to move along. **
 
 Some things to remember for the actual run
 
@@ -129,14 +130,14 @@ ${
 }
 
 async function addRole(member, guild) {
-  const role = guild.roles.find("name", "AOTC Winner");
+  const role = guild.roles.find("name", config.winnerRole);
   if (member && role) {
     member.addRole(role, "I am dog");
   }
 }
 
 function setVoice(member, guild) {
-  const channel = guild.channels.find("name", "FriendshipBirb Winners");
+  const channel = guild.channels.get(config.onDeckChannel);
   if (member && channel) {
     member.setVoiceChannel(channel);
   }
