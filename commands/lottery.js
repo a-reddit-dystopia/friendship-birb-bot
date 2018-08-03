@@ -74,6 +74,7 @@ function makeTheLotteryHappen(message, users) {
   collector.on("collect", m => {
     addRole(m.member, m.guild);
     setVoice(m.member, m.guild);
+    m.reply("I've got you down!");
   });
   collector.on("end", async function(collected) {
     const ids = collected.map(msg => msg.author.id);
