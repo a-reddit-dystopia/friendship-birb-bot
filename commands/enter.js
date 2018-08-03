@@ -17,7 +17,10 @@ logger.level = "debug";
 module.exports = {
   name: "enter",
   description: "Add me to the list motherlover",
-  async execute(client, message, args) {
+  async execute(client, message, args, state) {
+    if (!state.lotteryEnabled) {
+      return message.reply("The lottery is not currently running!");
+    }
     let fields;
     message.react("🤔");
 
