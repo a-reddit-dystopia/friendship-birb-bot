@@ -15,7 +15,7 @@ module.exports = {
       const has = member.roles.find("name", config.winnerRole);
       if (has) {
         member.send(
-          `Hey buddy. It's time to ROLL OUT. ${
+          `Hey buddy. It's time to ROLL OUT. Copy and paste this in-game: ${
             state.inviteMessage
           } to get into the raid!`
         );

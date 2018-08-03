@@ -107,9 +107,9 @@ function sendDM(member) {
     "\u0039\u20E3"
   ];
   if (member) {
-    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! Please join the "FriendshipBirb Winners" Voice Channel so you can get added to the next group. **If you do not respond to Elroy within three minutes in the ${
+    const msg = `Congratulations! You have won the ARD AOTC/FriendshipBirb Lottery! **If you do not respond to Elroy within three minutes in the ${
       config.birbsChannel
-    } channel he will remove you from the lottery. He expects you to say "here" to move along. **
+    } channel he will remove you from the lottery. He expects you to say "here" to move along. ** Please join the "Birb Winners" Voice Channel so you can get added to the next group after you have reserved your place.
 
 Some things to remember for the actual run
 
