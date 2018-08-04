@@ -74,7 +74,9 @@ function makeTheLotteryHappen(message, users) {
   collector.on("collect", m => {
     addRole(m.member, m.guild);
     setVoice(m.member, m.guild);
-    m.reply("I've got you down!");
+    m.reply(
+      "I've got you down! Make sure you have joined the Birb Winners voice channel to receive the next phase of instructions!"
+    );
   });
   collector.on("end", async function(collected) {
     const ids = collected.map(msg => msg.author.id);
