@@ -18,7 +18,7 @@ module.exports = {
         name: client.user.username,
         icon_url: client.user.avatarURL
       },
-      title: "Listing of Friendship birb contestants",
+      title: "Listing of Friendship dragon contestants",
       description: `There are currently ${resp.count} entries`,
       url: `${process.env.API}`,
       timestamp: new Date(),
