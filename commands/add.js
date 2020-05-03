@@ -10,7 +10,7 @@ logger.level = "debug";
 
 module.exports = {
   name: "add",
-  description: "Give a discord user the birb role",
+  description: "Give a discord user the dragon role",
   async execute(client, message, args) {
     if (check.isNotAuthorized(message)) {
       return;
@@ -22,7 +22,7 @@ module.exports = {
     if (taggedUsers.array.length <= 10) {
       const role = message.guild.roles.find("name", config.winnerRole);
 
-      taggedUsers.forEach(async function(user) {
+      taggedUsers.forEach(async function (user) {
         const member = await message.guild.fetchMember(user);
         return await member.addRole(role, "I am a loving dog");
       });

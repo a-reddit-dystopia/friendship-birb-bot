@@ -12,10 +12,10 @@ module.exports = {
     if (taggedUsers.array.length <= 10) {
       const channel = message.guild.channels.find(
         "name",
-        "FriendshipBirb Winners"
+        "FriendshipDragon Winners"
       );
 
-      taggedUsers.forEach(async function(user) {
+      taggedUsers.forEach(async function (user) {
         const member = await message.guild.fetchMember(user);
         await member.setVoiceChannel(channel);
       });

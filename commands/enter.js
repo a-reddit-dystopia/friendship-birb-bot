@@ -3,8 +3,10 @@ const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
-const BIRB_ID = 12110;
-const HAS_BIRB = "Has Friendship birb already";
+const DRAGON_ID = 14068;
+const HAS_DRAGON = "Has Friendship Dragon already";
+const CLOAK_ID = 14212;
+const NO_CLOAK = "Has not unlocked Legendary Cloak"
 const DUPLICATE = "Character or discord user is already on our list";
 const logger = require("winston");
 
@@ -31,13 +33,14 @@ module.exports = {
         errors: {
           character: [],
           server: [],
-          birb: []
+          dragon: [],
+          cloak: [],
         }
       };
       await doTheRequest(charName, serverName, errorBuilder);
 
       if (errorBuilder.status === "ok") {
-        const status = await addToBirbList(
+        const status = await addToDragonList(
           message.author,
           charName,
           serverName
@@ -58,7 +61,7 @@ module.exports = {
           name: client.user.username,
           icon_url: client.user.avatarURL
         },
-        description: "Friendship Birb Check!!!!!!",
+        description: "Friendship Dragon Check!!!!!!",
         fields: buildFields(errorBuilder),
         timestamp: new Date(),
         footer: {
@@ -83,17 +86,23 @@ async function doTheRequest(charName, serverName, errorBuilder) {
       realm: serverName,
       name: charName
     });
-    const hasBirb = char.data.achievements.achievementsCompleted.includes(
-      BIRB_ID
+    const hasDragon = char.data.achievements.achievementsCompleted.includes(
+      DRAGON_ID
+    );
+    const hasCloak = char.data.achievements.achievementsCompleted.includes(
+      CLOAK_ID
     );
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
       return ["not_ok", NOT_HORDE];
-    } else if (hasBirb === true) {
+    } else if (hasDragon === true) {
       errorBuilder.status = "not_ok";
-      errorBuilder.errors.birb.push(HAS_BIRB);
-      return ["not_ok", HAS_BIRB];
+      errorBuilder.errors.dragon.push(HAS_DRAGON);
+      return ["not_ok", HAS_DRAGON];
+    } else if (hasCloak === false) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.cloak.push(NO_CLOAK);
     }
     return ["ok"];
   } catch (error) {
@@ -109,7 +118,7 @@ async function doTheRequest(charName, serverName, errorBuilder) {
   }
 }
 
-async function addToBirbList(author, charName, serverName) {
+async function addToDragonList(author, charName, serverName) {
   try {
     const response = await request.post(`${process.env.API}api/users.json`, {
       auth: {
@@ -137,7 +146,8 @@ function buildFields(errorBuilder) {
   let fields = [];
   const charErrors = errorBuilder.errors.character;
   const serverErrors = errorBuilder.errors.server;
-  const birbErrors = errorBuilder.errors.birb;
+  const dragonErrors = errorBuilder.errors.dragon;
+  const cloakErrors = errorBuilder.errors.cloak;
 
   if (charErrors.length > 0) {
     let str = "";
@@ -161,14 +171,25 @@ function buildFields(errorBuilder) {
     });
   }
 
-  if (birbErrors.length > 0) {
+  if (dragonErrors.length > 0) {
     let str = "";
-    birbErrors.forEach(error => (str += `${error}\n`));
-    fields.push({ name: "❌ Birb status", value: str });
+    dragonErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Dragon status", value: str });
   } else {
     fields.push({
-      name: "✅ Birb status",
-      value: "You do not currently have the friendship birb"
+      name: "✅ Dragon status",
+      value: "You do not currently have the friendship dragon"
+    });
+  }
+
+  if (cloakErrors.length > 0) {
+    let str = "";
+    cloakErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Cloak status", value: str });
+  } else {
+    fields.push({
+      name: "✅ Cloak status",
+      value: "You have not unlocked the legendary cloak"
     });
   }
 
