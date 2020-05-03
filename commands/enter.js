@@ -33,7 +33,8 @@ module.exports = {
         errors: {
           character: [],
           server: [],
-          dragon: []
+          dragon: [],
+          cloak: [],
         }
       };
       await doTheRequest(charName, serverName, errorBuilder);
@@ -146,6 +147,7 @@ function buildFields(errorBuilder) {
   const charErrors = errorBuilder.errors.character;
   const serverErrors = errorBuilder.errors.server;
   const dragonErrors = errorBuilder.errors.dragon;
+  const cloakErrors = errorBuilder.errors.cloak;
 
   if (charErrors.length > 0) {
     let str = "";
@@ -177,6 +179,17 @@ function buildFields(errorBuilder) {
     fields.push({
       name: "✅ Dragon status",
       value: "You do not currently have the friendship dragon"
+    });
+  }
+
+  if (cloakErrors.length > 0) {
+    let str = "";
+    cloakErrors.forEach(error => (str += `${error}\n`));
+    fields.push({ name: "❌ Cloak status", value: str });
+  } else {
+    fields.push({
+      name: "✅ Cloak status",
+      value: "You have not unlocked the legendary cloak"
     });
   }
 
