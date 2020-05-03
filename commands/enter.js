@@ -5,6 +5,8 @@ const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
 const DRAGON_ID = 14068;
 const HAS_DRAGON = "Has Friendship Dragon already";
+const CLOAK_ID = 14212;
+const NO_CLOAK = "Has not unlocked Legendary Cloak"
 const DUPLICATE = "Character or discord user is already on our list";
 const logger = require("winston");
 
@@ -86,6 +88,9 @@ async function doTheRequest(charName, serverName, errorBuilder) {
     const hasDragon = char.data.achievements.achievementsCompleted.includes(
       DRAGON_ID
     );
+    const hasCloak = char.data.achievements.achievementsCompleted.includes(
+      CLOAK_ID
+    );
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
@@ -94,6 +99,9 @@ async function doTheRequest(charName, serverName, errorBuilder) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.dragon.push(HAS_DRAGON);
       return ["not_ok", HAS_DRAGON];
+    } else if (hasCloak === false) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.cloak.push(NO_CLOAK);
     }
     return ["ok"];
   } catch (error) {
