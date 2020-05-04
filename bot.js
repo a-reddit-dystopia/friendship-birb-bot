@@ -61,18 +61,20 @@ client.on("message", async (message) => {
 });
 
 async function start() {
+  let apiToken;
   try {
-    const b = await blizz.getApplicationToken();
-    console.log(b);
+    const { response } = await blizz.getApplicationToken();
+    apiToken = response.data.access_token;
   } catch (e) {
     console.log(e);
   }
   // TODO: get lottery status / invite messsage if saved
-  const { lotteryStatus, inviteMessage } = await Promise.resolve({
+  const { lotteryStatus, inviteMessage, apiToken } = await Promise.resolve({
     lotteryStatus: false,
     inviteMessage: "",
+    apiToken,
   });
-  state = new BotState({ lotteryStatus, inviteMessage });
+  state = new BotState({ lotteryStatus, inviteMessage, apiToken });
   client.login(process.env.TOKEN);
 }
 
