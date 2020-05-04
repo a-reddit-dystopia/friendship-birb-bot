@@ -102,6 +102,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       })
       .filter((id) => id !== undefined);
     const hasBirb = allAchievements.includes(process.env.AOTC_ID);
+    console.log(hasBirb);
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
@@ -114,8 +115,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
-    console.log(error);
     const reason = error.response.data.reason;
+    console.log(reason);
 
     if (reason === REALM_NOT_FOUND) {
       errorBuilder.errors.server.push(REALM_NOT_FOUND);
