@@ -3,14 +3,13 @@ const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
-const BIRB_ID = 12110;
 const HAS_BIRB = "Has Friendship birb already";
 const DUPLICATE = "Character or discord user is already on our list";
 const logger = require("winston");
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
-  colorize: true
+  colorize: true,
 });
 logger.level = "debug";
 
@@ -31,8 +30,8 @@ module.exports = {
         errors: {
           character: [],
           server: [],
-          birb: []
-        }
+          birb: [],
+        },
       };
       await doTheRequest(charName, serverName, errorBuilder);
 
@@ -56,15 +55,15 @@ module.exports = {
         color: 3447003,
         author: {
           name: client.user.username,
-          icon_url: client.user.avatarURL
+          icon_url: client.user.avatarURL,
         },
         description: "Friendship Birb Check!!!!!!",
         fields: buildFields(errorBuilder),
         timestamp: new Date(),
         footer: {
           icon_url: client.user.avatarURL,
-          text: "woof I am dog"
-        }
+          text: "woof I am dog",
+        },
       };
       message.reply({ embed });
     } else {
@@ -73,7 +72,7 @@ module.exports = {
         { reply: message }
       );
     }
-  }
+  },
 };
 
 async function doTheRequest(charName, serverName, errorBuilder) {
@@ -81,10 +80,10 @@ async function doTheRequest(charName, serverName, errorBuilder) {
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
       realm: serverName,
-      name: charName
+      name: charName,
     });
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
-      BIRB_ID
+      process.env.AOTC_ID
     );
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
@@ -113,7 +112,7 @@ async function addToBirbList(author, charName, serverName) {
   try {
     const response = await request.post(`${process.env.API}api/users.json`, {
       auth: {
-        bearer: process.env.elroy
+        bearer: process.env.elroy,
       },
       form: {
         user: {
@@ -122,9 +121,9 @@ async function addToBirbList(author, charName, serverName) {
           wow_name: charName,
           wow_server: serverName,
           status: "active",
-          status_date: new Date()
-        }
-      }
+          status_date: new Date(),
+        },
+      },
     });
     return 201;
   } catch (error) {
@@ -141,41 +140,41 @@ function buildFields(errorBuilder) {
 
   if (charErrors.length > 0) {
     let str = "";
-    charErrors.forEach(error => (str += `${error}\n`));
+    charErrors.forEach((error) => (str += `${error}\n`));
     fields.push({ name: "❌ Character", value: str });
   } else {
     fields.push({
       name: "✅ Character",
-      value: "I found your character\nIt is HORDE\nIt is not a duplicate"
+      value: "I found your character\nIt is HORDE\nIt is not a duplicate",
     });
   }
 
   if (serverErrors.length > 0) {
     let str = "";
-    serverErrors.forEach(error => (str += `${error}\n`));
+    serverErrors.forEach((error) => (str += `${error}\n`));
     fields.push({ name: "❌ Server", value: str });
   } else {
     fields.push({
       name: "✅ Server",
-      value: "I found your server"
+      value: "I found your server",
     });
   }
 
   if (birbErrors.length > 0) {
     let str = "";
-    birbErrors.forEach(error => (str += `${error}\n`));
+    birbErrors.forEach((error) => (str += `${error}\n`));
     fields.push({ name: "❌ Birb status", value: str });
   } else {
     fields.push({
       name: "✅ Birb status",
-      value: "You do not currently have the friendship birb"
+      value: "You do not currently have the friendship birb",
     });
   }
 
   if (errorBuilder.status === "ok") {
     fields.push({
       name: "✅ All set",
-      value: "You are good to go buddy! Hang out and wait for the lottery."
+      value: "You are good to go buddy! Hang out and wait for the lottery.",
     });
   }
   return fields;
