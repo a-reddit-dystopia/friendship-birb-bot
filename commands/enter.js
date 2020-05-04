@@ -91,11 +91,16 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       namespace: "profile",
     });
 
-    const allAchievements = char.data.achievements.map((achievement) => {
-      if (achievement.criteria && achievement.criteria.is_completed === true) {
-        return achievement.id;
-      }
-    });
+    const allAchievements = char.data.achievements
+      .map((achievement) => {
+        if (
+          achievement.criteria &&
+          achievement.criteria.is_completed === true
+        ) {
+          return achievement.id;
+        }
+      })
+      .filter((id) => id !== undefined);
     console.log(allAchievements);
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
       process.env.AOTC_ID
