@@ -92,6 +92,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
 
     const allAchievements = char.data.achievements.map((achievement) => {
+      console.log(achievement);
       if (achievement.achievement.is_completed === true) {
         return achievement.id;
       }
