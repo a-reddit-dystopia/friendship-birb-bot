@@ -63,7 +63,8 @@ client.on("message", async (message) => {
 async function start() {
   let apiToken;
   try {
-    const { response } = await blizz.getApplicationToken();
+    const response = await blizz.getApplicationToken();
+    console.warn(response);
     apiToken = response.data.access_token;
   } catch (e) {
     console.log(e);
