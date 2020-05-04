@@ -81,6 +81,8 @@ module.exports = {
 async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
+    console.log(state.token);
+    console.log(blizz.defaults.token);
 
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
