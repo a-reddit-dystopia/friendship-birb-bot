@@ -93,7 +93,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       return achievement.id === Number(process.env.AOTC_ID);
     });
     console.log(birbie);
-    const hasBirb = allAchievements.includes(process.env.AOTC_ID);
+    const hasBirb =
+      birbie.length > 0 && birbie[0].criteria.is_complete === true;
     console.log(hasBirb);
     // if (char.data.faction === 0) {
     //   errorBuilder.status = "not_ok";
