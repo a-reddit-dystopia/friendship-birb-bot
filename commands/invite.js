@@ -11,16 +11,14 @@ module.exports = {
 
     const voiceChan = message.guild.channels.get(config.onDeckChannel);
 
-    voiceChan.members.forEach(member => {
-      const has = member.roles.find("name", config.winnerRole);
+    voiceChan.members.forEach((member) => {
+      const has = member.roles.find("name", process.env.winnerRole);
       if (has) {
         member.send(
-          `Hey buddy. It's time to ROLL OUT. Copy and paste this in-game: ${
-            state.inviteMessage
-          } to get into the raid!`
+          `Hey buddy. It's time to ROLL OUT. Copy and paste this in-game: ${state.inviteMessage} to get into the raid!`
         );
       }
     });
     message.reply("I've sent our new buddies the invite message!");
-  }
+  },
 };

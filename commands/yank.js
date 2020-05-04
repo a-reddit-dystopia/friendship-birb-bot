@@ -1,5 +1,4 @@
 const check = require("../utils/authorization-check");
-const config = require("./../config.json");
 
 module.exports = {
   name: "yank",
@@ -12,9 +11,9 @@ module.exports = {
     const taggedUsers = message.mentions.users;
 
     if (taggedUsers.array.length <= 10) {
-      const role = message.guild.roles.find("name", config.winnerRole);
+      const role = message.guild.roles.find("name", process.env.winnerRole);
 
-      taggedUsers.forEach(async function(user) {
+      taggedUsers.forEach(async function (user) {
         const member = await message.guild.fetchMember(user);
         member.removeRole(role, "I am a vengeful dog");
       });
@@ -25,5 +24,5 @@ module.exports = {
         "I can only remove roles to 10 people at a time. Try to tag fewer people!"
       );
     }
-  }
+  },
 };
