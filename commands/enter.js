@@ -85,9 +85,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     console.log(blizz.defaults.token);
 
     const char = await blizz.wow.character("achievements", {
-      origin: "us",
+      region: "us",
       realm: serverName,
       name: charName,
+      namespace: "profile-us",
     });
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
       process.env.AOTC_ID
