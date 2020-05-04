@@ -109,8 +109,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     // return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
+    console.log(error);
     const reason = error.response.data.reason;
-    console.log(reason);
 
     if (reason === REALM_NOT_FOUND) {
       errorBuilder.errors.server.push(REALM_NOT_FOUND);
