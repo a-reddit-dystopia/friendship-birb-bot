@@ -101,10 +101,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
         }
       })
       .filter((id) => id !== undefined);
-    console.log(allAchievements);
-    const hasBirb = char.data.achievements.achievementsCompleted.includes(
-      process.env.AOTC_ID
-    );
+    const hasBirb = allAchievements.includes(process.env.AOTC_ID);
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
