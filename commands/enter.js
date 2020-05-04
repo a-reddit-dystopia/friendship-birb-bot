@@ -84,7 +84,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     console.log(state.token);
     console.log(blizz.defaults.token);
 
-    const char = await blizz.wow.character(["achievements"], {
+    const char = await blizz.wow.characterAchievements({
       origin: "us",
       realm: serverName,
       name: charName,
