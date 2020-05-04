@@ -102,6 +102,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       })
       .filter((id) => id !== undefined);
     console.log(allAchievements);
+    console.log(process.env.AOTC_ID);
     const hasBirb = allAchievements.includes(process.env.AOTC_ID);
     console.log(hasBirb);
     if (char.data.faction === 0) {
