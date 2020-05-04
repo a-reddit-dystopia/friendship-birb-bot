@@ -96,7 +96,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const hasBirb =
       birbie.length > 0 && birbie[0].criteria.is_complete === true;
     console.log(birbie.length > 0);
-    console.log(birbie[0].criteria.is_complete);
+    console.log(birbie[0]);
     console.log(hasBirb);
     // if (char.data.faction === 0) {
     //   errorBuilder.status = "not_ok";
