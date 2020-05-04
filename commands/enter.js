@@ -92,7 +92,9 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
 
     const allAchievements = char.data.achievements.map((achievement) => {
-      return achievement.id;
+      if (achievement.achievement.is_completed === true) {
+        return achievement.id;
+      }
     });
     console.log(allAchievements);
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
