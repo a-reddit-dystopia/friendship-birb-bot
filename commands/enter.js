@@ -88,7 +88,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       region: "us",
       realm: serverName,
       name: charName,
-      namespace: "profile-us",
+      namespace: "profile",
     });
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
       process.env.AOTC_ID
