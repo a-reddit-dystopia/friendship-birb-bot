@@ -1,4 +1,7 @@
-const blizz = require("blizzard.js");
+const blizz = require("blizzard.js").initialize({
+  key: process.env.BLIZZ_KEY,
+  secret: process.env.BLIZZ_SECRET,
+});
 const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
@@ -77,11 +80,7 @@ module.exports = {
 
 async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
-    blizz.initialize({
-      key: process.env.BLIZZ_KEY,
-      secret: process.env.BLIZZ_SECRET,
-      token: state.token,
-    });
+    blizz.defaults.token = state.token;
 
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
