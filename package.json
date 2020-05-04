@@ -5,7 +5,7 @@
   "main": "bot.js",
   "author": "Patrick Robertson",
   "dependencies": {
-    "blizzard.js": "^2.3.1",
+    "blizzard.js": "^3.2.0",
     "discord.js": "^11.3.2",
     "request": "^2.87.0",
     "request-promise-native": "1.0.5",

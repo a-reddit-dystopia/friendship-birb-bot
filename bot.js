@@ -1,8 +1,11 @@
 const Discord = require("discord.js");
 const logger = require("winston");
-const request = require("request");
 const fs = require("fs");
 const BotState = require("./state");
+const blizz = require("blizzard.js").initialize({
+  key: process.env.BLIZZ_KEY,
+  secret: process.env.blizz_SECRET,
+});
 
 const prefix = "elroy ";
 const otherPrefix = "Elroy ";
@@ -11,7 +14,7 @@ let state;
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
-  colorize: true
+  colorize: true,
 });
 logger.level = "debug";
 // Initialize Discord Bot
@@ -19,18 +22,18 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs
   .readdirSync("./commands")
-  .filter(file => file.endsWith(".js"));
+  .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 }
 
-client.on("ready", function(evt) {
+client.on("ready", function (evt) {
   logger.info("Connected");
 });
 
-client.on("message", async message => {
+client.on("message", async (message) => {
   const prefixRegex = new RegExp(
     `^(<@!?${client.user.id}>|\\${prefix}|\\${otherPrefix})\\s*`
   );
@@ -44,10 +47,7 @@ client.on("message", async message => {
     return;
 
   const [, matchedPrefix] = message.content.match(prefixRegex);
-  const args = message.content
-    .slice(matchedPrefix.length)
-    .trim()
-    .split(/ +/);
+  const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
   if (!client.commands.has(command)) return;
@@ -61,10 +61,12 @@ client.on("message", async message => {
 });
 
 async function start() {
+  const b = await blizz.getApplicationToken();
+  console.log(b);
   // TODO: get lottery status / invite messsage if saved
   const { lotteryStatus, inviteMessage } = await Promise.resolve({
     lotteryStatus: false,
-    inviteMessage: ""
+    inviteMessage: "",
   });
   state = new BotState({ lotteryStatus, inviteMessage });
   client.login(process.env.TOKEN);
