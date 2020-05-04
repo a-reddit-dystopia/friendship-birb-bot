@@ -4,7 +4,7 @@ const fs = require("fs");
 const BotState = require("./state");
 const blizz = require("blizzard.js").initialize({
   key: process.env.BLIZZ_KEY,
-  secret: process.env.blizz_SECRET,
+  secret: process.env.BLIZZ_SECRET,
 });
 
 const prefix = "elroy ";
