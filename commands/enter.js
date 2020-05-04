@@ -90,6 +90,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       name: charName,
       namespace: "profile",
     });
+
+    console.log(char);
     const hasBirb = char.data.achievements.achievementsCompleted.includes(
       process.env.AOTC_ID
     );
