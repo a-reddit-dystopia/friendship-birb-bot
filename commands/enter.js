@@ -95,17 +95,16 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     console.log(birbie);
     const hasBirb =
       birbie.length > 0 && birbie[0].criteria.is_completed === true;
-    console.log(hasBirb);
-    // if (char.data.faction === 0) {
-    //   errorBuilder.status = "not_ok";
-    //   errorBuilder.errors.character.push(NOT_HORDE);
-    //   return ["not_ok", NOT_HORDE];
-    // } else if (hasBirb === true) {
-    //   errorBuilder.status = "not_ok";
-    //   errorBuilder.errors.birb.push(HAS_BIRB);
-    //   return ["not_ok", HAS_BIRB];
-    // }
-    // return ["ok"];
+    if (char.data.faction === 0) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.character.push(NOT_HORDE);
+      return ["not_ok", NOT_HORDE];
+    } else if (hasBirb === true) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.birb.push(HAS_BIRB);
+      return ["not_ok", HAS_BIRB];
+    }
+    return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
     console.log(error);
