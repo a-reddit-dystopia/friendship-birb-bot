@@ -90,19 +90,12 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       name: charName,
       namespace: "profile",
     });
-
-    const allAchievements = char.data.achievements
-      .map((achievement) => {
-        if (
-          achievement.criteria &&
-          achievement.criteria.is_completed === true
-        ) {
-          return achievement.id;
-        }
-      })
-      .filter((id) => id !== undefined);
-    console.log(allAchievements);
-    console.log(process.env.AOTC_ID);
+    const birbie = char.data.achievements.reduce((acc, achievement) => {
+      if (achievement.id === process.env.AOTC_ID) {
+        acc = true;
+      }
+    });
+    console.log(birbie);
     const hasBirb = allAchievements.includes(process.env.AOTC_ID);
     console.log(hasBirb);
     if (char.data.faction === 0) {
