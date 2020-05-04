@@ -77,7 +77,11 @@ module.exports = {
 
 async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
-    blizz.initialize({ token: state.token });
+    blizz.initialize({
+      key: process.env.BLIZZ_KEY,
+      secret: process.env.BLIZZ_SECRET,
+      token: state.token,
+    });
 
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
@@ -99,6 +103,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
+    console.log(error);
     const reason = error.response.data.reason;
 
     if (reason === REALM_NOT_FOUND) {
