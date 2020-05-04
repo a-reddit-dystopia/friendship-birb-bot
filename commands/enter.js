@@ -91,7 +91,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       namespace: "profile",
     });
     const birbie = char.data.achievements.reduce((acc, achievement) => {
-      if (achievement.id === process.env.AOTC_ID) {
+      if (achievement.id === Integer(process.env.AOTC_ID)) {
         acc = true;
       }
     });
