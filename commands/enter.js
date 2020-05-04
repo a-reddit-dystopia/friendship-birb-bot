@@ -1,4 +1,4 @@
-const blizz = require("blizzard.js").initialize({ apikey: process.env.BLIZZ });
+const blizz = require("blizzard.js");
 const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found.";
@@ -33,7 +33,7 @@ module.exports = {
           birb: [],
         },
       };
-      await doTheRequest(charName, serverName, errorBuilder);
+      await doTheRequest(charName, serverName, errorBuilder, state);
 
       if (errorBuilder.status === "ok") {
         const status = await addToBirbList(
@@ -75,8 +75,10 @@ module.exports = {
   },
 };
 
-async function doTheRequest(charName, serverName, errorBuilder) {
+async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
+    blizz.initialize({ token: state.token });
+
     const char = await blizz.wow.character(["profile", "achievements"], {
       origin: "us",
       realm: serverName,
