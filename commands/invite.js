@@ -1,5 +1,4 @@
 const check = require("../utils/authorization-check");
-const config = require("./../config.json");
 
 module.exports = {
   name: "invite",
@@ -9,7 +8,7 @@ module.exports = {
       return;
     }
 
-    const voiceChan = message.guild.channels.get(config.onDeckChannel);
+    const voiceChan = message.guild.channels.get(process.env.onDeckChannel);
 
     voiceChan.members.forEach((member) => {
       const has = member.roles.find("name", process.env.winnerRole);

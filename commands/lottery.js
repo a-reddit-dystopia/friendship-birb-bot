@@ -128,7 +128,7 @@ async function addRole(member, guild) {
 }
 
 function setVoice(member, guild) {
-  const channel = guild.channels.get(config.onDeckChannel);
+  const channel = guild.channels.get(process.env.onDeckChannel);
   if (member && channel) {
     member.setVoiceChannel(channel);
   }
