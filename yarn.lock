@@ -52,10 +52,9 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-blizzard.js@^3.2.0:
+blizzard.js@a-reddit-dystopia/blizzard.js:
   version "3.2.0"
-  resolved "https://registry.yarnpkg.com/blizzard.js/-/blizzard.js-3.2.0.tgz#a54ffb40e1d620de12168791150e891bbce99369"
-  integrity sha512-WFPBx/h/U9QTFryri4puSASkM7kVBz/nUFfDSVfEmwLDxYMIiwVTSdxiViAPJqUjxcRbTKRFVStoi5io3g4zvw==
+  resolved "https://codeload.github.com/a-reddit-dystopia/blizzard.js/tar.gz/e15c03b0ea98705dbdc9e88d89e2a46ef3016eb3"
   dependencies:
     axios "^0.19.0"
     lodash.merge "^4.6.2"
