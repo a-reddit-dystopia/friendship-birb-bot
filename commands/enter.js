@@ -92,8 +92,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
 
     const allAchievements = char.data.achievements.map((achievement) => {
-      console.log(achievement.achievement.criteria.is_completed);
-      if (achievement.achievement.criteria.is_completed === true) {
+      console.log(achievement.criteria.is_completed);
+      if (achievement.criteria.is_completed === true) {
         return achievement.id;
       }
     });
