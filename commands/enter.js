@@ -88,9 +88,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       name: charName,
       namespace: "profile",
     });
-    console.log(char.data);
+    console.log(`AOTC ID: ${process.env.AOTC_ID}`);
     const birbie = char.data.achievements.reduce((acc, achievement) => {
       if (achievement.id === Number(process.env.AOTC_ID)) {
+        console.log("I am in here");
         acc = true;
       }
     });
