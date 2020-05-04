@@ -1,8 +1,8 @@
 class BotState {
-  constructor({ lotteryEnabled = false, inviteMessage = "", apiToken = "" }) {
+  constructor({ lotteryEnabled = false, inviteMessage = "", token = "" }) {
     this.lotteryStatus = lotteryEnabled;
     this.currentMessage = inviteMessage;
-    this.apiToken = apiToken;
+    this.apiToken = token;
   }
 
   get inviteMessage() {

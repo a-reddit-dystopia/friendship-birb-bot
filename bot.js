@@ -64,8 +64,8 @@ async function start() {
   let apiToken;
   try {
     const response = await blizz.getApplicationToken();
-    console.warn(response);
     apiToken = response.data.access_token;
+    console.warn(apiToken);
   } catch (e) {
     console.log(e);
   }
@@ -74,6 +74,7 @@ async function start() {
     lotteryStatus: false,
     inviteMessage: "",
   });
+  console.warn(apiToken);
   state = new BotState({ lotteryStatus, inviteMessage, apiToken });
   client.login(process.env.TOKEN);
 }
