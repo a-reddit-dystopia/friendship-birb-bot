@@ -92,7 +92,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       return mount.mount.id === Number(process.env.AOTC_ID);
     });
     const hasAotc = aotcMount.length > 0;
-    if (char.data.faction === 0) {
+
+    const faction = getCharacterFaction(serverName, charName, state.token);
+
+    if (faction !== "HORDE") {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
       return ["not_ok", NOT_HORDE];
@@ -131,6 +134,19 @@ async function getWowRealms(accessToken) {
   );
   const json = JSON.parse(response);
   return json.realms;
+}
+
+async function getCharacterFaction(realm, name, accessToken) {
+  const response = await request.get(
+    `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}?namespace=profile-us`,
+    {
+      auth: {
+        bearer: accesstoken,
+      },
+    }
+  );
+  const json = JSON.parse(response);
+  return json.faction.type;
 }
 
 async function addToBirbList(author, charName, serverName) {
