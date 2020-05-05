@@ -119,7 +119,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
 }
 
 async function getWowRealms(accessToken) {
-  const response = request.get(
+  const response = await request.get(
     "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&locale=en_US",
     {
       auth: {
