@@ -121,6 +121,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
+    console.debug(error);
     const status = error.response.data.code;
     const realms = await getWowRealms(state.token);
 
