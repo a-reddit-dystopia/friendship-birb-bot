@@ -89,12 +89,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
 
     console.log(char.data);
-    const aotcAchievement = char.data.achievements.filter((achievement) => {
-      return achievement.id === Number(process.env.AOTC_ID);
+    const aotcMount = char.data.mounts.filter((mount) => {
+      return mount.mount.id === Number(process.env.AOTC_ID);
     });
-    const hasAotc =
-      aotcAchievement.length > 0 &&
-      aotcAchievement[0].criteria.is_completed === true;
+    const hasAotc = aotcMount.length > 0;
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
