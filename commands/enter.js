@@ -93,6 +93,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
     const hasAotc = aotcMount.length > 0;
 
+    const quests = await getCompletedQuests(serverName, charName, state.token);
+
     const faction = await getCharacterFaction(
       serverName,
       charName,
@@ -151,6 +153,21 @@ async function getCharacterFaction(realm, name, accessToken) {
   );
   const json = JSON.parse(response);
   return json.faction.type;
+}
+
+async function getCompletedQuests(realm, name, accessToken) {
+  const response = await request.get(
+    `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/quests/completed?namespace=profile-us`,
+    {
+      auth: {
+        bearer: accessToken,
+      },
+    }
+  );
+
+  const json = JSON.parse(response);
+  console.log(json);
+  return json;
 }
 
 async function addToBirbList(author, charName, serverName) {
