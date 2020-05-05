@@ -98,7 +98,6 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       charName,
       state.token
     );
-    console.log(faction);
 
     if (faction !== "HORDE") {
       errorBuilder.status = "not_ok";
@@ -116,7 +115,9 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const realms = await getWowRealms(state.token);
 
     const realmFound = realms.filter((realm) => {
-      serverName === realm.slug || serverName === realm.name;
+      const found = serverName === realm.slug || serverName === realm.name;
+      console.log(found);
+      return found;
     });
 
     if (realmFound.length === 0) {
@@ -151,7 +152,6 @@ async function getCharacterFaction(realm, name, accessToken) {
     }
   );
   const json = JSON.parse(response);
-  console.log(json);
   return json.faction.type;
 }
 
