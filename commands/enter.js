@@ -116,6 +116,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     } else if (cloakQuestComplete.length === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push("No legendary cloak");
+      return ["not_ok", "BLERG"];
     }
     return ["ok"];
   } catch (error) {
