@@ -81,7 +81,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
 
-    const char = await blizz.wow.character("collection", {
+    const char = await blizz.wow.character("collections", {
       region: "us",
       realm: serverName,
       name: charName,
