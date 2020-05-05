@@ -81,7 +81,11 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
 
-    const bob = await getWowRealms(state.token);
+    const realms = await getWowRealms(state.token);
+
+    const realmFound = realms.filter((realm) => {
+      serverName === realm.slug || serverName === realm.name;
+    });
 
     const char = await blizz.wow.character("collections/mounts", {
       region: "us",
@@ -102,6 +106,9 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
+    } else if (realmFound.length === 0) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.server.push(REALM_NOT_FOUND);
     }
     return ["ok"];
   } catch (error) {
@@ -110,9 +117,6 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
 
     if (status === 404) {
       errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
-    }
-    if (status === REALM_NOT_FOUND) {
-      errorBuilder.errors.server.push(REALM_NOT_FOUND);
     }
     return ["not_ok", status];
   }
@@ -128,8 +132,7 @@ async function getWowRealms(accessToken) {
     }
   );
   const json = JSON.parse(response);
-  console.log(json.realms);
-  return json;
+  return json.realms;
 }
 
 async function addToBirbList(author, charName, serverName) {
