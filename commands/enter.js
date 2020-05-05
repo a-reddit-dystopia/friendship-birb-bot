@@ -81,6 +81,8 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
 
+    const bob = await getWowRealms(state.token);
+
     const char = await blizz.wow.character("collections/mounts", {
       region: "us",
       realm: serverName,
@@ -117,9 +119,22 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   }
 }
 
+async function getWowRealms(accessToken) {
+  const response = request.get(
+    "https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-us&locale=en_US",
+    {
+      auth: {
+        bearer: accessToken,
+      },
+    }
+  );
+  console.log(response);
+  return response;
+}
+
 async function addToBirbList(author, charName, serverName) {
   try {
-    const response = await request.post(`${process.env.API}api/users.json`, {
+    await request.post(`${process.env.API}api/users.json`, {
       auth: {
         bearer: process.env.elroy,
       },
