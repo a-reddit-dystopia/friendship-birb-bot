@@ -96,7 +96,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const quests = await getCompletedQuests(serverName, charName, state.token);
 
     const cloakQuestComplete = quests.filter((quest) => {
-      return quest.id === process.env.CLOAK_ID;
+      return quest.id === Number(process.env.CLOAK_ID);
     });
 
     const faction = await getCharacterFaction(
@@ -173,7 +173,6 @@ async function getCompletedQuests(realm, name, accessToken) {
   );
 
   const json = JSON.parse(response);
-  console.log(json.quests);
   return json.quests;
 }
 
