@@ -90,7 +90,6 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       namespace: "profile",
     });
 
-    console.log(char.data);
     const aotcMount = char.data.mounts.filter((mount) => {
       return mount.mount.id === Number(process.env.AOTC_ID);
     });
