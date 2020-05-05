@@ -146,6 +146,7 @@ async function getCharacterFaction(realm, name, accessToken) {
     }
   );
   const json = JSON.parse(response);
+  console.log(json);
   return json.faction.type;
 }
 
