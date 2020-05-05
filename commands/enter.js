@@ -23,7 +23,6 @@ module.exports = {
     if (!state.lotteryEnabled) {
       return message.reply("The lottery is not currently running!");
     }
-    let fields;
     message.react("🤔");
 
     if (args.length === 2) {
@@ -82,24 +81,25 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
 
-    const char = await blizz.wow.character("achievements", {
+    const char = await blizz.wow.character("collection", {
       region: "us",
       realm: serverName,
       name: charName,
       namespace: "profile",
     });
-    console.log(`AOTC ID: ${process.env.AOTC_ID}`);
-    const birbie = char.data.achievements.filter((achievement) => {
+
+    console.log(char.data);
+    const aotcAchievement = char.data.achievements.filter((achievement) => {
       return achievement.id === Number(process.env.AOTC_ID);
     });
-    console.log(birbie);
-    const hasBirb =
-      birbie.length > 0 && birbie[0].criteria.is_completed === true;
+    const hasAotc =
+      aotcAchievement.length > 0 &&
+      aotcAchievement[0].criteria.is_completed === true;
     if (char.data.faction === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push(NOT_HORDE);
       return ["not_ok", NOT_HORDE];
-    } else if (hasBirb === true) {
+    } else if (hasAotc === true) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
