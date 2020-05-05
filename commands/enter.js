@@ -141,7 +141,7 @@ async function getCharacterFaction(realm, name, accessToken) {
     `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}?namespace=profile-us`,
     {
       auth: {
-        bearer: accesstoken,
+        bearer: accessToken,
       },
     }
   );
