@@ -94,6 +94,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const hasAotc = aotcMount.length > 0;
 
     const faction = getCharacterFaction(serverName, charName, state.token);
+    console.log(faction);
 
     if (faction !== "HORDE") {
       errorBuilder.status = "not_ok";
