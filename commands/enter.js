@@ -127,7 +127,7 @@ async function getWowRealms(accessToken) {
       },
     }
   );
-  console.log(response);
+  console.log(response.realms);
   return response;
 }
 
