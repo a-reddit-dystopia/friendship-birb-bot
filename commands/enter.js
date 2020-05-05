@@ -113,6 +113,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     errorBuilder.status = "not_ok";
     const status = error.response.data.code;
     const realms = await getWowRealms(state.token);
+    console.log("I get here");
 
     const realmFound = realms.filter((realm) => {
       return serverName === realm.slug || serverName === realm.name;
