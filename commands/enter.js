@@ -95,6 +95,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
 
     const quests = await getCompletedQuests(serverName, charName, state.token);
 
+    const cloakQuestComplete = quests.filter((quest) => {
+      return quest.id === process.env.CLOAK_ID;
+    });
+
     const faction = await getCharacterFaction(
       serverName,
       charName,
@@ -109,6 +113,9 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
+    } else if (cloakQuestComplete.length === 0) {
+      errorBuilder.status = "not_ok";
+      errorBuilder.errors.character.push("No legendary cloak");
     }
     return ["ok"];
   } catch (error) {
@@ -166,8 +173,8 @@ async function getCompletedQuests(realm, name, accessToken) {
   );
 
   const json = JSON.parse(response);
-  console.log(json);
-  return json;
+  console.log(json.quests);
+  return json.quests;
 }
 
 async function addToBirbList(author, charName, serverName) {
