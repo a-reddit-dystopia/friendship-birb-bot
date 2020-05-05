@@ -127,8 +127,9 @@ async function getWowRealms(accessToken) {
       },
     }
   );
-  console.log(response.realms);
-  return response;
+  const json = JSON.parse(response);
+  console.log(json.response.realms);
+  return json;
 }
 
 async function addToBirbList(author, charName, serverName) {
