@@ -115,9 +115,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const realms = await getWowRealms(state.token);
 
     const realmFound = realms.filter((realm) => {
-      const found = serverName === realm.slug || serverName === realm.name;
-      console.log(found);
-      return found;
+      return serverName === realm.slug || serverName === realm.name;
     });
 
     if (realmFound.length === 0) {
