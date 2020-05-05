@@ -128,7 +128,7 @@ async function getWowRealms(accessToken) {
     }
   );
   const json = JSON.parse(response);
-  console.log(json);
+  console.log(json.realms);
   return json;
 }
 
