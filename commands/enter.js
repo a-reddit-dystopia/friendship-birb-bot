@@ -81,12 +81,6 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
 
-    const realms = await getWowRealms(state.token);
-
-    const realmFound = realms.filter((realm) => {
-      serverName === realm.slug || serverName === realm.name;
-    });
-
     const char = await blizz.wow.character("collections/mounts", {
       region: "us",
       realm: serverName,
@@ -106,16 +100,20 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
-    } else if (realmFound.length === 0) {
-      errorBuilder.status = "not_ok";
-      errorBuilder.errors.server.push(REALM_NOT_FOUND);
     }
     return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
     const status = error.response.data.code;
+    const realms = await getWowRealms(state.token);
 
-    if (status === 404) {
+    const realmFound = realms.filter((realm) => {
+      serverName === realm.slug || serverName === realm.name;
+    });
+
+    if (realmFound.length === 0) {
+      errorBuilder.errors.server.push(REALM_NOT_FOUND);
+    } else if (status === 404) {
       errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
     }
     return ["not_ok", status];
