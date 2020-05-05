@@ -4,7 +4,7 @@ const blizz = require("blizzard.js").initialize({
 });
 const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
-const CHARACTER_NOT_FOUND = "Character not found.";
+const CHARACTER_NOT_FOUND = "Character not found or not logged in recently.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
 const HAS_BIRB = "Has Friendship birb already";
 const DUPLICATE = "Character or discord user is already on our list";
@@ -106,12 +106,13 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
   } catch (error) {
     errorBuilder.status = "not_ok";
     console.log(error);
-    const reason = error.response.data.reason;
+    const status = error.response.data.code;
 
+    if (status === 404) {
+      errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
+    }
     if (reason === REALM_NOT_FOUND) {
       errorBuilder.errors.server.push(REALM_NOT_FOUND);
-    } else if (reason === CHARACTER_NOT_FOUND) {
-      errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
     }
     return ["not_ok", reason];
   }
