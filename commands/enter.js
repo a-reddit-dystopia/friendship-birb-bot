@@ -105,16 +105,15 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     return ["ok"];
   } catch (error) {
     errorBuilder.status = "not_ok";
-    console.log(error);
     const status = error.response.data.code;
 
     if (status === 404) {
       errorBuilder.errors.character.push(CHARACTER_NOT_FOUND);
     }
-    if (reason === REALM_NOT_FOUND) {
+    if (status === REALM_NOT_FOUND) {
       errorBuilder.errors.server.push(REALM_NOT_FOUND);
     }
-    return ["not_ok", reason];
+    return ["not_ok", status];
   }
 }
 
