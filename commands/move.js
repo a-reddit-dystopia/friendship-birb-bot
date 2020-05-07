@@ -10,7 +10,7 @@ module.exports = {
 
     const taggedUsers = message.mentions.users;
     if (taggedUsers.array.length <= 10) {
-      const channel = guild.channels.get(process.env.onDeckChannel);
+      const channel = message.guild.channels.get(process.env.onDeckChannel);
 
       taggedUsers.forEach(async function (user) {
         const member = await message.guild.fetchMember(user);
