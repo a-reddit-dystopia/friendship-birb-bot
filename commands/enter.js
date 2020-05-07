@@ -97,7 +97,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     console.log(quests);
 
     const cloakQuestComplete = quests.filter((quest) => {
-      return quest.id === Number(process.env.CLOAK_ID);
+      return quest.item.id === Number(process.env.CLOAK_ID);
     });
 
     const faction = await getCharacterFaction(
