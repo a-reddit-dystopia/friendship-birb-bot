@@ -94,10 +94,11 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     const hasAotc = aotcMount.length > 0;
 
     const quests = await getCompletedQuests(serverName, charName, state.token);
+    console.log(quests);
 
-    const cloakQuestComplete = quests.filter((quest) => {
-      return quest.id === Number(process.env.CLOAK_ID);
-    });
+    //const cloakQuestComplete = quests.filter((quest) => {
+    //  return quest.id === Number(process.env.CLOAK_ID);
+    //});
 
     const faction = await getCharacterFaction(
       serverName,
@@ -113,10 +114,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
-    } else if (cloakQuestComplete.length === 0) {
-      errorBuilder.status = "not_ok";
-      errorBuilder.errors.character.push("No legendary cloak");
-      return ["not_ok", "BLERG"];
+      // } else if (cloakQuestComplete.length === 0) {
+      //   errorBuilder.status = "not_ok";
+      //   errorBuilder.errors.character.push("No legendary cloak");
+      //   return ["not_ok", "BLERG"];
     }
     return ["ok"];
   } catch (error) {
@@ -172,7 +173,7 @@ async function getCharacterFaction(realm, name, accessToken) {
 async function getCompletedQuests(realm, name, accessToken) {
   try {
     const response = await request.get(
-      `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/quests/completed?namespace=profile-us`,
+      `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/equipment?namespace=profile-us`,
       {
         auth: {
           bearer: accessToken,
