@@ -182,7 +182,7 @@ async function getCompletedQuests(realm, name, accessToken) {
     );
 
     const json = JSON.parse(response);
-    return json;
+    return json.equipped_items;
   } catch (error) {
     logger.debug("QUESTS");
     logger.debug(error.error);
