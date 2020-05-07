@@ -125,7 +125,7 @@ async function addRole(member, guild) {
   if (member && role) {
     member.addRole(role, "I am dog");
   }
-  setTimeout(100);
+  setTimeout(() => {}, 100);
 }
 
 function setVoice(member, guild) {
