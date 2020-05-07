@@ -6,7 +6,7 @@ const request = require("request-promise-native");
 const REALM_NOT_FOUND = "Realm not found.";
 const CHARACTER_NOT_FOUND = "Character not found or not logged in recently.";
 const NOT_HORDE = "Not Horde. We are FOR THE HORDE!";
-const HAS_BIRB = "Has Friendship birb already";
+const HAS_BIRB = "Has AOTC mount already";
 const DUPLICATE = "Character or discord user is already on our list";
 const logger = require("winston");
 
@@ -59,7 +59,7 @@ module.exports = {
           name: client.user.username,
           icon_url: client.user.avatarURL,
         },
-        description: "Friendship Birb Check!!!!!!",
+        description: "AOTC Check!!!!!!",
         fields: buildFields(errorBuilder),
         timestamp: new Date(),
         footer: {
@@ -93,11 +93,10 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
     const hasAotc = aotcMount.length > 0;
 
-    const quests = await getCompletedQuests(serverName, charName, state.token);
-    console.log(quests);
+    const equipment = await getEquippedItems(serverName, charName, state.token);
 
-    const cloakQuestComplete = quests.filter((quest) => {
-      return quest.item.id === Number(process.env.CLOAK_ID);
+    const hasCloakEquipped = equipment.filter((item) => {
+      return item.item.id === Number(process.env.CLOAK_ID);
     });
 
     const faction = await getCharacterFaction(
@@ -114,7 +113,7 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.birb.push(HAS_BIRB);
       return ["not_ok", HAS_BIRB];
-    } else if (cloakQuestComplete.length === 0) {
+    } else if (hasCloakEquipped.length === 0) {
       errorBuilder.status = "not_ok";
       errorBuilder.errors.character.push("No legendary cloak");
       return ["not_ok", "BLERG"];
@@ -170,7 +169,7 @@ async function getCharacterFaction(realm, name, accessToken) {
   }
 }
 
-async function getCompletedQuests(realm, name, accessToken) {
+async function getEquippedItems(realm, name, accessToken) {
   try {
     const response = await request.get(
       `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/equipment?namespace=profile-us`,
@@ -184,7 +183,7 @@ async function getCompletedQuests(realm, name, accessToken) {
     const json = JSON.parse(response);
     return json.equipped_items;
   } catch (error) {
-    logger.debug("QUESTS");
+    logger.debug("ITEMS");
     logger.debug(error.error);
   }
 }
@@ -247,8 +246,8 @@ function buildFields(errorBuilder) {
     fields.push({ name: "❌ Birb status", value: str });
   } else {
     fields.push({
-      name: "✅ Birb status",
-      value: "You do not currently have the friendship birb",
+      name: "✅ AOTC status",
+      value: "You do not currently have the AOTC mount",
     });
   }
 

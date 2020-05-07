@@ -21,8 +21,8 @@ elroy set inviteMessage '/w piprunetotem-bleeding-hollow pirate'`;
     const msg = `Elroy help command!
 ** Fetch ** - retrieve the contestant link
 elroy fetch
-** Enter ** - get yourself on the friendship birb list
+** Enter ** - get yourself on the AOTC Entry list
 elroy enter *character name* *server name* (be sure to use dashes instead of spaces on server name!)`;
     message.reply(msg);
-  }
+  },
 };
