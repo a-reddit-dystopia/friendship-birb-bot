@@ -123,13 +123,14 @@ ${reactionNumbers[2]} Once you have your mount, we would appreciate it if you se
 async function addRole(member, guild) {
   const role = guild.roles.find("name", process.env.winnerRole);
   if (member && role) {
-    await member.addRole(role, "I am dog");
+    member.addRole(role, "I am dog");
   }
+  setTimeout(100);
 }
 
 function setVoice(member, guild) {
   const channel = guild.channels.get(process.env.onDeckChannel);
   if (member && channel) {
-    await member.setVoiceChannel(channel);
+    member.setVoiceChannel(channel);
   }
 }
