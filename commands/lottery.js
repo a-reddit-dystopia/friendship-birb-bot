@@ -75,7 +75,7 @@ function makeTheLotteryHappen(message, users) {
     addRole(m.member, m.guild);
     setVoice(m.member, m.guild);
     m.reply(
-      "I've got you down! Make sure you have joined the AOTC Winners voice channel to receive the next phase of instructions!"
+      "I've got you down! Make sure you have joined the Waiting Room voice channel to receive the next phase of instructions!"
     );
   });
   collector.on("end", async function (collected) {
@@ -110,12 +110,12 @@ function sendDM(member) {
     "\u0039\u20E3",
   ];
   if (member) {
-    const msg = `Congratulations! You have won the ARD AOTC Lottery! **If you do not respond to Elroy within three minutes in the ${process.env.aotcChannel} channel he will remove you from the lottery. He expects you to say "here" to move along. ** Please join the "AOTC Winners" Voice Channel so you can get added to the next group after you have reserved your place.
+    const msg = `Congratulations! You have won the ARD AOTC Lottery! **If you do not respond to Elroy within three minutes in the ${process.env.aotcChannel} channel he will remove you from the lottery. He expects you to say "here" to move along. ** Please join the "Waiting Room" Voice Channel so you can get added to the next group after you have reserved your place.
 
 Some things to remember for the actual run
 
 ${reactionNumbers[1]} On Pull, junmp off the edge of the room. This ensures that mechanics are targted onto our people so there are no unnecessary wipes.
-${reactionNumbers[2]} Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipBirb.`;
+${reactionNumbers[2]} Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipDragon.`;
     member.send(msg);
   }
 }
