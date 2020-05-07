@@ -152,30 +152,40 @@ async function getWowRealms(accessToken) {
 }
 
 async function getCharacterFaction(realm, name, accessToken) {
-  const response = await request.get(
-    `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}?namespace=profile-us`,
-    {
-      auth: {
-        bearer: accessToken,
-      },
-    }
-  );
-  const json = JSON.parse(response);
-  return json.faction.type;
+  try {
+    const response = await request.get(
+      `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}?namespace=profile-us`,
+      {
+        auth: {
+          bearer: accessToken,
+        },
+      }
+    );
+    const json = JSON.parse(response);
+    return json.faction.type;
+  } catch (error) {
+    logger.debug("FACTION");
+    logger.debug(error);
+  }
 }
 
 async function getCompletedQuests(realm, name, accessToken) {
-  const response = await request.get(
-    `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/quests/completed?namespace=profile-us`,
-    {
-      auth: {
-        bearer: accessToken,
-      },
-    }
-  );
+  try {
+    const response = await request.get(
+      `https://us.api.blizzard.com/profile/wow/character/${realm}/${name}/quests/completed?namespace=profile-us`,
+      {
+        auth: {
+          bearer: accessToken,
+        },
+      }
+    );
 
-  const json = JSON.parse(response);
-  return json.quests;
+    const json = JSON.parse(response);
+    return json.quests;
+  } catch (error) {
+    logger.debug("QUESTS");
+    logger.debug(error);
+  }
 }
 
 async function addToBirbList(author, charName, serverName) {
