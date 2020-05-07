@@ -184,7 +184,7 @@ async function getCompletedQuests(realm, name, accessToken) {
     return json.quests;
   } catch (error) {
     logger.debug("QUESTS");
-    logger.debug(error);
+    logger.debug(error.error);
   }
 }
 
