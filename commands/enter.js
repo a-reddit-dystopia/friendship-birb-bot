@@ -80,11 +80,13 @@ module.exports = {
 async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
+    const character = charName.toLowerCase();
+    const server = serverName.toLowerCase();
 
     const char = await blizz.wow.character("collections/mounts", {
       region: "us",
-      realm: serverName,
-      name: charName,
+      realm: server,
+      name: character,
       namespace: "profile",
     });
 
@@ -93,17 +95,13 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
     const hasAotc = aotcMount.length > 0;
 
-    const equipment = await getEquippedItems(serverName, charName, state.token);
+    const equipment = await getEquippedItems(server, character, state.token);
 
     const hasCloakEquipped = equipment.filter((item) => {
       return item.item.id === Number(process.env.CLOAK_ID);
     });
 
-    const faction = await getCharacterFaction(
-      serverName,
-      charName,
-      state.token
-    );
+    const faction = await getCharacterFaction(server, character, state.token);
 
     if (faction !== "HORDE") {
       errorBuilder.status = "not_ok";
