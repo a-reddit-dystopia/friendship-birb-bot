@@ -188,6 +188,7 @@ async function getEquippedItems(realm, name, accessToken) {
 
 async function addToBirbList(author, charName, serverName) {
   try {
+    const character = charName.toLowerCase();
     await request.post(`${process.env.API}api/users.json`, {
       auth: {
         bearer: process.env.elroy,
@@ -196,7 +197,7 @@ async function addToBirbList(author, charName, serverName) {
         user: {
           discord_name: author.tag,
           discord_id: author.id,
-          wow_name: charName,
+          wow_name: character,
           wow_server: serverName,
           status: "active",
           status_date: new Date(),
