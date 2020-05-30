@@ -114,7 +114,7 @@ function sendDM(member) {
 
 Some things to remember for the actual run
 
-${reactionNumbers[1]} On Pull, junmp off the edge of the room. This ensures that mechanics are targted onto our people so there are no unnecessary wipes.
+${reactionNumbers[1]} On Pull, tag Psychus and jump off the edge of the room. This ensures that mechanics are targeted onto our people so there are no unnecessary wipes.
 ${reactionNumbers[2]} Once you have your mount, we would appreciate it if you send a screenshot of you on your new mount to us on Twitter @WoW_ARD with the hashtag #FriendshipDragon.`;
     member.send(msg);
   }
