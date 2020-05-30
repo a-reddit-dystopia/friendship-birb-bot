@@ -164,7 +164,7 @@ async function getCharacterFaction(realm, name, accessToken) {
     return json.faction.type;
   } catch (error) {
     logger.debug("FACTION");
-    logger.debug(error);
+    //logger.debug(error);
   }
 }
 
@@ -183,7 +183,7 @@ async function getEquippedItems(realm, name, accessToken) {
     return json.equipped_items;
   } catch (error) {
     logger.debug("ITEMS");
-    logger.debug(error.error);
+    //logger.debug(error.error);
   }
 }
 
