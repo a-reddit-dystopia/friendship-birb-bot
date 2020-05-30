@@ -29,7 +29,6 @@ module.exports = {
       const [charName, serverName] = args;
       const character = charName.toLowerCase();
       const server = serverName.toLowerCase().replace("’", "").replace("'", "");
-      console.debug(server);
       const errorBuilder = {
         status: "ok",
         errors: {
@@ -164,7 +163,7 @@ async function getCharacterFaction(realm, name, accessToken) {
     return json.faction.type;
   } catch (error) {
     logger.debug("FACTION");
-    //logger.debug(error);
+    logger.debug(error);
   }
 }
 
@@ -183,7 +182,7 @@ async function getEquippedItems(realm, name, accessToken) {
     return json.equipped_items;
   } catch (error) {
     logger.debug("ITEMS");
-    //logger.debug(error.error);
+    logger.debug(error.error);
   }
 }
 
