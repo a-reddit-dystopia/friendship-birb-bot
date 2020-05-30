@@ -25,8 +25,6 @@ module.exports = {
     }
     message.react("🤔");
 
-    console.debug(args);
-
     if (args.length >= 2) {
       const [charName, ...serverName] = args;
       const joined = serverName.join("-");
