@@ -30,6 +30,8 @@ module.exports = {
     if (args.length >= 2) {
       const [charName, ...serverName] = args;
       console.debug(serverName);
+      const joined = serverName.join("-");
+      console.debug(joined);
       const character = charName.toLowerCase();
       const server = serverName.toLowerCase().replace("’", "").replace("'", "");
       const errorBuilder = {
