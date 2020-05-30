@@ -27,6 +27,8 @@ module.exports = {
 
     if (args.length === 2) {
       const [charName, serverName] = args;
+      const character = charName.toLowerCase();
+      const server = serverName.toLowerCase().replace(`'`, "");
       const errorBuilder = {
         status: "ok",
         errors: {
@@ -35,14 +37,10 @@ module.exports = {
           birb: [],
         },
       };
-      await doTheRequest(charName, serverName, errorBuilder, state);
+      await doTheRequest(character, server, errorBuilder, state);
 
       if (errorBuilder.status === "ok") {
-        const status = await addToBirbList(
-          message.author,
-          charName,
-          serverName
-        );
+        const status = await addToBirbList(message.author, character, server);
         if (status === 201) {
           message.react("✅");
         } else if (status === 422) {
@@ -80,13 +78,11 @@ module.exports = {
 async function doTheRequest(charName, serverName, errorBuilder, state) {
   try {
     blizz.defaults.token = state.token;
-    const character = charName.toLowerCase();
-    const server = serverName.toLowerCase();
 
     const char = await blizz.wow.character("collections/mounts", {
       region: "us",
-      realm: server,
-      name: character,
+      realm: serverName,
+      name: charName,
       namespace: "profile",
     });
 
@@ -95,13 +91,17 @@ async function doTheRequest(charName, serverName, errorBuilder, state) {
     });
     const hasAotc = aotcMount.length > 0;
 
-    const equipment = await getEquippedItems(server, character, state.token);
+    const equipment = await getEquippedItems(serverName, charName, state.token);
 
     const hasCloakEquipped = equipment.filter((item) => {
       return item.item.id === Number(process.env.CLOAK_ID);
     });
 
-    const faction = await getCharacterFaction(server, character, state.token);
+    const faction = await getCharacterFaction(
+      serverName,
+      charName,
+      state.token
+    );
 
     if (faction !== "HORDE") {
       errorBuilder.status = "not_ok";
