@@ -27,8 +27,9 @@ module.exports = {
 
     console.debug(args);
 
-    if (args.length === 2) {
-      const [charName, serverName] = args;
+    if (args.length >= 2) {
+      const [charName, ...serverName] = args;
+      console.debug(serverName);
       const character = charName.toLowerCase();
       const server = serverName.toLowerCase().replace("’", "").replace("'", "");
       const errorBuilder = {
