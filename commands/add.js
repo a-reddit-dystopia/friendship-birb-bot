@@ -20,10 +20,10 @@ module.exports = {
     logger.debug(taggedUsers.array.length);
 
     if (taggedUsers.array.length <= 10) {
-      const role = message.guild.roles.find("name", process.env.winnerRole);
-
       taggedUsers.forEach(async function (user) {
+        console.debug(user);
         const author = await message.guild.fetchMember(user);
+        console.debug(author);
         await request.post(`${process.env.API}api/users.json`, {
           auth: {
             bearer: process.env.elroy,
