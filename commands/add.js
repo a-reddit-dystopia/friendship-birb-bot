@@ -1,5 +1,6 @@
 const logger = require("winston");
 const check = require("../utils/authorization-check");
+const request = require("request-promise-native");
 
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
