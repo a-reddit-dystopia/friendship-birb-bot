@@ -28,7 +28,7 @@ module.exports = {
           },
           form: {
             user: {
-              discord_name: `${author.username}#${author.discriminator}`,
+              discord_name: `${user.username}#${user.discriminator}`,
               discord_id: author.id,
               wow_name: "character",
               wow_server: "whatever",
