@@ -21,16 +21,14 @@ module.exports = {
 
     if (taggedUsers.array.length <= 10) {
       taggedUsers.forEach(async function (user) {
-        console.debug(user);
         const author = await message.guild.fetchMember(user);
-        console.debug(author);
         await request.post(`${process.env.API}api/users.json`, {
           auth: {
             bearer: process.env.elroy,
           },
           form: {
             user: {
-              discord_name: author.tag,
+              discord_name: `${author.username}#${author.discriminator}`,
               discord_id: author.id,
               wow_name: "character",
               wow_server: "whatever",
