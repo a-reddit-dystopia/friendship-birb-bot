@@ -30,7 +30,7 @@ module.exports = {
             user: {
               discord_name: `${user.username}#${user.discriminator}`,
               discord_id: author.id,
-              wow_name: "character",
+              wow_name: user.username,
               wow_server: "whatever",
               status: "active",
               status_date: new Date(),
