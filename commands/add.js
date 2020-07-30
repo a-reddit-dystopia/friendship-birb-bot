@@ -9,7 +9,7 @@ logger.level = "debug";
 
 module.exports = {
   name: "add",
-  description: "Give a discord user the AOTC role",
+  description: "Manually enter a person",
   async execute(client, message, args) {
     if (check.isNotAuthorized(message)) {
       return;
@@ -22,8 +22,22 @@ module.exports = {
       const role = message.guild.roles.find("name", process.env.winnerRole);
 
       taggedUsers.forEach(async function (user) {
-        const member = await message.guild.fetchMember(user);
-        return await member.addRole(role, "I am a loving dog");
+        const author = await message.guild.fetchMember(user);
+        await request.post(`${process.env.API}api/users.json`, {
+          auth: {
+            bearer: process.env.elroy,
+          },
+          form: {
+            user: {
+              discord_name: author.tag,
+              discord_id: author.id,
+              wow_name: "character",
+              wow_server: "whatever",
+              status: "active",
+              status_date: new Date(),
+            },
+          },
+        });
       });
 
       message.reply("Arf! Done!");
